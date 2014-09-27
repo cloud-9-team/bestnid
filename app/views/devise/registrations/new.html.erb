@@ -1,0 +1,39 @@
+<center><h2><b>Registrarse en Bestnid</b></h2></center>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+  <div class="container">
+  	<div>
+	<%= f.label "Nombre" %> <%= f.text_field :first_name , :required => "required", class:"form-control" %>
+	</div>
+	<div>
+	<%= f.label "Apellido" %> <%= f.text_field :last_name , :required => "required", class:"form-control" %>
+	</div>
+
+  	<div><%= f.label :email %><br />
+	  <%= f.email_field :email, autofocus: true, :required => "required",  class:"form-control" %></div>
+
+	<div><%= f.label "Contraseña" %> <% if @validatable %><i>(<%= @minimum_password_length %> caracteres como mínimo)</i><% end %><br />
+	    <%= f.password_field :password, autocomplete: "off" , :required => "required", class:"form-control" %></div>
+
+	<div><%= f.label "Confirmación de contraseña" %><br />
+	    <%= f.password_field :password_confirmation, autocomplete: "off" , :required => "required", class:"form-control"  %></div>
+
+  	<div>
+	<%= f.label "País" %> <%= f.text_field :country , :required => "required", class:"form-control" %>
+	</div>
+
+  	<div>
+	<%= f.label "Provincia" %> <%= f.text_field :province , :required => "required", class:"form-control" %>
+	</div>
+
+  	<div>
+	<%= f.label "Ciudad" %> <%= f.text_field :city , :required => "required",  class:"form-control" %>
+	</div>
+
+	  <br>
+	  <div><%= f.submit "Registrarse" , class:"btn btn-primary"%></div>
+<% end %>
+<br>
+<%= render "devise/shared/links"%>
+</div>
