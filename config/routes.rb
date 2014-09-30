@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  
+  get 'contacto/index'
+
+  get 'paginas_estaticas/sobre_nosotros'
+
+  get 'paginas_estaticas/como_funciona'
+
   get 'welcome/index'
 
   get 'users/index'
@@ -14,10 +21,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  authenticated :user do
-    root :to => 'welcome#index', :as => :authenticated_root
-  end
-    root :to => redirect('/users/sign_in')
+  root 'welcome#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
