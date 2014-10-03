@@ -1,10 +1,10 @@
 <header>
-  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="navbar navbar-fixed-top" role="navigation" id="header">
     <div class="container">
       <div class="navbar-header" >
           <%= link_to root_path, class: 'navbar-brand' do %>
-            <%= image_tag "logo_small.png", title: "Logo", class: "logo" %>
-            <span style="color: red; font-family: Lucidatypewriter, monospace; font-size: 2em; padding-left: 2em">Bestnid subastas</span>
+            <%= image_tag "logo.png", title: "Logo", class: "img-thumbnail" %>
+            <span id="titulo">Decidí con el corazón.</span>
           <% end %>
       </div>
       <br>
@@ -21,12 +21,12 @@
       <div class="collapse navbar-collapse">
       </div><!--/.nav-collapse -->
     </div>
-    <ul class="nav nav-tabs" role="tablist">
-      <li><%= link_to 'Inicio', root_path, :class => 'navbar-link' %></li>
-      <li><%= link_to 'Cómo funciona', paginas_estaticas_como_funciona_path, :class => 'navbar-link' %></li>
-      <li><%= link_to 'Acerca de', paginas_estaticas_sobre_nosotros_path, :class => 'navbar-link' %></li>
-      <li><%= link_to 'Contacto', contacto_index_path, :class => 'navbar-link'%></li>
-    </ul>
-
+    <div id="navtabs">
+      <ul class="nav nav-pills nav-justified" role="tablist">
+        <li><%= link_to 'Inicio', root_path, :class => 'navbar-link' %></li>
+        <li><%= link_to 'Cómo funciona', paginas_estaticas_como_funciona_path, :class => 'navbar-link' %></li>
+        <li><%= link_to 'Acerca de', paginas_estaticas_sobre_nosotros_path, :class => 'navbar-link' %></li>
+        <li><%= link_to 'Contacto', contacto_index_path, :class => 'navbar-link'%></li>
+      </ul>
+    </div>
 </header>
-<br><br><br><br><br><br>
