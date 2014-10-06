@@ -1,0 +1,45 @@
+a:link{text-decoration: none}
+a:active{text-decoration: none}
+a:visited{text-decoration: none}
+a:hover{text-decoration: none}
+
+#bestnid-title{
+	font-size: 4em;
+	margin-left: 3em;
+}
+
+body{
+	background-color: AliceBlue;
+}
+
+#cuerpo{
+	padding-top: 0em;
+}
+
+header{
+	background-color: white;
+}
+
+#menu{
+	background-color: lavender;
+}
+
+#slogan{
+	color: black;
+	display: block;
+	font-size: 0.7em;
+	text-shadow:2px 2px 2px rgba(150, 150, 150, 1);
+	vertical-align: bottom;
+}
+
+.subtitulos{
+	font-family: Verdana, sans-serif;
+	font-size: 2em;
+	text-align: center;
+	text-shadow: 2px 2px 2px rgba(150, 150, 150, 1);
+}
+
+#titulo{
+	padding-top: 3em;
+	padding-left: 5em;
+}
