@@ -31,6 +31,20 @@
 	<%= f.label "Ciudad" %> <%= f.text_field :city , :required => "required",  class:"form-control" %>
 	</div>
 
+	<div>
+	<%= f.label "Domicilio" %> <%= f.text_field :domicile , :required => "required",  class:"form-control" %>
+	</div>
+
+	<div>
+	<%= f.label "Tarjeta de crédito" %>
+		<div class="row">
+			<div class="col-xs-2 col-md-2" onkeypress="return isNumberKey(event)"><%= f.text_field :card_1 , :required => "required",  class:"form-control", maxlength:"4" %></div>
+			<div class="col-xs-2 col-md-2" onkeypress="return isNumberKey(event)"><%= f.text_field :card_2 , :required => "required",  class:"form-control", maxlength:"4" %></div>
+			<div class="col-xs-2 col-md-2" onkeypress="return isNumberKey(event)"><%= f.text_field :card_3 , :required => "required",  class:"form-control", maxlength:"4" %></div>
+			<div class="col-xs-2 col-md-2" onkeypress="return isNumberKey(event)"><%= f.text_field :card_4 , :required => "required",  class:"form-control", maxlength:"4" %></div>
+		</div>
+	</div>
+
 	  <br>
 	  <div><%= f.submit "Registrarse" , class:"btn btn-primary"%></div>
 <% end %>

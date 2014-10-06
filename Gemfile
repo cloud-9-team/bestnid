@@ -43,4 +43,5 @@ gem 'tzinfo'
 gem 'tzinfo-data'
 gem 'rails_12factor'
 gem 'paperclip', '~> 4.2.0'
+gem 'hirb'
 
