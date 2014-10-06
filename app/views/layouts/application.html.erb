@@ -8,17 +8,17 @@
 </head>
 <body>
 
-<%= render 'layouts/header' %>
+<%= render 'layouts/header' %> 
 
-<div class="container">
-<% if notice %>
-  <p class="alert alert-success"><%= notice %></p>
-<% end %>
-<% if alert %>
-  <p class="alert alert-danger"><%= alert %></p>
-<% end %>
+<div class="container" id="cuerpo">
+	<% if notice %>
+	  <p class="alert alert-success"><%= notice %></p>
+	<% end %>
+	<% if alert %>
+	  <p class="alert alert-danger"><%= alert %></p>
+	<% end %>
 
-<%= yield %>
+	<%= yield %>
 </div>
 
 </body>
