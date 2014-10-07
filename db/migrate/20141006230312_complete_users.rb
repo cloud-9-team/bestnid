@@ -5,6 +5,5 @@ class CompleteUsers < ActiveRecord::Migration
   	add_column :users, :card_2, :string
   	add_column :users, :card_3, :string
   	add_column :users, :card_4, :string
-  	add_column :users, :admin, :boolean
   end
 end
