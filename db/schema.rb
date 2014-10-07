@@ -34,13 +34,11 @@ ActiveRecord::Schema.define(version: 20141006230312) do
     t.string   "country"
     t.string   "province"
     t.string   "city"
-    t.boolean  "genre"
     t.string   "domicile"
     t.string   "card_1"
     t.string   "card_2"
     t.string   "card_3"
     t.string   "card_4"
-    t.boolean  "admin"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
