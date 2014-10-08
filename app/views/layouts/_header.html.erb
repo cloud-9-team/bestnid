@@ -1,32 +1,38 @@
 <header>
-  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container">
-      <div class="navbar-header" >
-          <%= link_to root_path, class: 'navbar-brand' do %>
-            <%= image_tag "logo_small.png", title: "Logo", class: "logo" %>
-            <span style="color: red; font-family: Lucidatypewriter, monospace; font-size: 2em; padding-left: 2em">Bestnid subastas</span>
-          <% end %>
-      </div>
-      <br>
-      <p class="navbar-text pull-right">
-    <% if user_signed_in? %>
-      <strong><%= current_user.email %></strong>
-      <%= link_to 'Editar perfil', edit_user_registration_path, :class => 'navbar-link' %> |
-      <%= link_to "Cerrar sesión", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
-    <% else %>
-      <%= link_to "Registrarse", new_user_registration_path, :class => 'navbar-link'  %> |
-      <%= link_to "Ingresar", new_user_session_path, :class => 'navbar-link'  %>
-    <% end %>
-      </p>
-      <div class="collapse navbar-collapse">
-      </div><!--/.nav-collapse -->
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Navegación</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/"><b><span style="color: black">Best</span><span style="color: red">nid</span></span></b>
+      <span id="slogan">Decidí con el corazón.</span></a>
     </div>
-    <ul class="nav nav-tabs" role="tablist">
-      <li><%= link_to 'Inicio', root_path, :class => 'navbar-link' %></li>
-      <li><%= link_to 'Cómo funciona', paginas_estaticas_como_funciona_path, :class => 'navbar-link' %></li>
-      <li><%= link_to 'Acerca de', paginas_estaticas_sobre_nosotros_path, :class => 'navbar-link' %></li>
-      <li><%= link_to 'Contacto', contacto_index_path, :class => 'navbar-link'%></li>
-    </ul>
-
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="/" style="padding-top:1.5em"><b>Inicio</b></a></li>
+        <li><a href=" /paginas_estaticas/como_funciona" style="padding-top:1.5em"><b>Cómo funciona</b></a></li>
+        <li><a href="/contacto/index" style="padding-top:1.5em"><b>Contacto</b></a></li>
+        <li><a href="/paginas_estaticas/sobre_nosotros" style="padding-top:1.5em"><b>Información</b></a></li>
+          </ul>
+      </ul>
+      <ul class="nav navbar-nav navbar-right" style="padding-top:1.5em">
+        <% if user_signed_in? %>
+          <strong><%= current_user.first_name %></strong> | 
+          <%= link_to 'Editar perfil', edit_user_registration_path, :class => 'navbar-link' %> |
+          <%= link_to "Cerrar sesión", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+        <% else %>
+          <%= link_to "Registrarse", new_user_registration_path, :class => 'navbar-link'  %> |
+          <%= link_to "Ingresar", new_user_session_path, :class => 'navbar-link'  %>
+        <% end %>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<br><br><br>
 </header>
-<br><br><br><br><br><br>
