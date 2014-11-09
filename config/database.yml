@@ -18,8 +18,18 @@ development:
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
+
+# test original
+#test:
+#  <<: *default
+#  database: prueba_db
+
+# test modificada para usar RSPEC de manera local con sqlite3
+# de lo contrario era necesario instalar postgresql
 test:
-  <<: *default
+  adapter: sqlite3
+  pool: 5
+  timeout: 5000
   database: prueba_db
 
 production:

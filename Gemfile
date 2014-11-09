@@ -47,3 +47,6 @@ gem 'rails_12factor'
 gem 'paperclip', '~> 4.2.0'
 gem 'hirb'
 
+group :development, :test do
+	gem 'rspec-rails', '~> 3.0.0'
+end
