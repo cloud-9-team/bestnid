@@ -3,4 +3,6 @@ class Product < ActiveRecord::Base
 	belongs_to :user
 	has_many :questions, dependent: :destroy
 	has_many :bids, dependent: :destroy
+
+	default_scope -> { order(created_at: :asc) }
 end

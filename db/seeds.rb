@@ -136,7 +136,7 @@ guante = vendedor1.products.find_or_create_by(title: "Guante de acero",
 	imageURL: "http://40.media.tumblr.com/6bc78e251e463fb68362d168fcf38bda/tumblr_nbqngpEAks1tlipbuo1_1280.jpg",
 	totalDays: 15,
 	visitCount: 0,
-	created_at: "2014-02-05 00:00:00")
+	created_at: "2014-11-05 00:00:00")
 
 llama = vendedor2.products.find_or_create_by(title: "Llama",
 	description: "Llama adulta oriunda de Tilcara. Es mansita",

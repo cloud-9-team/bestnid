@@ -1,2 +1,27 @@
-<h1>Welcome#index</h1>
-<p>Find me in app/views/welcome/index.html.erb</p>
+<h1 class = "subtitulos">Subastas</h1>
+<div class="container-fluid">
+	<% @products.each do |p| %>
+		<div class="col-xs-4 col-md-4">
+			<div class = "panel panel-personal">
+				<div class = "panel-heading">
+					<h3 class = "panel-title"><%= p.title %></h3>
+				</div>
+				<div class = "panel-body panel-producto">
+					<div class="estructura"><img src = <%= p.imageURL %> alt = <%= p.title %> class="img-thumbnail imagenes" width = "150" ></div>
+					<div class="estructura">
+						<p><%= p.description[0, 99] %>
+							<% if p.description.length > 100 %>
+								<span> (ver mas...)</span>
+							<%end%>
+						</p>
+					</div>
+				</div>
+				<div class = "panel-footer">
+					<span>Fecha de finalización: <%= p.created_at + p.totalDays.days %></span>
+				</div>
+			</div>			
+		</div>
+	<% end %>
+</div>
+
+
