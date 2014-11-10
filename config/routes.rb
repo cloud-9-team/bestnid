@@ -1,5 +1,55 @@
 Rails.application.routes.draw do
   
+  get 'categories/index'
+
+  get 'categories/show'
+
+  get 'categories/edit'
+
+  get 'categories/new'
+
+  get 'categories/destroy'
+
+  get 'answers/index'
+
+  get 'answers/show'
+
+  get 'answers/edit'
+
+  get 'answers/new'
+
+  get 'answers/destroy'
+
+  get 'questions/index'
+
+  get 'questions/show'
+
+  get 'questions/edit'
+
+  get 'questions/new'
+
+  get 'questions/destroy'
+
+  get 'products/index'
+
+  get 'products/show'
+
+  get 'products/edit'
+
+  get 'products/new'
+
+  get 'products/destroy'
+
+  get 'bids/index'
+
+  get 'bids/show'
+
+  get 'bids/edit'
+
+  get 'bids/new'
+
+  get 'bids/destroy'
+
   get 'contacto/index'
 
   get 'paginas_estaticas/sobre_nosotros'
