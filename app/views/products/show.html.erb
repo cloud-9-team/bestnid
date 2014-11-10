@@ -1,2 +1,28 @@
-<h1>Products#show</h1>
-<p>Find me in app/views/products/show.html.erb</p>
+<h1 class = "subtitulos">Producto - <%=@product.title%></h1>
+<div class = "panel panel-personal">
+	<div class = "panel-heading">
+		<h3 class = "panel-title"><%= @product.title %></h3>
+	</div>
+	<div class = "panel-body">
+		<div><img src = <%= @product.imageURL %> alt = <%= @product.title %> class="img-thumbnail centrar" ></div>
+		<div class="espaciar">
+			<p><%= @product.description %></p>
+		</div>
+	</div>
+	<div class = "panel-footer">
+		<% if Time.now > (@product.created_at + @product.totalDays.days) %>
+			<span class="error">¡Subasta finalizada!</span>
+		<% else %>
+			<span>
+				<span class="negrita">Fecha de finalización:</span> <%=  (@product.created_at + @product.totalDays.days).to_formatted_s(:long) %>
+			</span>
+		<% end %>
+		<span>
+			<% if user_signed_in?%>
+				<% if @owner.email == current_user.email %>
+					<%= link_to "Eliminar subasta", @product, data: { confirm: "¿Estás seguro?" }, :method => :delete , class:"btn btn-danger" %>
+				<% end %>
+			<% end %>
+		</span>
+	</div>
+</div>
