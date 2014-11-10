@@ -1,37 +1,33 @@
-# SQLite version 3.x
-#   gem install sqlite3
-#
-#   Ensure the SQLite 3 gem is defined in your Gemfile
-#   gem 'sqlite3'
-#
+#POSTGRESQL
+
 default: &default
   adapter: postgresql
   pool: 5
   timeout: 5000
 
 development:
-  adapter: sqlite3
-  pool: 5
-  timeout: 5000
-  database: db/development.sqlite3
+  <<: *default
+  database: desarrollo_db
 
-# Warning: The database defined as "test" will be erased and
-# re-generated from your development database when you run "rake".
-# Do not set this db to the same as development or production.
-
-# test original
-#test:
-#  <<: *default
-#  database: prueba_db
-
-# test modificada para usar RSPEC de manera local con sqlite3
-# de lo contrario era necesario instalar postgresql
 test:
-  adapter: sqlite3
-  pool: 5
-  timeout: 5000
+  <<: *default
   database: prueba_db
 
 production:
   <<: *default
   database: produccion_db
+
+
+#SQLITE3
+
+#test:
+#  adapter: sqlite3
+#  pool: 5
+#  timeout: 5000
+#  database: prueba_db
+#
+#development:
+#  adapter: sqlite3
+#  pool: 5
+#  timeout: 5000
+#  database: db/development.sqlite3
