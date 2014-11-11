@@ -9,8 +9,6 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-#vendedor1 = User.create!(email: "vendedor1_de_bestnid@gmail.com", password: "vendocosas", password_confirmation: "vendocosas", first_name: "Carlos", last_name: "Maidana", country: "Argentina", province: "Buenos Aires", city: "La Plata", domicile: "1 y 60", card_1: "5000", card_2: "0666", card_3: "0800", card_4: "1111")
-
 vendedor1 = User.find_or_create_by(email: "vendedor1_bestnid@gmail.com") do |user|
 	user.password = "vendocosas"
 	user.password_confirmation = "vendocosas"
