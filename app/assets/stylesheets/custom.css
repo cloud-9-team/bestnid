@@ -14,6 +14,14 @@ a:hover{text-decoration: none}
   	margin-right: auto;
 }
 
+body{
+	background-color: #D3D3D3;
+}
+
+.body{
+	background-color: #D3D3D3;
+}
+
 #cuerpo{
 	padding-top: 0em;
 }
@@ -41,6 +49,10 @@ header{
 .imagenes{
 	max-height: 170px;
 	overflow: hidden;
+}
+
+.italica{
+	font-style: italic;
 }
 
 #menu{
@@ -71,6 +83,12 @@ header{
   background-color: #31708f;
 }
 
+.product-answer{
+	border-top-style: solid;
+	border-color: #E6E6E6;
+	border-width: 1px;
+}
+
 #slogan{
 	color: black;
 	display: block;
@@ -86,12 +104,6 @@ header{
 	padding-top: 0.7em;
 	text-align: center;
 	text-shadow: 2px 2px 2px rgba(150, 150, 150, 1);
-}
-
-.product-answer{
-	border-top-style: solid;
-	border-color: #E6E6E6;
-	border-width: 1px;
 }
 
 #titulo{
