@@ -1,0 +1,1 @@
+Time::DATE_FORMATS[:long_wo_year] = '%B %d, %H:%M' # November 20, 15:50

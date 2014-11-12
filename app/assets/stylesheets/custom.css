@@ -63,6 +63,12 @@ header{
 	font-weight: bold;
 }
 
+.text-ellipsis{
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
 .panel-producto{
 	height: 200px;
 	overflow: hidden;

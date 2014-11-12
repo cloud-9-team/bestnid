@@ -16,13 +16,12 @@
 						</p>
 					</div>
 				</div>
-				<div class = "panel-footer">
+				<div class = "panel-footer text-ellipsis">
 					<% if Time.now > (p.created_at + p.totalDays.days) %>
 						<span class="error">¡Subasta finalizada!</span>
 					<% else %>
-					<span>
-						<span class="negrita">Finalización:</span> <%= (p.created_at + p.totalDays.days).to_formatted_s(:long) %>
-					</span>
+						<span class="negrita">Finalización:</span>
+						<span title="<%= localize (p.created_at + p.totalDays.days), format: :db %>"><%= localize (p.created_at + p.totalDays.days), format: :long_wo_year %></span>
 					<% end %>
 				</div>
 			</div>			

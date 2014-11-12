@@ -34,6 +34,7 @@ es:
       default: ! '%d/%m/%Y'
       long: ! '%d de %B de %Y'
       short: ! '%d de %b'
+      long_wo_year: ! '%d de %B'
     month_names:
     -
     - enero
@@ -189,4 +190,6 @@ es:
       default: ! '%A, %d de %B de %Y %H:%M:%S %z'
       long: ! '%d de %B de %Y %H:%M'
       short: ! '%d de %b %H:%M'
+      long_wo_year: ! '%d de %B, %H:%M' # 20 de noviembre, 15:50
+      db: ! '%d/%m/%Y %H:%M:%S' # 20/11/2014 15:50:23
     pm: pm
