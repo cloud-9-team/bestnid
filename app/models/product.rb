@@ -6,9 +6,9 @@ class Product < ActiveRecord::Base
 
 	default_scope -> { order(created_at: :asc) }
 	
-	searchable do
-    	text :title, :boost => 2
-    	text :description
-	end
+	# searchable do
+ #    	text :title, :boost => 2
+ #    	text :description
+	# end
 
 end
