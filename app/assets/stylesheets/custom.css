@@ -88,6 +88,12 @@ header{
 	text-shadow: 2px 2px 2px rgba(150, 150, 150, 1);
 }
 
+.product-answer{
+	border-top-style: solid;
+	border-color: #E6E6E6;
+	border-width: 1px;
+}
+
 #titulo{
 	padding-top: 3em;
 	padding-left: 5em;
