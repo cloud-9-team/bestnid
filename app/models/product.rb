@@ -6,8 +6,9 @@ class Product < ActiveRecord::Base
 
 	default_scope -> { order(created_at: :asc) }
 	
-	def self.search(query)
-		where("title like '%#{query}%' or description like '%#{query}%'")
+	searchable do
+    	text :title, :boost => 2
+    	text :description
 	end
 
 end
