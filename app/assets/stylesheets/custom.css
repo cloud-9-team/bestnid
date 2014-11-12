@@ -15,11 +15,7 @@ a:hover{text-decoration: none}
 }
 
 body{
-	background-color: #D3D3D3;
-}
-
-.body{
-	background-color: #D3D3D3;
+	background-color: #DCDCDC;
 }
 
 #cuerpo{
@@ -49,6 +45,10 @@ header{
 .imagenes{
 	max-height: 170px;
 	overflow: hidden;
+}
+
+.imagenes-completas{
+	max-height: 400px;
 }
 
 .italica{
