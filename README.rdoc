@@ -1,28 +1,65 @@
-== README
+== README (LÉEME)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Este documento README tiene la finalidad de detallar los requisitos y operaciones
+necesarios para hacer que la aplicación funcione correctamente.
 
-Things you may want to cover:
+-> Software:
 
-* Ruby version
+	Ruby 2.1.2p95
+	Rails 4.1.5
+	psql (PostgreSQL) 9.3.5
+	Node.js 0.10.25
+	Navegador web Mozilla Firefox/Google Chrome/Safari/INternet Explorer/Opera
+	Git 1.9.1
 
-* System dependencies
+-> Configuración:
+	
+	-> Instalación de PostgreSQL:
 
-* Configuration
+		Linux (PPA, consola): "apt-get install postgresql-9.3"
+		Windows/MAC (instalador): http://www.enterprisedb.com/products-services-training/pgdownload#windows
 
-* Database creation
+	-> Instalación de Node.js:
 
-* Database initialization
+		Linux/Windows/MAC: http://www.nodejs.org/download/
 
-* How to run the test suite
+	-> Instalación de Git:
 
-* Services (job queues, cache servers, search engines, etc.)
+		Linux (PPA, consola): "apt-get install git"
+		Windows/MAC (instalador): http://www.git-scm.com/
 
-* Deployment instructions
+		Git es la herramienta de gestión de versiones del proyecto, alojado
+		en la nube en los repositorios de GitHub (https://github.com/).
 
-* ...
+	->Configuración de git y descarga del repositorio:
 
+		Posicionarse en el directorio donde se desea descargar el directorio:
+			"cd nombreDirectorio"
+		Inicializar un repositorio local (sólo se realiza una vez)
+			"git init"
+		Agregar la URL del repositorio a git (sólo se realiza una vez)
+			"git remote add origin https://github.com/cloud-9-team/bestnid.git"
+		Descargar repositorio:
+			"git pull origin master"
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+		Esta lista de comandos permite la descarga del repositorio oficial de 
+		la aplicación para su posterior utilización.
+
+	-> Instalación de gemas y dependencias (consola):
+
+		"bundle install"
+
+		La lista de gemas puede encontrarse en el archivo Gemfile del presente
+		repositorio.
+
+	-> Configuración de base de datos (consola):
+
+		"rake db:setup
+	 	 rake db:migrate"
+
+	-> Inicialización de sistema en servidor local (consola):
+
+		"rails s"
+
+		El sistema se ejecutará en la direción localhost:3000, accesible desde
+		cualquier navegador web instalado en el equipo.
