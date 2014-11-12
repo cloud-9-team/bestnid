@@ -15,5 +15,9 @@ class ProductsController < ApplicationController
   end
 
   def destroy
+    @product = current_user.products.find(params[:id])
+    @product.destroy
+    flash[:notice] = "Produto eliminado."
+    redirect_to welcome_index_path
   end
 end
