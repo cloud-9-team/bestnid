@@ -1,5 +1,8 @@
 class WelcomeController < ApplicationController
   def index
-  	@products = Product.all
+  	@query = Product.search do
+        fulltext params[:search]
+    end
+    @products = @query.results
   end
 end
