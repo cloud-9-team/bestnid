@@ -50,4 +50,4 @@ group :development, :test do
 end
 
 #Gema para busqueda:
-#gem 'sunspot_rails'
+gem 'sunspot_rails'
