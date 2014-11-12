@@ -19,17 +19,19 @@
 			<% if @product.bids.count == 0 %>
 				<span class="italica negrita">Este producto no tiene ofertas.</span>
 			<% else %>
+				<span class="negrita">Ofertas:</span>
 					<% @product.bids.each do |bid| %>
 					<blockquote>
 						<%= bid.user.first_name %>: <%= bid.need %> <br>
 						Oferta: <%= bid.value %>$
 					</blockquote>
 					<% end %>
+				<% end %>
 			<% end %>
-		<% end %>
 		</div>
+		<% end %>
 	<% end %>
-	
+
 	<div class = "panel-footer">
 		<% if Time.now > (@product.created_at + @product.totalDays.days) %>
 			<span class="error"> ¡Subasta finalizada! </span>
