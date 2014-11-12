@@ -26,36 +26,27 @@
 		</span>
 	</div>
 </div>
-
 <div class="panel panel-personal">
-	
 	<div class = "panel-heading">
 		<h3 class = "panel-title">Preguntas y respuestas</h3>
 	</div>
-
 	<ul class="list-group">
 	<% if @product.questions.length == 0 %>
-
-		<li class="list-group-item italica negrita">Aún nadie ha hecho una pregunta por este producto.</li>
-
-	<% else %>
-		
+		<li class="list-group-item negrita">Aún nadie ha hecho una pregunta por este producto.</li>
+	<% else %>	
 		<% @product.questions.each do |question| %>
-
-			<li class="list-group-item" style="border-top-width: 3px;">
+			<li class="list-group-item" style="border-top-width: 3px">
 				<div><%= question.body %></div>
 				<div class="small text-right italica negrita"><%= question.user.first_name %>, hace <%= time_ago_in_words(question.created_at)%></div>
-
 				<div class="product-answer">
 					<% if question.answer == nil %>
-						<span class="italica negrita">Esta pregunta aún no fue respondida.</span>
+						<span class="negrita">Esta pregunta aún no fue respondida.</span>
 					<% else %>
-						<div><%= question.answer.body %></div>
+						<div><span class="negrita">Respuesta:</span> <%= question.answer.body %></div>
 						<div class="small text-right italica negrita"><%= @owner.first_name %>, hace <%= time_ago_in_words(question.created_at)%></div>
 					<% end %>
 				</div>
 			</li>
-			
 		<% end %>
 	<% end %>
 	</ul>
