@@ -15,6 +15,7 @@ a:hover{text-decoration: none}
 }
 
 body{
+	padding-top: 8em;
 	background-color: #DCDCDC;
 }
 
@@ -87,12 +88,6 @@ header{
 .panel-personal > .panel-heading .badge {
   color: #d9edf7;
   background-color: #31708f;
-}
-
-.product-answer{
-	border-top-style: solid;
-	border-color: #E6E6E6;
-	border-width: 1px;
 }
 
 #slogan{

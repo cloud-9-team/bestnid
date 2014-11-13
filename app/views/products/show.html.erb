@@ -10,69 +10,71 @@
 		</div>
 	</div>
 	<div class = "panel-footer">
-		<% if Time.now > (@product.created_at + @product.totalDays.days) %>
-			<span class="error"> ¡Subasta finalizada! </span>
-		<% else %>
-			<span>
-				<span class="negrita">Fecha de finalización:</span> <%=  (@product.created_at + @product.totalDays.days).to_formatted_s(:long) %>
-			</span>
-		<% end %>
-		<span>
-			<% if user_signed_in? %>
-				<% if @owner.email == current_user.email %>
-					<%= link_to "Eliminar subasta", @product, data: { confirm: "¿Estás seguro?" }, :method => :delete , class:"btn btn-danger" %>
+		<table>
+			<tr>
+				<td>
+					<% if Time.now > (@product.created_at + @product.totalDays.days) %>
+						<span class="error"> ¡Subasta finalizada! </span>
+					<% else %>
+						<span class="negrita">Fecha de finalización:</span>
+						<%= timeleft(@product.created_at + @product.totalDays.days) %>
+					<% end %>
+				</td>
+		
+				<% if user_signed_in? and @owner.email == current_user.email %>
+					<td style="width: 10%;" class="text-ellipsis">
+						<%= link_to "Eliminar subasta", @product, data: { confirm: "¿Estás seguro?" }, :method => :delete , class:"btn btn-danger" %>
+					</td>
 				<% end %>
-			<% end %>
-		</span>
+			</tr>
+		</table>
 	</div>
 </div>
 
-<% if user_signed_in? %>
-	<% if @owner.email == current_user.email %>
-		<div class = "panel panel-personal">
-			<div class = "panel-heading">
-				<h3 class = "panel-title">Ofertas</h3>
-			</div>
-			<ul class="list-group">
-				<% if @product.bids.count == 0 %>
-					<li class="list-group-item negrita" style="border-top-width: 3px">Este producto no tiene ofertas.</li>
-				<% else %>
-					<% @product.bids.each do |bid| %>
-						<li class="list-group-item" style="border-top-width: 3px">
-							<div class="product-answer">
-								<div><span class="negrita"><%= bid.user.first_name %>:</span> <%= bid.need %></div>
-								<div><span class="negrita">Oferta:</span> <%= bid.value %>$ </div>
-							</div>
-						</li>
-					<% end %>
-				<% end %>
-			</ul>
+<% if user_signed_in? and @owner.email == current_user.email %>
+	<div class = "panel panel-personal">
+		<div class = "panel-heading">
+			<h3 class = "panel-title">Ofertas</h3>
 		</div>
-	<% end %>
+		<ul class="list-group">
+			<% if @product.bids.count == 0 %>
+				<li class="list-group-item negrita">Este producto no tiene ofertas.</li>
+			<% else %>
+				<% @product.bids.each do |bid| %>
+					<li class="list-group-item">
+						<blockquote style="font-size: 100%;">
+							<p><%= bid.need %></p>
+							<footer><%= bid.user.first_name %></footer>
+						</blockquote>
+					</li>
+				<% end %>
+			<% end %>
+		</ul>
+	</div>
 <% end %>
 
 <div class="panel panel-personal">
-	<div class = "panel-heading">
-		<h3 class = "panel-title">Preguntas y respuestas</h3>
+	<div class="panel-heading">
+		<h3 class="panel-title">Preguntas y respuestas</h3>
 	</div>
-	<ul class="list-group">
-	<% if @product.questions.length == 0 %>
-		<li class="list-group-item negrita">Aún nadie ha hecho una pregunta por este producto.</li>
-	<% else %>	
-		<% @product.questions.each do |question| %>
-			<li class="list-group-item" style="border-top-width: 3px">
-				<div><%= question.body %></div>
-				<div class="small text-right italica negrita"><%= question.user.first_name %>, hace <%= time_ago_in_words(question.created_at)%></div>
-				<div class="product-answer">
-					<% if question.answer == nil %>
-						<span class="negrita">Esta pregunta aún no fue respondida.</span>
-					<% else %>
-						<div><span class="negrita">Respuesta:</span> <%= question.answer.body %></div>
-						<div class="small text-right italica negrita"><%= @owner.first_name %>, hace <%= time_ago_in_words(question.created_at)%></div>
-					<% end %>
-				</div>
-			</li>
+	<ul class="list-group" id="list-special">
+		<% if @product.questions.length == 0 %>
+			<li class="list-group-item negrita">Aún nadie ha hecho una pregunta por este producto.</li>
+		<% else %>	
+			<% @product.questions.each do |question| %>
+				<li class="list-group-item">
+					<div><%= question.body %></div>
+					<div class="small text-right italica negrita"><%= question.user.first_name %>, hace <%= time_ago_in_words(question.created_at)%></div>
+					<div class="product-answer">
+						<% if question.answer == nil %>
+							<span class="negrita">Esta pregunta aún no fue respondida.</span>
+						<% else %>
+							<div><span class="negrita">Respuesta:</span> <%= question.answer.body %></div>
+							<div class="small text-right italica negrita"><%= @owner.first_name %>, hace <%= time_ago_in_words(question.created_at)%></div>
+						<% end %>
+					</div>
+				</li>
+			<% end %>
 		<% end %>
-	<% end %>
 	</ul>
 </div>

@@ -1,3 +1,17 @@
 // Place all the styles related to the products controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#list-special .list-group-item:first-child{
+  border-top: none;
+}
+
+#list-special .list-group-item{
+  border-top-width: 3px;
+}
+
+.product-answer{
+	border-top-style: solid;
+	border-color: #E6E6E6;
+	border-width: 1px;
+}

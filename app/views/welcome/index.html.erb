@@ -1,4 +1,4 @@
-<h1 class = "subtitulos">Subastas</h1>
+<h1 class="subtitulos">Subastas</h1>
 <div class="container-fluid">
 	<% @products.each do |p| %>
 		<div class="col-xs-6 col-md-4">
@@ -9,7 +9,7 @@
 				<div class = "panel-body panel-producto">
 					<div class="estructura"><img src = <%= p.imageURL %> alt = <%= p.title %> class="img-thumbnail imagenes" width = "150" ></div>
 					<div class="estructura">
-						<p><%= p.description[0, 99] %>
+						<p><%= p.description.truncate(100) %>
 							<% if p.description.length > 100 %>
 								<span> <%= link_to "(ver más...)", p %></span>
 							<% end %>
@@ -21,7 +21,7 @@
 						<span class="error">¡Subasta finalizada!</span>
 					<% else %>
 						<span class="negrita">Finalización:</span>
-						<span title="<%= localize (p.created_at + p.totalDays.days), format: :db %>"><%= localize (p.created_at + p.totalDays.days), format: :long_wo_year %></span>
+						<%= timeleft(p.created_at + p.totalDays.days) %>
 					<% end %>
 				</div>
 			</div>			
