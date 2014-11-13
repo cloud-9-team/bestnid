@@ -4,6 +4,5 @@ class WelcomeController < ApplicationController
          fulltext params[:search]
     end
     @products = @query.results
-
   end
 end

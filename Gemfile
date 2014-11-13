@@ -51,3 +51,6 @@ end
 
 #Gema para busqueda:
 gem 'sunspot_rails'
+group :development do
+    gem 'sunspot_solr'
+end
