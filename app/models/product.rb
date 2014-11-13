@@ -5,4 +5,9 @@ class Product < ActiveRecord::Base
 	has_many :bids, dependent: :destroy
 
 	default_scope -> { order(created_at: :asc) }
+	
+	def self.search(query)
+		where("title ilike ? or description ilike ?", "%#{query}%","%#{query}%")
+	end
+
 end
