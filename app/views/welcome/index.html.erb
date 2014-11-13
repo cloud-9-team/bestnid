@@ -1,5 +1,8 @@
 <h1 class="subtitulos">Subastas</h1>
 <div class="container-fluid">
+	<% if @products.count == 0 %>
+		<h4 class = "italica" > No se encontraron productos. </h4>
+	<% end %>
 	<% @products.each do |p| %>
 		<div class="col-xs-6 col-md-4">
 			<div class = "panel panel-personal">
