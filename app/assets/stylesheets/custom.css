@@ -8,6 +8,46 @@ a:hover{text-decoration: none}
 	margin-left: 3em;
 }
 
+#bestnid-logo{
+	height: 100%;
+	padding-bottom: 2px;
+}
+
+#bestnid-logo-text{
+	display: inline-block;
+	vertical-align: middle;
+	padding-top: 10px;
+	font-size: 120%;
+}
+
+#bestnid-slogan{
+	color: black;
+	font-size: 0.7em;
+	text-shadow:2px 2px 2px rgba(150, 150, 150, 1);
+}
+
+.navbar-custom {
+	border-bottom: none;
+	height: inherit;
+}
+
+.navbar-custom .navbar-header{
+	margin-right: 10px;
+}
+
+.navbar-custom .navbar-nav li a{
+    line-height: 40px;
+}
+
+.navbar-custom .navbar-text {
+    line-height: 40px;
+    color: black;
+}
+
+.navbar-custom .navbar-form {
+    line-height: 52px;
+}
+
 .centrar{
 	display:block;
 	margin-left: auto;
@@ -15,7 +55,7 @@ a:hover{text-decoration: none}
 }
 
 body{
-	padding-top: 8em;
+	padding-top: 4em;
 	background-color: #DCDCDC;
 }
 
@@ -88,14 +128,6 @@ header{
 .panel-personal > .panel-heading .badge {
   color: #d9edf7;
   background-color: #31708f;
-}
-
-#slogan{
-	color: black;
-	display: block;
-	font-size: 0.7em;
-	text-shadow:2px 2px 2px rgba(150, 150, 150, 1);
-	vertical-align: bottom;
 }
 
 .subtitulos{
