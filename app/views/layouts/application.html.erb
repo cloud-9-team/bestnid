@@ -10,12 +10,22 @@
 
 <%= render 'layouts/header' %> 
 
-<div class="container" id="cuerpo" style = "padding-top:1em">
+<div class="container" id="cuerpo">
 	<% if notice %>
-	  <p class="alert alert-success"><%= notice %></p>
+		<div class="alert alert-success" style="margin-top: 2em;"><%= notice %>
+		  	<button type="button" class="close" data-dismiss="alert">
+			  <span aria-hidden="true">&times;</span>
+			  <span class="sr-only">Cerrar</span>
+			</button>
+		</div>
 	<% end %>
 	<% if alert %>
-	  <p class="alert alert-danger"><%= alert %></p>
+	  	<div class="alert alert-danger" style="margin-top: 2em;"><%= alert %>
+		  	<button type="button" class="close" data-dismiss="alert">
+			  <span aria-hidden="true">&times;</span>
+			  <span class="sr-only">Cerrar</span>
+			</button>
+		</div>
 	<% end %>
 
 	<%= yield %>
