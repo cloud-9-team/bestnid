@@ -138,6 +138,7 @@ guante = vendedor1.products.find_or_create_by(title: "Guante de acero",
 	description: "Guante de malla de acero inox. tejido, anticorte, marca *manulatex* de industria francesa",
 	imageURL: "http://40.media.tumblr.com/6bc78e251e463fb68362d168fcf38bda/tumblr_nbqngpEAks1tlipbuo1_1280.jpg",
 	totalDays: 15,
+	category_name: "Indumentaria",
 	visitCount: 0,
 	category: c2,
 	created_at: "2014-11-05 00:00:00")
