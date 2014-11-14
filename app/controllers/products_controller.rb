@@ -6,6 +6,8 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     id = @product.user_id
     @owner = User.find(id)
+    cat = @product.category_id
+    @category = Category.find(cat)
   end
 
   def edit
