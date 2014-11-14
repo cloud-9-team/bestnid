@@ -6441,17 +6441,17 @@ html{
 	padding-top: 3em;
 	padding-left: 5em;
 }
-/* line 5, /home/lucas/Git/bestnid/app/assets/stylesheets/products.css.scss */
+/* line 5, C:/Users/Federico/Rails/Bestnid/app/assets/stylesheets/products.css.scss */
 #list-special .list-group-item:first-child {
   border-top: none;
 }
 
-/* line 9, /home/lucas/Git/bestnid/app/assets/stylesheets/products.css.scss */
+/* line 9, C:/Users/Federico/Rails/Bestnid/app/assets/stylesheets/products.css.scss */
 #list-special .list-group-item {
   border-top-width: 3px;
 }
 
-/* line 13, /home/lucas/Git/bestnid/app/assets/stylesheets/products.css.scss */
+/* line 13, C:/Users/Federico/Rails/Bestnid/app/assets/stylesheets/products.css.scss */
 .product-answer {
   border-top-style: solid;
   border-color: #E6E6E6;
