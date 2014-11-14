@@ -133,8 +133,8 @@ guante = vendedor1.products.find_or_create_by(title: "Guante de acero",
 	description: "Guante de malla de acero inox. tejido, anticorte, marca *manulatex* de industria francesa",
 	imageURL: "http://40.media.tumblr.com/6bc78e251e463fb68362d168fcf38bda/tumblr_nbqngpEAks1tlipbuo1_1280.jpg",
 	totalDays: 15,
-	category_name: "Indumentaria",
 	visitCount: 0,
+	category_id: 1,
 	created_at: "2014-11-05 00:00:00")
 
 llama = vendedor2.products.find_or_create_by(title: "Llama",
@@ -197,3 +197,5 @@ p3 = comprador2.questions.find_or_create_by(product: llama,
 p1.create_answer(body: "100% pura, hace delirar tus sentidos")
 
 p3.create_answer(body: "Sí, hace todo lo que le pidas")
+
+category1 = Category.find_or_create_by(id: 1, name: "Indumentaria", description: "Articulos y accesorios para vestir")
