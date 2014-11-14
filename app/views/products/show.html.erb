@@ -6,12 +6,10 @@
 	<div class = "panel-body">
 		<div><img src = <%= @product.imageURL %> alt = <%= @product.title %> class="img-thumbnail centrar imagenes-completas" ></div>
 		<div class="espaciar">
-			<p><span class="negrita">Categoría del producto: </span><%= @category.name %></p>
-		</div>
-		<div class="espaciar">
-			<p><span class="negrita">Descripción: </span><%= @product.description %></p>
+			<p><%= @product.description %></p>
 		</div>
 	</div>
+	
 	<div class = "panel-footer">
 		<table class="table" style="margin-bottom:0px;">
 			<tr>
