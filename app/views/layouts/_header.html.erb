@@ -26,12 +26,12 @@
         <li><a href="/paginas_estaticas/sobre_nosotros"><b>Información</b></a></li>
       </ul>
 
-      <%= form_tag welcome_index_path, :method => :get, class: "navbar-form navbar-left hidden-sm" do %>
+      <%= form_tag welcome_index_path, :method => :get, class: "navbar-form navbar-left" do %>
         <%= text_field_tag :search, params[:search], class:"form-control", :placeholder => "Buscar productos" %>
         <%= submit_tag "Buscar", :name => nil, class:"btn btn-default" %>
       <% end %>
 
-      <ul class="nav navbar-nav navbar-right hidden-md hidden-sm">
+      <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
           <li><p class="navbar-text"><b><%= current_user.first_name %></b></p></li>
           <li><%= link_to 'Editar perfil', edit_user_registration_path, :class => 'navbar-link' %></li>
