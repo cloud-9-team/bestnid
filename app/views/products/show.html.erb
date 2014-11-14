@@ -10,7 +10,17 @@
 		</div>
 	</div>
 	<div class = "panel-footer">
-		<table>
+		<table class="table" style="margin-bottom:0px;">
+			<tr>
+				<td style="border-top:none;">
+					<span class="negrita">Categoría:</span>	<%= @product.category.name %>
+				</td>
+			</tr>	
+			<tr>
+				<td>
+					<span class="negrita">Fecha de publicación:</span>	<%= localize @product.created_at, format: :long %>
+				</td>
+			</tr>	
 			<tr>
 				<td>
 					<% if Time.now > (@product.created_at + @product.totalDays.days) %>
