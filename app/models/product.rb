@@ -7,7 +7,7 @@ class Product < ActiveRecord::Base
 	default_scope -> { order(created_at: :asc) }
 	
 	def self.search(query)
-		where("title ilike ? or description ilike ?","%#{query}%","%#{query}%")
+		where("title ilike ? or description ilike ? or category_name ilike ?", "%#{query}%", "%#{query}%", "%#{query}%")
 	end
 
 end
