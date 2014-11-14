@@ -129,12 +129,17 @@ admin = User.find_or_create_by(email: "admin1_bestnid@gmail.com") do |user|
 	user.card_4 = "7777"
 end
 
+c1 = Category.find_or_create_by(name: "Hogar");
+c2 = Category.find_or_create_by(name: "Herramientas de trabajo");
+c3 = Category.find_or_create_by(name: "Animales");
+c4 = Category.find_or_create_by(name: "Otros");
+
 guante = vendedor1.products.find_or_create_by(title: "Guante de acero",
 	description: "Guante de malla de acero inox. tejido, anticorte, marca *manulatex* de industria francesa",
 	imageURL: "http://40.media.tumblr.com/6bc78e251e463fb68362d168fcf38bda/tumblr_nbqngpEAks1tlipbuo1_1280.jpg",
 	totalDays: 15,
 	visitCount: 0,
-	category_id: 1,
+	category: c2,
 	created_at: "2014-11-05 00:00:00")
 
 llama = vendedor2.products.find_or_create_by(title: "Llama",
@@ -142,6 +147,7 @@ llama = vendedor2.products.find_or_create_by(title: "Llama",
 	imageURL: "http://41.media.tumblr.com/6750bde49985d14340294b65cbfac7a2/tumblr_nbsedz4pML1tlipbuo1_1280.jpg",
 	totalDays: 20,
 	visitCount: 0,
+	category: c3,
 	created_at: "2014-03-06 17:00:00")
 
 espejo = vendedor1.products.find_or_create_by(title: "Espejo",
@@ -149,6 +155,7 @@ espejo = vendedor1.products.find_or_create_by(title: "Espejo",
 	imageURL: "http://40.media.tumblr.com/ad056adadfeeced7f24f918a843a0f60/tumblr_nbsf4rGZFE1tlipbuo1_1280.jpg",
 	totalDays: 15,
 	visitCount: 0,
+	category: c1,
 	created_at: "2014-04-07 08:31:03")
 
 kriptonita = vendedor2.products.find_or_create_by(title: "Kriptonita",
@@ -156,13 +163,15 @@ kriptonita = vendedor2.products.find_or_create_by(title: "Kriptonita",
 	imageURL: "http://41.media.tumblr.com/8e08757ed8fd1c3368e29dc127140ef1/tumblr_nbsewqvU231tlipbuo1_1280.jpg",
 	totalDays: 28,
 	visitCount: 0,
-	created_at: "2014-05-08 23:00:00")
+	category: c4,
+	created_at: "2014-10-19 23:00:00")
 
 aceite = vendedor3.products.find_or_create_by(title: "Aceite y Vinagre",
 	description: "200ml de aceite y 300ml de vinagre. No incluye frascos",
 	imageURL: "http://40.media.tumblr.com/f92d39b2c62cf2bc5398797db35ce37d/tumblr_nbsejfmSt21tlipbuo1_400.jpg",
 	totalDays: 15,
 	visitCount: 0,
+	category: c1,
 	created_at: "2014-06-09 11:11:11")
 
 comprador1.bids.find_or_create_by(product: guante,
@@ -194,8 +203,6 @@ p2 = comprador1.questions.find_or_create_by(product: kriptonita,
 p3 = comprador2.questions.find_or_create_by(product: llama,
 	body: "Se le pueden enseñar truquitos como hacerse la muerta o saltos?")
 
-p1.create_answer(body: "100% pura, hace delirar tus sentidos")
+p1.create_answer(body: "100% pura, deja a Superman dado vuelta")
 
 p3.create_answer(body: "Sí, hace todo lo que le pidas")
-
-category1 = Category.find_or_create_by(id: 1, name: "Indumentaria", description: "Articulos y accesorios para vestir")
