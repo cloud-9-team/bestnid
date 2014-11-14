@@ -138,6 +138,12 @@ body{
 	position: relative;
 }
 
+.campo-obligatorio{
+	vertical-align: super;
+	color: red;
+	font-weight: bold;
+}
+
 #cuerpo{
 	padding-top: 0em;
 	padding-bottom: 60px;
