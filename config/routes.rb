@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'purchases/index'
+
   get 'sales/index'
 
   resources :products
