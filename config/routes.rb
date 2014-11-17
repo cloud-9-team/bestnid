@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
 
+  get 'sales/index'
+
   resources :products
   resources :bids
   resources :categories
   resources :questions
   resources :answers
+  resources :sales
   
   get 'contacto/index'
 

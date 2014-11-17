@@ -21,6 +21,9 @@
     <div class="collapse navbar-collapse" id="to-collapse">
       <ul class="nav navbar-nav">
         <li><a href="/"><b>Inicio</b></a></li>
+        <% if user_signed_in? %>
+          <li><a href="/sales/index"><b>Ventas</b></a></li>
+        <% end %>
         <li><a href=" /paginas_estaticas/como_funciona"><b>Cómo funciona</b></a></li>
         <li><a href="/contacto/index"><b>Contacto</b></a></li>
         <li><a href="/paginas_estaticas/sobre_nosotros"><b>Información</b></a></li>
