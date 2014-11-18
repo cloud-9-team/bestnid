@@ -133,7 +133,7 @@ a:hover{text-decoration: none}
 
 body{
 	background-color: #DCDCDC;
-	padding-top: 4em;
+	padding-top: 5.5em;
 	min-height: 100%;
 	position: relative;
 }
@@ -249,4 +249,49 @@ html{
 #titulo{
 	padding-top: 3em;
 	padding-left: 5em;
+}
+
+.sidebar{
+	position: fixed;
+	width: 200px;
+	height: 100%;
+	margin-left: -200px;
+	overflow-y: auto;
+}
+
+.wrapper{
+	padding-left: 200px;
+}
+
+@media (max-width: 768px){
+	.wrapper{
+		padding-left: 0px;
+	}
+}
+
+/* Responsiveness actualizada debido a la inclusión de la barra lateral */
+/* Cuando el ancho del viewport es mayor igual a 768px y menor a 992px */
+@media (min-width: 768px) {
+  .contenido {
+    width: 550px;
+  }
+}
+
+/* Cuando el ancho del viewport es mayor igual a 992px y menor a 1200px */
+@media (min-width: 992px) {
+  .contenido {
+    width: 770px;
+  }
+
+/* Cuando el ancho del viewport es mayor igual a 1200px y menor a 1400px */
+@media (min-width: 1200px) {
+  .contenido {
+    width: 970px;
+  }
+
+/* Cuando el ancho del viewport es mayor igual a 1400px */
+  @media (min-width: 1400px) {
+  .container {
+    width: 1170px;
+  }
 }
