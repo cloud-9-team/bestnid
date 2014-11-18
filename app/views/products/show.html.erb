@@ -56,10 +56,9 @@
 			<% else %>
 				<% @product.bids.each do |bid| %>
 					<li class="list-group-item">
-						<blockquote style="font-size: 100%;">
+						<div style="font-size: 100%;">
 							<p><%= bid.need %></p>
-							<footer><%= bid.user.first_name %></footer>
-						</blockquote>
+						</div>
 					</li>
 				<% end %>
 			<% end %>
@@ -78,13 +77,13 @@
 			<% @product.questions.each do |question| %>
 				<li class="list-group-item">
 					<div><%= question.body %></div>
-					<div class="small text-right italica negrita"><%= question.user.first_name %>, hace <%= time_ago_in_words(question.created_at)%></div>
+					<div class="small text-right italica negrita">Pregunta realizada hace <%= time_ago_in_words(question.created_at)%></div>
 					<div class="product-answer">
 						<% if question.answer == nil %>
 							<span class="negrita">Esta pregunta aún no fue respondida.</span>
 						<% else %>
 							<div><span class="negrita">Respuesta:</span> <%= question.answer.body %></div>
-							<div class="small text-right italica negrita"><%= @owner.first_name %>, hace <%= time_ago_in_words(question.created_at)%></div>
+							<div class="small text-right italica negrita">Respuesta de hace <%= time_ago_in_words(question.created_at)%></div>
 						<% end %>
 					</div>
 				</li>

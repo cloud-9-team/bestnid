@@ -12,18 +12,41 @@
       <a href="/">
         <%= image_tag("logo_clean.png", id: "bestnid-logo") %>
         <div id="bestnid-logo-text">
-          <div><b><span style="color: black">Best</span><span style="color: red">nid</span></span></b></div>
+          <div class="negrita"><span style="color: black">Best</span><span style="color: red">nid</span></span></div>
           <div><span id="bestnid-slogan">Decidí con el corazón</span></div>
         </div>
       </a>
     </div>
    
-    <div class="collapse navbar-collapse" id="to-collapse">
+    <div class="collapse navbar-collapse nav-pills" id="to-collapse">
       <ul class="nav navbar-nav">
-        <li><a href="/"><b>Inicio</b></a></li>
-        <li><a href=" /paginas_estaticas/como_funciona"><b>Cómo funciona</b></a></li>
+        <li><a href="/" class="negrita">Inicio</a></li>
+
+        <% if user_signed_in? %>
+         <li role="presentation" class="dropdown">
+            <a class="dropdown-toggle negrita" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+              Mis subastas<span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="/sales/index"><b>Ventas</b></a></li>
+              <li><a href="/paginas_estaticas/como_funciona"><b>Compras</b></a></li>
+              <li><a href="/paginas_estaticas/como_funciona"><b>Publicar subasta</b></a></li>
+            </ul>
+          </li>
+        <% end %>
+
+         <li role="presentation" class="dropdown">
+            <a class="dropdown-toggle negrita" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+              Información<span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="/paginas_estaticas/como_funciona"><b>Cómo funciona</b></a></li>
+              <li><a href="/paginas_estaticas/sobre_nosotros"><b>Sobre nosotros</b></a></li>
+            </ul>
+          </li>
+
         <li><a href="/contacto/index"><b>Contacto</b></a></li>
-        <li><a href="/paginas_estaticas/sobre_nosotros"><b>Información</b></a></li>
+        
       </ul>
 
       <%= form_tag welcome_index_path, :method => :get, class: "navbar-form navbar-left" do %>
@@ -33,13 +56,27 @@
 
       <ul class="nav navbar-nav navbar-right">
         <% if user_signed_in? %>
+
           <li><p class="navbar-text"><b><%= current_user.first_name %></b></p></li>
-          <li><%= link_to 'Editar perfil', edit_user_registration_path, :class => 'navbar-link' %></li>
-          <li><%= link_to "Cerrar sesión", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></li>
+
+          <li role="presentation" class="dropdown">
+            <a class="dropdown-toggle negrita" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+              Mi cuenta<span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+              <li><%= link_to "Cerrar sesión", destroy_user_session_path, method: :delete, :class => 'navbar-link' %></li>
+              <li><%= link_to 'Editar perfil', edit_user_registration_path, :class => 'navbar-link' %></li></li>
+              <li><%= link_to "Ver perfil", welcome_index_path, :class => 'navbar-link' %></a></li>
+            </ul>
+          </li>
+        
         <% else %>
+        
           <li><%= link_to "Registrarse", new_user_registration_path, :class => 'navbar-link'  %></li>
           <li><%= link_to "Ingresar", new_user_session_path, :class => 'navbar-link'  %></li>
+        
         <% end %>
+
       </ul>
     </div>
 
