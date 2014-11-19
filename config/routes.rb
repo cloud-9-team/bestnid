@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   resources :answers
   resources :sales
   
+  post 'bids/new'
+
   get 'contacto/index'
 
   get 'paginas_estaticas/sobre_nosotros'

@@ -1,2 +1,3 @@
-<h1>Bids#index</h1>
-<p>Find me in app/views/bids/index.html.erb</p>
+<% @bids.each do |b| %>
+	<h2><%= b.need %></h2>
+<% end %>

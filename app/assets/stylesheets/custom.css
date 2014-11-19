@@ -58,6 +58,7 @@ body > footer{
 	vertical-align: super;
 	color: red;
 	font-weight: bold;
+	display: inline;
 }
 
 #cuerpo{
