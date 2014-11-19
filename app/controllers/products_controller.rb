@@ -9,14 +9,14 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     id = @product.user_id
     @owner = User.find(id)
-    cat = @product.category_id
-    @category = Category.find(cat)
+    @category = @product.category
   end
 
   def edit
   end
 
-  def new    
+  def new
+    @categories = Category.all
   end
 
   def form
@@ -24,8 +24,10 @@ class ProductsController < ApplicationController
     i = params[:imageURL]
     d = params[:description]
     c = params[:totalDays]
-    Product.create(title:t,description:d,imageURL:i,totalDays:c,visitCount: 0,user:current_user,finished: false)
-    redirect_to welcome_index_path
+    cat = Category.where(id: params[:category]).first
+    Product.create(title:t,description:d,imageURL:i,totalDays:c,category:cat,visitCount: 0,user:current_user,finished: false)
+    flash[:notice] = "Produto publicado."
+    redirect_to sales_index_path
   end
 
   def destroy
