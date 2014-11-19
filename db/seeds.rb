@@ -150,7 +150,7 @@ llama = vendedor2.products.find_or_create_by(title: "Llama",
 	visitCount: 0,
 	category: c3,
 	created_at: "2014-11-16 08:00:00",
-	finished: true)
+	finished: false)
 
 espejo = vendedor1.products.find_or_create_by(title: "Espejo",
 	description: "Espejo sin marco. Medidas: 0.8m x 1.2m",
@@ -159,7 +159,7 @@ espejo = vendedor1.products.find_or_create_by(title: "Espejo",
 	visitCount: 0,
 	category: c1,
 	created_at: "2014-11-16 08:00:00",
-	finished: true)
+	finished: false)
 
 kriptonita = vendedor2.products.find_or_create_by(title: "Kriptonita",
 	description: "200 gramos de Kriptonita",
@@ -168,7 +168,7 @@ kriptonita = vendedor2.products.find_or_create_by(title: "Kriptonita",
 	visitCount: 0,
 	category: c4,
 	created_at: "2014-11-16 08:00:00",
-	finished: true)
+	finished: false)
 
 aceite = vendedor3.products.find_or_create_by(title: "Aceite y Vinagre",
 	description: "200ml de aceite y 300ml de vinagre. No incluye frascos",
@@ -177,7 +177,7 @@ aceite = vendedor3.products.find_or_create_by(title: "Aceite y Vinagre",
 	visitCount: 0,
 	category: c1,
 	created_at: "2014-11-16 08:00:00",
-	finished: true)
+	finished: false)
 
 comprador1.bids.find_or_create_by(product: guante,
 	need: "Soy carnicero y lamentablemente perdí un dedo trabajando. Me gustaría comprar el producto para que no me vuelva a ocurrir.",
