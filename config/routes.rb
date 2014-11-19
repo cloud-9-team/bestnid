@@ -25,6 +25,10 @@ Rails.application.routes.draw do
 
   get 'users/show'
 
+  get 'products/form'
+  
+  post 'products/form'
+
   devise_for :users, :controllers => { registrations: 'registrations' }
   resources :users, :only => [:show]
 

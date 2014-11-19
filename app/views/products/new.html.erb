@@ -1,2 +1,28 @@
-<h1>Products#new</h1>
-<p>Find me in app/views/products/new.html.erb</p>
+<h1 class = "subtitulos">Publicar subasta</h1>
+	<div class = "panel panel-personal">
+		<div class = "panel-heading">
+			<h3 class = "panel-title">Nueva subasta - <%=current_user.first_name%> <%=current_user.last_name%></h3>
+		</div>
+		<div class = "panel-body panel-producto">
+			<%= form_tag :action => 'form' do %>
+				<div class="form-group"><%= text_field_tag "title", "", :placeholder => "Título", :required => "required", class:"form-control", maxlength:"255" %>
+				</div>
+		     	<div class="form-group"><%= text_field_tag "description", "", rows:"15", cols:"100%", :placeholder => "Descripción", :required => "required", class:"form-control", maxlength:"255" %>
+		     	</div>
+		     	<div class="form-group"><%= text_field_tag "imageURL", "", rows:"15", cols:"100%", :placeholder => "URL de imagen", class:"form-control", maxlength:"255" %>
+		     	</div>
+
+		     	<div class="form-group number-area"><%= number_field_tag "totalDays", 15, in: 15...31, :placeholder => "Duración de la subasta", :required => "required", class:"form-control", maxlength:"2" %>
+		     	</div>
+		</div>
+		<div class = "panel-footer text-ellipsis">
+		     	<div class="form-group"><%= submit_tag "Publicar", class:"btn btn-primary" %></div>
+	  		<% end %>
+
+			<% if  %>
+
+			<% else %>
+
+			<% end %>
+		</div>
+	</div>
