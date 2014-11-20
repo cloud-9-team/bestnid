@@ -1,2 +1,65 @@
-<h1>Products#new</h1>
-<p>Find me in app/views/products/new.html.erb</p>
+<h1 class = "subtitulos">Publicar subasta</h1>
+<div class = "panel panel-personal">
+	<div class = "panel-heading">
+		<h3 class = "panel-title">Nueva subasta - <%=current_user.first_name%> <%=current_user.last_name%></h3>
+	</div>
+	<div class = "panel-body">
+		<%= form_tag :action => 'form' do %>
+			<div class="form-group negrita">Título de producto: <span class="campo-obligatorio">*</span></div>
+			<div class="form-group"><%= text_field_tag "title", "", :placeholder => "Título", :required => "required", class:"form-control", maxlength:"255" %>
+			</div>
+			<div class="form-group negrita">Descripción de producto: <span class="campo-obligatorio">*</span></div>
+	     	<div class="form-group"><%= text_field_tag "description", "", rows:"15", cols:"100%", :placeholder => "Descripción", :required => "required", class:"form-control", maxlength:"255" %>
+	     	</div>
+	     	<div class="form-group negrita">Imagen de producto: </div>
+	     	<div class="form-group"><%= text_field_tag "imageURL", "", rows:"15", cols:"100%", :placeholder => "URL de imagen", class:"form-control", maxlength:"255" %>
+	     	</div>
+	     	<div class="form-group"><span class="negrita">Duración de subasta: </span><span class="italica">(rango válido entre 15 y 30 días)</span></div>
+	     	<div class="form-group number-area"><%= number_field_tag "totalDays", 15, in: 15...31, :required => "required", class:"form-control", maxlength:"2" %>
+	     	</div>
+	     	<div class="form-group negrita">Categoría de producto: </span></div>
+	     	<div class="form-group">
+				<%= select_tag "category", options_from_collection_for_select(@categories, "id", "name") %>
+			</div>
+	     	<div class="form-group"><%= submit_tag "Publicar", class:"btn btn-primary" %></div>
+  		<% end %>
+	</div>
+	<div class = "panel-footer text-ellipsis">
+		<span class="campo-obligatorio">*</span> <span class="error">Campos obligatorios</span>
+	</div>
+</div>
+
+<div class = "panel panel-personal">
+	<div class = "panel-heading">
+		<h3 class = "panel-title">¿Qué es "URL de imagen"?</h3>
+	</div>
+	<div class = "panel-body">
+		<p>La <span class="negrita">URL de imagen</span> sirve para adjuntar a su publicación una foto de su producto. A continuación, le explicaremos en sencillos pasos cómo subir una imagen.</p>
+		<table class="table">
+    		<tr>
+    			<td><span><span class="negrita">1. </span>Entrar al sitio web <a href="http://subefotos.com/" class="destacado">SubeFotos.com</a>.</span></td>
+    		</tr>
+    		<tr>
+    			<td><span><span class="negrita">2. </span>Tener almacenada en su computadora la foto del producto que desee subir.</span></td>
+    		</tr>
+    		<tr>
+    			<td><span><span class="negrita">3. </span>Seleccionar la opción <span class="negrita">Examinar</span>, en la parte derecha de la leyenda <span class="negrita">Subir foto</span>.</span></td>
+    		</tr>
+    		<tr>
+    			<td><span><span class="negrita">4. </span>Buscar y seleccionar la imagen de su computadora.</span></td>
+    		</tr>
+    		<tr>
+    			<td><span><span class="negrita">5. </span>Clickear en el botón <span class="destacado">¡SUBIR FOTO!</span></span></td>
+    		</tr>
+    		<tr>
+    			<td><span><span class="negrita">6. </span>Una vez que finalice la carga, el navegador mostrará un sitio con la foto subida en tamaño original, y usted deberá hacer click derecho encima de la imagen y seleccionar la opción <span class="negrita">Copiar dirección de la imagen</span> o <span class="negrita">Copiar URL de imagen</span>.</span></td>
+    		</tr>
+    		<tr>
+    			<td><span><span class="negrita">7. </span>En el cuadro de texto <span class="negrita">URL de imagen</span> deberá hacer click derecho y seleccionar la ópción <span class="negrita">Pegar</span>.</span></td>
+    		</tr>
+    		<tr>
+    			<td><span><span class="negrita">8. </span>¡Listo! Su imagen se subirá junto con toda la información del producto cuando presione el botón <span class="btn btn-primary">Publicar</span></span></td>
+    		</tr>
+  		</table>
+	</div>
+</div>

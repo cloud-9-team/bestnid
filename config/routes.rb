@@ -11,11 +11,15 @@ Rails.application.routes.draw do
   resources :answers
   resources :sales
   
+  post 'bids/new'
+
   get 'contacto/index'
 
   get 'paginas_estaticas/sobre_nosotros'
 
   get 'paginas_estaticas/como_funciona'
+
+  get 'paginas_estaticas/tutorial_subir_fotos'
 
   get 'welcome/index'
 
@@ -24,6 +28,10 @@ Rails.application.routes.draw do
   get 'users/new'
 
   get 'users/show'
+
+  get 'products/form'
+  
+  post 'products/form'
 
   devise_for :users, :controllers => { registrations: 'registrations' }
   resources :users, :only => [:show]

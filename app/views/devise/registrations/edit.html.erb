@@ -1,6 +1,6 @@
 <h2 class="subtitulos">Editar cuenta</h2>
 
-<div class="container">
+<div class="container-fluid">
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
     <%= devise_error_messages! %>
 
@@ -8,35 +8,117 @@
       <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
     <% end %>
 
-    <div>
-      <%= f.label "País" %> <%= f.text_field :country , :required => "required", class:"form-control" %>
+  <div class="row">
+    <div class="col-xs-3 col-md-3"></div>
+    <div class="col-xs-6 col-md-6"><%= f.label "País" %></div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-3 col-md-3"></div>
+    <div class="col-xs-6 col-md-6"><%= f.text_field :country , :required => "required", class:"form-control" %></div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-3 col-md-3"></div>
+    <div class="col-xs-6 col-md-6"><%= f.label "Provincia" %></div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-3 col-md-3"></div>
+    <div class="col-xs-6 col-md-6"><%= f.text_field :province , :required => "required", class:"form-control" %></div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-3 col-md-3"></div>
+    <div class="col-xs-6 col-md-6"><%= f.label "Ciudad" %></div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-3 col-md-3"></div>
+    <div class="col-xs-6 col-md-6"><%= f.text_field :city , :required => "required",  class:"form-control" %></div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-3 col-md-3"></div>
+    <div class="col-xs-6 col-md-6"><%= f.label "Domicilio" %></div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-3 col-md-3"></div>
+    <div class="col-xs-6 col-md-6"><%= f.text_field :domicile , :required => "required",  class:"form-control" %></div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-3 col-md-3"></div>
+    <div class="col-xs-6 col-md-6"><%= f.label "Tarjeta de crédito" %></div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-3 col-md-3"></div>
+    <div class="col-xs-6 col-md-6">
+      <div class="row">
+        <div class="col-xs-3 col-md-3" onkeypress="return isNumberKey(event)"><%= f.text_field :card_1 , class:"form-control", maxlength:"4" %></div>
+        <div class="col-xs-3 col-md-3" onkeypress="return isNumberKey(event)"><%= f.text_field :card_2 , class:"form-control", maxlength:"4" %></div>
+        <div class="col-xs-3 col-md-3" onkeypress="return isNumberKey(event)"><%= f.text_field :card_3 , class:"form-control", maxlength:"4" %></div>
+        <div class="col-xs-3 col-md-3" onkeypress="return isNumberKey(event)"><%= f.text_field :card_4 , class:"form-control", maxlength:"4" %></div>
+      </div>
     </div>
+  </div>
 
-    <div>
-      <%= f.label "Provincia" %> <%= f.text_field :province , :required => "required", class:"form-control" %>
+  <div class="row">
+    <div class="col-xs-3 col-md-3"></div>
+    <div class="col-xs-6 col-md-6"><%= f.label "Contraseña" %> <span class="italica">(dejar en blanco si no deseas cambiarla)</span></div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-3 col-md-3"></div>
+    <div class="col-xs-6 col-md-6"><%= f.password_field :password, autocomplete: "off" , class:"form-control" %>
     </div>
+  </div>
 
-    <div>
-      <%= f.label "Ciudad" %> <%= f.text_field :city , :required => "required",  class:"form-control" %>
-    </div>
 
-    <div><%= f.label "Contraseña" %> <i>(dejar en blanco si no deseas cambiarla)</i><br />
-      <%= f.password_field :password, autocomplete: "off" , class:"form-control" %></div>
+  <div class="row">
+    <div class="col-xs-3 col-md-3"></div>
+    <div class="col-xs-6 col-md-6"><%= f.label "Confirmación de contraseña" %> <span class="italica">(dejar en blanco si no deseas cambiarla)</span></div>
+  </div>
 
-    <div><%= f.label "Confirmación de contraseña" %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "off" , class:"form-control" %></div>
+  <div class="row">
+    <div class="col-xs-3 col-md-3"></div>
+    <div class="col-xs-6 col-md-6"><%= f.password_field :password_confirmation, autocomplete: "off" , class:"form-control" %></div>
+  </div>
 
-    <div><%= f.label "Contraseña actual" %> <i>(necesitamos tu contraseña actual para confirmar los cambios)</i><br />
-      <%= f.password_field :current_password, autocomplete: "off" , :required => "required", class:"form-control" %></div>
-    <br>
-    <div><%= f.submit "Actualizar" , class:"btn btn-primary" %></div>
+  <div class="row">
+    <div class="col-xs-3 col-md-3"></div>
+    <div class="col-xs-6 col-md-6"><%= f.label "Contraseña actual" %> <span class="italica">(necesitamos tu contraseña actual para confirmar los cambios)</span></div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-3 col-md-3"></div>
+    <div class="col-xs-6 col-md-6"><%= f.password_field :current_password, autocomplete: "off" , :required => "required", class:"form-control" %></div>
+  </div>
+
+  <div class="row" style="padding-top:1em;padding-bottom:1em">
+    <div class="col-xs-3 col-md-3"></div>
+    <div class="col-xs-6 col-md-6"><%= f.submit "Actualizar" , class:"btn btn-primary" %></div>
+  </div>
+
   <% end %>
-  <br>
-  <h4><b>Cerrar cuenta</b></h4>
 
-  <p>¿Seguro? :( <%= button_to "Cerrar cuenta", registration_path(resource_name), data: {confirm: "¿Confirma el cierre de su cuenta?" }, method: :delete , class:"btn btn-danger" %></p>
+  <div class="row">
+    <div class="col-xs-3 col-md-3"></div>
+    <div class="col-xs-6 col-md-6"><span class="error">Cerrar cuenta</span></div>
+  </div>
 
-  <br>
+  <div class="row" style="padding-top:1em;padding-bottom:1em">
+    <div class="col-xs-3 col-md-3"></div>
+    <div class="col-xs-6 col-md-6"><span>¿Seguro? :(</span></div>
+  </div>
 
-  <%= link_to "Volver", :back , class:"btn btn-primary"%>
+  <div class="row" style="padding-top:1em;padding-bottom:1em">
+    <div class="col-xs-3 col-md-3"></div>
+    <div class="col-xs-6 col-md-6"> <%= button_to "Cerrar cuenta", registration_path(resource_name), data: {confirm: "¿Confirma el cierre de su cuenta?" }, method: :delete , class:"btn btn-danger" %></div>
+  </div>
+
+  
+
 </div>
