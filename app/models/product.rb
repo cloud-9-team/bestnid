@@ -7,8 +7,7 @@ class Product < ActiveRecord::Base
 
 	scope :by_title, -> sentido { order(title: (((sentido.present?) and (sentido.downcase == "asc")) ? :asc : :desc))}
 	scope :by_created_at, -> sentido { order(created_at: (((sentido.present?) and (sentido.downcase == "asc")) ? :asc : :desc))}
-	#No funciona actualmente, necesidad de columna ends_at para mucha más facilidad. Analizar eliminación de totalDays
-	scope :by_ends_at, -> sentido { order("created_at " + (((sentido.present?) and (sentido.downcase == "asc")) ? "asc" : "desc").to_s )}
+	scope :by_ends_at, -> sentido { order(ends_at: (((sentido.present?) and (sentido.downcase == "asc")) ? :asc : :desc))}
 
 	
 	def self.search(query)
