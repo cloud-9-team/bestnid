@@ -1,0 +1,109 @@
+/*
+    Clases relacionadas a la sidebar (barra lateral) de la vista Welcome#index
+*/
+
+.sidebar-wrapper{
+	width: 230px;
+	margin-left: -230px;
+	position: absolute;
+	/*
+	position: fixed;
+	height: 100%;
+	*/
+}
+
+.sidebar{
+	padding-top: 8px;
+	padding-bottom: 8px;
+	width: 100%;
+	overflow-x: hidden;
+	overflow-y: auto;
+	background-color: rgb(199, 202, 203);
+	transition: all 0.4s ease 0s;
+	-webkit-transition: all 0.4s ease 0s;
+	-moz-transition: all 0.4s ease 0s;
+	-o-transition: all 0.4s ease 0s;
+	border-radius: 4px;
+	box-shadow: 2px 2px 2px rgba(150, 150, 150, 1);
+	-webkit-box-shadow: 2px 2px 2px rgba(150, 150, 150, 1);
+}
+
+.sidebar > ul{
+	list-style-type: none;
+	background-color: #EBECE8;
+	margin-bottom: 0px;
+	padding-left: 0px;
+}
+
+.sidebar-header{
+	padding: 8px 6px;
+	font-size: 110%;
+}
+
+.sidebar-nav > li > a{
+	display: block;
+	text-decoration: none;
+	color: inherit;
+	padding: 10px 0;
+	padding-left: 20px;
+	padding-right: 5px;
+}
+
+.sidebar-nav > li.active,
+.sidebar-nav > li.active > a:hover,
+.sidebar-nav > li.active > a:focus{
+	background-color: #DEE2DE;
+	color: black;
+}
+
+.sidebar-nav > li > a:hover,
+.sidebar-nav > li > a:focus{
+	background-color: #E4E4E4;
+}
+
+/* CLASE: wrapper */
+/* Encargada de dejar el espacio necesario para la sidebar */
+.wrapper{
+	padding-left: 230px;
+	transition: all 0.4s ease 0s;
+	-webkit-transition: all 0.4s ease 0s;
+	-moz-transition: all 0.4s ease 0s;
+	-o-transition: all 0.4s ease 0s;
+}
+
+/* Al ocultar la sidebar no es necesario el padding en donde se ubicaba antes ésta */
+/* Se oculta cuando el ancho del viewport es menor que 768px */
+@media (max-width: 768px){
+	.wrapper{
+		padding-left: 0px;
+	}
+}
+
+
+/* CLASE: contenido */
+/* Responsiveness actualizada debido a la inclusión de la sidebar */
+/* Cuando el ancho del viewport es mayor igual a 768px y menor a 992px */
+@media (min-width: 768px) {
+  .contenido {
+    width: 520px;
+  }
+}
+
+/* Cuando el ancho del viewport es mayor igual a 992px y menor a 1200px */
+@media (min-width: 992px) {
+  .contenido {
+    width: 740px;
+  }
+
+/* Cuando el ancho del viewport es mayor igual a 1200px y menor a 1400px */
+@media (min-width: 1200px) {
+  .contenido {
+    width: 940px;
+  }
+
+/* Cuando el ancho del viewport es mayor igual a 1400px */
+  @media (min-width: 1400px) {
+  .container {
+    width: 1140px;
+  }
+}
