@@ -241,7 +241,6 @@ html{
 	font-family: Verdana, sans-serif;
 	font-size: 2em;
 	padding-bottom: 1em;
-	padding-top: 0.7em;
 	text-align: center;
 	text-shadow: 2px 2px 2px rgba(150, 150, 150, 1);
 }
@@ -252,11 +251,13 @@ html{
 }
 
 .sidebar-wrapper{
-	height: 100%;
 	width: 230px;
-	margin-left: -200px;
+	margin-left: -230px;
+	position: absolute;
+	/*
 	position: fixed;
-	padding-top: 10px;
+	height: 100%;
+	*/
 }
 
 .sidebar{
@@ -300,8 +301,6 @@ html{
 .sidebar-nav > li.active > a:hover,
 .sidebar-nav > li.active > a:focus{
 	background-color: #DEE2DE;
-	/*font-weight: bold;*/
-	/*color: #666859;*/
 	color: black;
 }
 
@@ -311,7 +310,7 @@ html{
 }
 
 .wrapper{
-	padding-left: 200px;
+	padding-left: 230px;
 	transition: all 0.4s ease 0s;
 	-webkit-transition: all 0.4s ease 0s;
 	-moz-transition: all 0.4s ease 0s;
@@ -328,25 +327,25 @@ html{
 /* Cuando el ancho del viewport es mayor igual a 768px y menor a 992px */
 @media (min-width: 768px) {
   .contenido {
-    width: 550px;
+    width: 520px;
   }
 }
 
 /* Cuando el ancho del viewport es mayor igual a 992px y menor a 1200px */
 @media (min-width: 992px) {
   .contenido {
-    width: 770px;
+    width: 740px;
   }
 
 /* Cuando el ancho del viewport es mayor igual a 1200px y menor a 1400px */
 @media (min-width: 1200px) {
   .contenido {
-    width: 970px;
+    width: 940px;
   }
 
 /* Cuando el ancho del viewport es mayor igual a 1400px */
   @media (min-width: 1400px) {
   .container {
-    width: 1170px;
+    width: 1140px;
   }
 }
