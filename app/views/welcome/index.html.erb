@@ -1,12 +1,22 @@
 
 <div class="wrapper">
-	<div class="sidebar hidden-xs">
-		<div class="sidebar-header">Criterio de ordenación</div>
-		<ul>
-			<li><a href="#">Título</a></li>
-			<li><a href="#">Fecha de creación</a></li>
-			<li><a href="#">Fecha de finalización</a></li>
-		</ul>
+	<div class="sidebar-wrapper">
+		<div class="sidebar hidden-xs">
+			<div class="sidebar-header">Ordenar productos por</div>
+			<ul class="sidebar-nav">
+				<li<%= params[:sort_by] == "title" ? ' class="active"'.html_safe : '' %>><%= link_to "Título", params.merge({sort_by: :title}) %></li>
+				<li<%= ((params[:sort_by] == "created_at") || (params[:sort_by].blank?)) ? ' class="active"'.html_safe : '' %>><%= link_to "Fecha de creación", params.merge({sort_by: :created_at}) %></li>
+				<li<%= params[:sort_by] == "ends_at" ? ' class="active"'.html_safe : '' %>><%= link_to "Fecha de finalización", params.merge({sort_by: :ends_at}) %></li>
+			</ul>
+
+			<div class="sidebar-header">Sentido del orden</div>
+			<ul class="sidebar-nav">
+				<li<%= (params[:order] == "asc") ? ' class="active"'.html_safe : '' %>>
+					<%= link_to (params[:sort_by] == "title" ? "Alfabéticamente, de A a Z" : "De más antiguo a más reciente"), params.merge({order: :asc}) %></li>
+				<li<%= (params[:order] == "desc" || params[:order].blank?) ? ' class="active"'.html_safe : '' %>>
+					<%= link_to (params[:sort_by] == "title" ? "Alfabéticamente, de Z a A" : "De más reciente a más antiguo"), params.merge({order: :desc}) %></li>
+			</ul>
+		</div>
 	</div>
 
 	<div class="container contenido">
