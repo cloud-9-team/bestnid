@@ -17,11 +17,11 @@
 					</div>
 				</div>
 				<div class = "panel-footer text-ellipsis">
-					<% if Time.now > (p.created_at + p.totalDays.days) %>
+					<% if Time.now > (p.ends_at) %>
 						<span class="error">¡Subasta finalizada!</span>
 					<% else %>
 						<span class="negrita">Finalización:</span>
-						<%= timeleft(p.created_at + p.totalDays.days) %>
+						<%= timeleft(p.ends_at) %>
 					<% end %>
 				</div>
 			</div>

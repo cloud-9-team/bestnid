@@ -25,11 +25,11 @@
 				</tr>	
 				<tr>
 					<td>
-						<% if Time.now > (@product.created_at + @product.totalDays.days) %>
+						<% if Time.now > @product.ends_at %>
 							<span class="error"> ¡Subasta finalizada! </span>
 						<% else %>
 							<span class="negrita">Fecha de finalización:</span>
-							<%= timeleft(@product.created_at + @product.totalDays.days) %>
+							<%= timeleft(@product.ends_at) %>
 						<% end %>
 					</td>
 				</tr>

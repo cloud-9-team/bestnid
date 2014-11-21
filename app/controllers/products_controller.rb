@@ -23,17 +23,19 @@ class ProductsController < ApplicationController
     t = params[:title]
     i = params[:imageURL]
     d = params[:description]
-    c = params[:totalDays]
+    c = params[:totalDays].to_i
     cat = Category.where(id: params[:category]).first
-    Product.create(title:t,description:d,imageURL:i,totalDays:c,category:cat,visitCount: 0,user:current_user,finished: false)
-    flash[:notice] = "Produto publicado."
+    fecha_creado = Time.now
+    fecha_fin = fecha_creado + c.days
+    Product.create(title:t,description:d,imageURL:i,category:cat,visitCount: 0,user:current_user,created_at: fecha_creado, ends_at: fecha_fin)
+    flash[:notice] = "Producto publicado."
     redirect_to sales_index_path
   end
 
   def destroy
     @product = current_user.products.find(params[:id])
     @product.destroy
-    flash[:notice] = "Produto eliminado."
+    flash[:notice] = "Producto eliminado."
     redirect_to welcome_index_path
   end
 end
