@@ -7,9 +7,17 @@ class BidsController < ApplicationController
   end
 
   def show
+    
   end
 
   def edit
+    @product = Product.find(params[:product_id_param])
+    bid = @product.bids.where(user: current_user).first
+    bid.value = params[:value]
+    bid.need = params[:need]
+    bid.save
+    flash[:notice]="Su oferta fue modificada correctamente."
+    redirect_to(bids_path)
   end
 
   def new
@@ -28,5 +36,6 @@ class BidsController < ApplicationController
   end
 
   def destroy
+
   end
 end

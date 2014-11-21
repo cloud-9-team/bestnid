@@ -32,7 +32,8 @@ class ProductsController < ApplicationController
     cat = Category.where(id: params[:category]).first
     fecha_creado = Time.now
     fecha_fin = fecha_creado + c.days
-    Product.create(title:t,description:d,imageURL:i,category:cat,visitCount: 0,user:current_user,created_at: fecha_creado, ends_at: fecha_fin)
+    Product.create(title:t,description:d,imageURL:i,category:cat,visitCount: 0,user:current_user,
+      created_at: fecha_creado, ends_at: fecha_fin)
     flash[:notice] = "Producto publicado."
     redirect_to sales_index_path
   end

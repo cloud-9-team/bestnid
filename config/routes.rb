@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   
   post 'bids/new'
 
+  post 'bids/:id/edit' => 'bids#edit' 
+  
   get 'contacto/index'
 
   get 'paginas_estaticas/sobre_nosotros'
@@ -32,6 +34,7 @@ Rails.application.routes.draw do
   get 'products/form'
   
   post 'products/form'
+
 
   devise_for :users, :controllers => { registrations: 'registrations' }
   resources :users
