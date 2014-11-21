@@ -10,6 +10,11 @@ class ProductsController < ApplicationController
     id = @product.user_id
     @owner = User.find(id)
     @category = @product.category
+    if (@product.bids.where(user: current_user).count == 1)
+      @temp = true
+    else
+      @temp = false
+    end
   end
 
   def edit
