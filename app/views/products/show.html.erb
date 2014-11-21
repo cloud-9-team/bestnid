@@ -59,6 +59,25 @@
 									        <center><h4 class="modal-title" id="myModalLabel">Nueva oferta</h4></center>
 									      </div>
 									      <div class="modal-body">
+									      	<div style="text-align: left; padding-bottom: 2em;">
+									      	<h4 class="modal-title">Actualizar datos de la tarjeta de crédito</h4>
+									      	<%= form_for(current_user) do |f| %>
+
+									      		<span>Número:</span>
+									      		<div class="row" style="width: 90%; padding-bottom: 1em; padding-top: 1em" >
+												    <div class="col-xs-3 col-md-3" onkeypress="return isNumberKey(event)"><%= f.text_field :card_1 , class:"form-control", maxlength:"4" %></div>
+												    <div class="col-xs-3 col-md-3" onkeypress="return isNumberKey(event)"><%= f.text_field :card_2 , class:"form-control", maxlength:"4" %></div>
+												    <div class="col-xs-3 col-md-3" onkeypress="return isNumberKey(event)"><%= f.text_field :card_3 , class:"form-control", maxlength:"4" %></div>
+												    <div class="col-xs-3 col-md-3" onkeypress="return isNumberKey(event)"><%= f.text_field :card_4 , class:"form-control", maxlength:"4" %></div>
+												</div>
+
+												<%= f.submit "Actualizar" , class:"btn btn-primary" %>
+
+											<% end %>
+									      	</div>
+									      	
+
+									      	<h4 style="text-align: left">Oferta</h4>
 									      	<%= form_tag new_bid_path(product_id_param: @product.id, user_id_param: current_user.id) do %>
 												
 												<div class="form-group" style="width: 90%"><%= text_field_tag "need", "", :placeholder => "Necesidad", :required => "required", class:"form-control", maxlength:"255" %>
@@ -66,7 +85,7 @@
 
 												<div class="form-group" style="width: 50%"><%= number_field_tag "value", "", :placeholder => "Oferta ($)", :required => "required", class:"form-control", maxlength:"7" %>
 												</div>
-
+												
 												<div class="form-group"><button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button><%= submit_tag "Publicar", class:"btn btn-success" %></div>
 
 									      	<% end %>
