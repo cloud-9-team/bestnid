@@ -89,6 +89,28 @@ body > footer{
   background-color: #31708f;
 }
 
+.panel-personal ul > li blockquote{
+	font-size: 15px;
+	margin-bottom: 5px;
+}
+
+.panel-personal .list-special .list-group-item:first-child{
+	border-top-width: 0px;
+}
+
+.panel-personal .list-special .list-group-item{
+	border-top-width: 3px;
+}
+
+.panel-personal .table{
+	margin-bottom: 0px;
+}
+
+.panel-personal .table > tbody > tr:first-child > td,
+.panel-personal .table > tr:first-child > td{
+	border-top-width: 0px;
+}
+
 /* ================================================
    ================== FIN PANELES ================= */
 
@@ -197,13 +219,14 @@ body > footer{
 .navbar-custom .navbar-text {
     line-height: 40px;
     color: black;
+    max-width: 150px;
 }
 
 .navbar-custom .navbar-form {
     line-height: 52px;
 }
 
-@media (max-width: 1270px) {
+@media (max-width: 1250px) {
    .navbar-header {
         float: none;
     }

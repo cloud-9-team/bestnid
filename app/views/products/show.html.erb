@@ -7,14 +7,14 @@
 		<div class = "panel-body">
 			<div><img src = <%= @product.imageURL %> alt = <%= @product.title %> class="img-thumbnail centrar imagenes-completas" ></div>
 			<div class="espaciar">
-				<p><%= @product.description %></p>
+				<%= simple_format(@product.description, {}, sanitize: true) %>
 			</div>
 		</div>
 		
 		<div class = "panel-footer">
-			<table class="table" style="margin-bottom:0px;">
+			<table class="table">
 				<tr>
-					<td style="border-top:none;">
+					<td>
 						<span class="negrita">Categoría:</span>	<%= @product.category.name %>
 					</td>
 				</tr>	
@@ -29,7 +29,7 @@
 							<span class="error"> ¡Subasta finalizada! </span>
 						<% else %>
 							<span class="negrita">Fecha de finalización:</span>
-							<%= timeleft(@product.ends_at) %>
+							<%= localize @product.ends_at, format: :long %>
 						<% end %>
 					</td>
 				</tr>
@@ -90,9 +90,7 @@
 				<% else %>
 					<% @product.bids.each do |bid| %>
 						<li class="list-group-item">
-							<div style="font-size: 100%;">
-								<p><%= bid.need %></p>
-							</div>
+							<blockquote><%= bid.need %></blockquote>
 						</li>
 					<% end %>
 				<% end %>
@@ -104,7 +102,7 @@
 		<div class="panel-heading">
 			<h3 class="panel-title">Preguntas y respuestas</h3>
 		</div>
-		<ul class="list-group" id="list-special">
+		<ul class="list-group list-special">
 			<% if @product.questions.length == 0 %>
 				<li class="list-group-item negrita">Aún nadie ha hecho una pregunta por este producto.</li>
 			<% else %>	
