@@ -61,15 +61,19 @@
 									      <div class="modal-body">
 									      	<div style="text-align: left; padding-bottom: 2em;">
 									      	<h4 class="modal-title">Actualizar datos de la tarjeta de crédito</h4>
-									      	<%= form_for(current_user) do |f| %>
+									      	<%= form_for(current_user, as: :user) do |f| %>
 
 									      		<span>Número:</span>
+
+
 									      		<div class="row" style="width: 90%; padding-bottom: 1em; padding-top: 1em" >
 												    <div class="col-xs-3 col-md-3" onkeypress="return isNumberKey(event)"><%= f.text_field :card_1 , class:"form-control", maxlength:"4" %></div>
 												    <div class="col-xs-3 col-md-3" onkeypress="return isNumberKey(event)"><%= f.text_field :card_2 , class:"form-control", maxlength:"4" %></div>
 												    <div class="col-xs-3 col-md-3" onkeypress="return isNumberKey(event)"><%= f.text_field :card_3 , class:"form-control", maxlength:"4" %></div>
 												    <div class="col-xs-3 col-md-3" onkeypress="return isNumberKey(event)"><%= f.text_field :card_4 , class:"form-control", maxlength:"4" %></div>
 												</div>
+
+												<%= hidden_field_tag :product_id, @product.id %>
 
 												<%= f.submit "Actualizar" , class:"btn btn-primary" %>
 
