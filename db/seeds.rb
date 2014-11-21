@@ -137,47 +137,42 @@ c4 = Category.find_or_create_by(name: "Otros");
 guante = vendedor1.products.find_or_create_by(title: "Guante de acero",
 	description: "Guante de malla de acero inox. tejido, anticorte, marca *manulatex* de industria francesa",
 	imageURL: "http://40.media.tumblr.com/6bc78e251e463fb68362d168fcf38bda/tumblr_nbqngpEAks1tlipbuo1_1280.jpg",
-	totalDays: 15,
 	visitCount: 0,
 	category: c2,
 	created_at: "2014-11-16 08:00:00",
-	finished: false)
+	ends_at: "2014-12-01 08:00:00")
 
 llama = vendedor2.products.find_or_create_by(title: "Llama",
 	description: "Llama adulta oriunda de Tilcara. Es mansita",
 	imageURL: "http://41.media.tumblr.com/6750bde49985d14340294b65cbfac7a2/tumblr_nbsedz4pML1tlipbuo1_1280.jpg",
-	totalDays: 20,
 	visitCount: 0,
 	category: c3,
 	created_at: "2014-11-16 08:00:00",
-	finished: false)
+	ends_at: "2014-12-06 08:00:00")
 
 espejo = vendedor1.products.find_or_create_by(title: "Espejo",
 	description: "Espejo sin marco. Medidas: 0.8m x 1.2m",
 	imageURL: "http://40.media.tumblr.com/ad056adadfeeced7f24f918a843a0f60/tumblr_nbsf4rGZFE1tlipbuo1_1280.jpg",
-	totalDays: 15,
 	visitCount: 0,
 	category: c1,
 	created_at: "2014-11-16 08:00:00",
-	finished: false)
+	ends_at: "2014-12-01 08:00:00")
 
 kriptonita = vendedor2.products.find_or_create_by(title: "Kriptonita",
 	description: "200 gramos de Kriptonita",
 	imageURL: "http://41.media.tumblr.com/8e08757ed8fd1c3368e29dc127140ef1/tumblr_nbsewqvU231tlipbuo1_1280.jpg",
-	totalDays: 28,
 	visitCount: 0,
 	category: c4,
 	created_at: "2014-11-16 08:00:00",
-	finished: false)
+	ends_at: "2014-12-14 08:00:00")
 
 aceite = vendedor3.products.find_or_create_by(title: "Aceite y Vinagre",
 	description: "200ml de aceite y 300ml de vinagre. No incluye frascos",
 	imageURL: "http://40.media.tumblr.com/f92d39b2c62cf2bc5398797db35ce37d/tumblr_nbsejfmSt21tlipbuo1_400.jpg",
-	totalDays: 15,
 	visitCount: 0,
 	category: c1,
-	created_at: "2014-11-16 08:00:00",
-	finished: false)
+	created_at: "2014-11-07 08:00:00",
+	ends_at: "2014-11-22 08:00:00")
 
 comprador1.bids.find_or_create_by(product: guante,
 	need: "Soy carnicero y lamentablemente perdí un dedo trabajando. Me gustaría comprar el producto para que no me vuelva a ocurrir.",

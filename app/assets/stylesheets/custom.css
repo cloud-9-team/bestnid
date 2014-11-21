@@ -1,7 +1,166 @@
-a:link{text-decoration: none}
+/*a:link{text-decoration: none}
 a:active{text-decoration: none}
 a:visited{text-decoration: none}
-a:hover{text-decoration: none}
+a:hover{text-decoration: none}*/
+
+html{
+	height: 100%;
+}
+
+header{
+	background-color: white;
+}
+
+body{
+	background-color: #DCDCDC;
+	padding-top: 5.5em;
+	min-height: 100%;
+	position: relative;
+}
+
+body > footer{
+	background-color: rgba(1, 1, 1, 0.2);
+	box-shadow: 0px 1px 10px rgba(150, 150, 150, 1);
+	vertical-align: center;
+	text-align: center;
+	padding-top: 0.8em;
+	padding-bottom: 0.8em;
+	margin-bottom: 0.5em;
+	position: absolute;
+	right: 0;
+  	bottom: 0;
+  	left: 0;
+}
+
+a{
+	text-decoration: none;
+}
+
+.centrar{
+	display:block;
+	margin-left: auto;
+  	margin-right: auto;
+}
+
+#titulo{
+	padding-top: 3em;
+	padding-left: 5em;
+}
+
+#cuerpo{
+	padding-top: 0em;
+	padding-bottom: 60px;
+	min-height: 100%;
+	position: relative;
+}
+
+.espaciar{
+	padding-top: 2em;
+	padding-bottom: 1em;
+}
+
+.estructura{
+	display: inline-block;
+	vertical-align: top;
+	width: 49%;
+}
+
+.number-area{
+	width:10em;
+}
+
+
+/* =================== PANELES ====================
+   ================================================ */
+
+.panel-producto{
+	height: 200px;
+	overflow: hidden;
+}
+
+.panel-personal {
+  border-style: none;
+  box-shadow: 2px 2px 2px rgba(150, 150, 150, 1);
+}
+
+.panel-personal > .panel-heading {
+  color: black;
+  background-color: #C7CACB;
+}
+
+.panel-personal > .panel-heading .badge {
+  color: #d9edf7;
+  background-color: #31708f;
+}
+
+/* ================================================
+   ================== FIN PANELES ================= */
+
+
+/* =================== IMÁGENES ===================
+   ================================================ */
+
+.imagenes{
+	max-height: 170px;
+	overflow: hidden;
+}
+
+.imagenes-completas{
+	max-height: 400px;
+}
+
+/* ================================================
+   ================ FIN IMÁGENES ================== */
+
+
+/* =================== TEXTOS =====================
+   ================================================ */
+
+.negrita{
+	font-weight: bold;
+}
+
+.italica{
+	font-style: italic;
+}
+
+.error{
+	font-weight: bold;
+	color: red;
+}
+
+.destacado{
+	font-weight: bold;
+	color: blue;
+}
+
+.text-ellipsis{
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+.subtitulos{
+	font-family: Verdana, sans-serif;
+	font-size: 2em;
+	padding-bottom: 1em;
+	text-align: center;
+	text-shadow: 2px 2px 2px rgba(150, 150, 150, 1);
+}
+
+.campo-obligatorio{
+	vertical-align: super;
+	color: red;
+	font-weight: bold;
+	display: inline;
+}
+
+/* ================================================
+   ================ FIN TEXTOS ==================== */
+
+
+/* ===== ESTILOS RELACIONADOS CON EL HEADER =======
+   ================================================ */
 
 #bestnid-title{
 	font-size: 4em;
@@ -26,88 +185,26 @@ a:hover{text-decoration: none}
 	text-shadow:2px 2px 2px rgba(150, 150, 150, 1);
 }
 
-.centrar{
-	display:block;
-	margin-left: auto;
-  	margin-right: auto;
+.navbar-custom {
+	border-bottom: none;
+	height: inherit;
 }
 
-body{
-	background-color: #DCDCDC;
-	padding-top: 4em;
-	min-height: 100%;
-	position: relative;
+.navbar-custom .navbar-header{
+	margin-right: 10px;
 }
 
-body > footer{
-	background-color: rgba(1, 1, 1, 0.2);
-	box-shadow: 0px 1px 10px rgba(150, 150, 150, 1);
-	vertical-align: center;
-	text-align: center;
-	padding-top: 0.8em;
-	padding-bottom: 0.8em;
-	margin-bottom: 0.5em;
-	position: absolute;
-	right: 0;
-  	bottom: 0;
-  	left: 0;
-
+.navbar-custom .navbar-nav li a{
+    line-height: 40px;
 }
 
-.campo-obligatorio{
-	vertical-align: super;
-	color: red;
-	font-weight: bold;
-	display: inline;
+.navbar-custom .navbar-text {
+    line-height: 40px;
+    color: black;
 }
 
-#cuerpo{
-	padding-top: 0em;
-	padding-bottom: 60px;
-	min-height: 100%;
-	position: relative;
-}
-
-.destacado{
-	font-weight: bold;
-	color: blue;
-}
-
-.error{
-	font-weight: bold;
-	color: red;
-}
-
-.espaciar{
-	padding-top: 2em;
-	padding-bottom: 1em;
-}
-
-.estructura{
-	display: inline-block;
-	vertical-align: top;
-	width: 49%;
-}
-
-header{
-	background-color: white;
-}
-
-html{
-	height: 100%;
-}
-
-.imagenes{
-	max-height: 170px;
-	overflow: hidden;
-}
-
-.imagenes-completas{
-	max-height: 400px;
-}
-
-.italica{
-	font-style: italic;
+.navbar-custom .navbar-form {
+    line-height: 52px;
 }
 
 @media (max-width: 1270px) {
@@ -187,76 +284,5 @@ html{
 
 }
 
-#menu{
-	background-color: lavender;
-}
-
-.navbar-custom {
-	border-bottom: none;
-	height: inherit;
-}
-
-.navbar-custom .navbar-header{
-	margin-right: 10px;
-}
-
-.navbar-custom .navbar-nav li a{
-    line-height: 40px;
-}
-
-.navbar-custom .navbar-text {
-    line-height: 40px;
-    color: black;
-}
-
-.navbar-custom .navbar-form {
-    line-height: 52px;
-}
-
-.negrita{
-	font-weight: bold;
-}
-
-.number-area{
-	width:10em;
-}
-
-.panel-producto{
-	height: 200px;
-	overflow: hidden;
-}
-
-.panel-personal {
-  border-style: none;
-  box-shadow: 2px 2px 2px rgba(150, 150, 150, 1);
-}
-
-.panel-personal > .panel-heading {
-  color: black;
-  background-color: #C7CACB;
-}
-
-.panel-personal > .panel-heading .badge {
-  color: #d9edf7;
-  background-color: #31708f;
-}
-
-.subtitulos{
-	font-family: Verdana, sans-serif;
-	font-size: 2em;
-	padding-bottom: 1em;
-	padding-top: 0.7em;
-	text-align: center;
-	text-shadow: 2px 2px 2px rgba(150, 150, 150, 1);
-}
-
-.text-ellipsis{
-	white-space: nowrap;
-	text-overflow: ellipsis;
-	overflow: hidden;
-}
-
-#titulo{
-	padding-top: 3em;
-	padding-left: 5em;
-}
+/* ================================================
+   ==== FIN ESTILOS RELACIONADOS CON EL HEADER ==== */

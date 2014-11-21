@@ -1,129 +1,128 @@
-<h1 class = "subtitulos"><%=@product.title%></h1>
-<div class = "panel panel-personal">
-	<div class = "panel-heading"> 
-		<h3 class = "panel-title">Detalles del producto</h3>
-	</div>
-	<div class = "panel-body">
-		<div><img src = <%= @product.imageURL %> alt = <%= @product.title %> class="img-thumbnail centrar imagenes-completas" ></div>
-		<div class="espaciar">
-			<p><%= @product.description %></p>
+<div class="container">
+	<h1 class = "subtitulos"><%=@product.title%></h1>
+	<div class = "panel panel-personal">
+		<div class = "panel-heading"> 
+			<h3 class = "panel-title">Detalles del producto</h3>
+		</div>
+		<div class = "panel-body">
+			<div><img src = <%= @product.imageURL %> alt = <%= @product.title %> class="img-thumbnail centrar imagenes-completas" ></div>
+			<div class="espaciar">
+				<p><%= @product.description %></p>
+			</div>
+		</div>
+		
+		<div class = "panel-footer">
+			<table class="table" style="margin-bottom:0px;">
+				<tr>
+					<td style="border-top:none;">
+						<span class="negrita">Categoría:</span>	<%= @product.category.name %>
+					</td>
+				</tr>	
+				<tr>
+					<td>
+						<span class="negrita">Fecha de publicación:</span>	<%= localize @product.created_at, format: :long %>
+					</td>
+				</tr>	
+				<tr>
+					<td>
+						<% if Time.now > (@product.created_at + @product.totalDays.days) %>
+							<span class="error"> ¡Subasta finalizada! </span>
+						<% else %>
+							<span class="negrita">Fecha de finalización:</span>
+							<%= timeleft(@product.created_at + @product.totalDays.days) %>
+						<% end %>
+					</td>
+				</tr>
+				
+				<% if user_signed_in? %>
+					<% if @owner.email == current_user.email %>
+						<tr>
+							<td style="text-align:right;" class="text-ellipsis">
+								<%= link_to "Eliminar subasta", @product, data: { confirm: "¿Estás seguro?" }, :method => :delete , class:"btn btn-danger" %>
+							</td>
+						</tr>
+					<% else %>
+						<tr>
+							<td style="text-align:right;" class="text-ellipsis">
+								<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Ofertar</button>
+								<!-- Modal -->
+								<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+								  <div class="modal-dialog">
+								    <div class="modal-content">
+								      <div class="modal-header">
+								        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button>
+								        <center><h4 class="modal-title" id="myModalLabel">Nueva oferta</h4></center>
+								      </div>
+								      <div class="modal-body">
+								      	<%= form_tag new_bid_path(product_id_param: @product.id, user_id_param: current_user.id) do %>
+											
+											<div class="form-group" style="width: 90%"><%= text_field_tag "need", "", :placeholder => "Necesidad", :required => "required", class:"form-control", maxlength:"255" %>
+											</div>
+
+											<div class="form-group" style="width: 50%"><%= number_field_tag "value", "", :placeholder => "Oferta ($)", :required => "required", class:"form-control", maxlength:"7" %>
+											</div>
+
+											<div class="form-group"><button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button><%= submit_tag "Publicar", class:"btn btn-success" %></div>
+
+								      	<% end %>
+
+								      </div>
+								    </div>
+								  </div>
+								</div>
+								<!-- End Modal -->
+							</td>
+						</tr>
+					<% end %>
+				<% end %>
+			</table>
 		</div>
 	</div>
 	
-	<div class = "panel-footer">
-		<table class="table" style="margin-bottom:0px;">
-			<tr>
-				<td style="border-top:none;">
-					<span class="negrita">Categoría:</span>	<%= @product.category.name %>
-				</td>
-			</tr>	
-			<tr>
-				<td>
-					<span class="negrita">Fecha de publicación:</span>	<%= localize @product.created_at, format: :long %>
-				</td>
-			</tr>	
-			<tr>
-				<td>
-					<% if Time.now > (@product.created_at + @product.totalDays.days) %>
-						<span class="error"> ¡Subasta finalizada! </span>
-					<% else %>
-						<span class="negrita">Fecha de finalización:</span>
-						<%= timeleft(@product.created_at + @product.totalDays.days) %>
-					<% end %>
-				</td>
-			</tr>
-			
-			<% if user_signed_in? %>
-				<% if @owner.email == current_user.email %>
-					<tr>
-						<td style="text-align:right;" class="text-ellipsis">
-							<%= link_to "Eliminar subasta", @product, data: { confirm: "¿Estás seguro?" }, :method => :delete , class:"btn btn-danger" %>
-						</td>
-					</tr>
+	<% if user_signed_in? and @owner.email == current_user.email %>
+		<div class = "panel panel-personal">
+			<div class = "panel-heading">
+				<h3 class = "panel-title">Ofertas</h3>
+			</div>
+			<ul class="list-group">
+				<% if @product.bids.count == 0 %>
+					<li class="list-group-item negrita">Este producto no tiene ofertas.</li>
 				<% else %>
-					<tr>
-						<td style="text-align:right;" class="text-ellipsis">
-							<% link_to "Ofertar", new_bid_path(product_id_param: @product.id), class:"btn btn-success" %>
-							<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Ofertar</button>
-							<!-- Modal -->
-							<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-							  <div class="modal-dialog">
-							    <div class="modal-content">
-							      <div class="modal-header">
-							        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button>
-							        <center><h4 class="modal-title" id="myModalLabel">Nueva oferta</h4></center>
-							      </div>
-							      <div class="modal-body">
-							      	<%= form_tag new_bid_path(product_id_param: @product.id, user_id_param: current_user.id) do %>
-										
-										<div class="form-group" style="width: 90%"><%= text_field_tag "need", "", :placeholder => "Necesidad", :required => "required", class:"form-control", maxlength:"255" %>
-										</div>
-
-										<div class="form-group" style="width: 50%"><%= number_field_tag "value", "", :placeholder => "Oferta ($)", :required => "required", class:"form-control", maxlength:"7" %>
-										</div>
-
-										<div class="form-group"><button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button><%= submit_tag "Publicar", class:"btn btn-success" %></div>
-
-							      	<% end %>
-
-							      </div>
-							    </div>
-							  </div>
+					<% @product.bids.each do |bid| %>
+						<li class="list-group-item">
+							<div style="font-size: 100%;">
+								<p><%= bid.need %></p>
 							</div>
-							<!-- End Modal -->
-						</td>
-					</tr>
+						</li>
+					<% end %>
 				<% end %>
-			<% end %>
-			
-		</table>
-	</div>
-</div>
-
-
-<% if user_signed_in? and @owner.email == current_user.email %>
-	<div class = "panel panel-personal">
-		<div class = "panel-heading">
-			<h3 class = "panel-title">Ofertas</h3>
+			</ul>
 		</div>
-		<ul class="list-group">
-			<% if @product.bids.count == 0 %>
-				<li class="list-group-item negrita">Este producto no tiene ofertas.</li>
-			<% else %>
-				<% @product.bids.each do |bid| %>
+	<% end %>
+
+	<div class="panel panel-personal">
+		<div class="panel-heading">
+			<h3 class="panel-title">Preguntas y respuestas</h3>
+		</div>
+		<ul class="list-group" id="list-special">
+			<% if @product.questions.length == 0 %>
+				<li class="list-group-item negrita">Aún nadie ha hecho una pregunta por este producto.</li>
+			<% else %>	
+				<% @product.questions.each do |question| %>
 					<li class="list-group-item">
-						<div style="font-size: 100%;">
-							<p><%= bid.need %></p>
+						<div><%= question.body %></div>
+						<div class="small text-right italica negrita">Pregunta realizada hace <%= time_ago_in_words(question.created_at)%></div>
+						<div class="product-answer">
+							<% if question.answer == nil %>
+								<span class="negrita">Esta pregunta aún no fue respondida.</span>
+							<% else %>
+								<div><span class="negrita">Respuesta:</span> <%= question.answer.body %></div>
+								<div class="small text-right italica negrita">Respuesta de hace <%= time_ago_in_words(question.created_at)%></div>
+							<% end %>
 						</div>
 					</li>
 				<% end %>
 			<% end %>
 		</ul>
 	</div>
-<% end %>
-
-<div class="panel panel-personal">
-	<div class="panel-heading">
-		<h3 class="panel-title">Preguntas y respuestas</h3>
-	</div>
-	<ul class="list-group" id="list-special">
-		<% if @product.questions.length == 0 %>
-			<li class="list-group-item negrita">Aún nadie ha hecho una pregunta por este producto.</li>
-		<% else %>	
-			<% @product.questions.each do |question| %>
-				<li class="list-group-item">
-					<div><%= question.body %></div>
-					<div class="small text-right italica negrita">Pregunta realizada hace <%= time_ago_in_words(question.created_at)%></div>
-					<div class="product-answer">
-						<% if question.answer == nil %>
-							<span class="negrita">Esta pregunta aún no fue respondida.</span>
-						<% else %>
-							<div><span class="negrita">Respuesta:</span> <%= question.answer.body %></div>
-							<div class="small text-right italica negrita">Respuesta de hace <%= time_ago_in_words(question.created_at)%></div>
-						<% end %>
-					</div>
-				</li>
-			<% end %>
-		<% end %>
-	</ul>
 </div>
