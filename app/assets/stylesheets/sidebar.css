@@ -94,12 +94,14 @@
   .contenido {
     width: 740px;
   }
+}
 
 /* Cuando el ancho del viewport es mayor igual a 1200px y menor a 1400px */
 @media (min-width: 1200px) {
   .contenido {
     width: 940px;
   }
+}
 
 /* Cuando el ancho del viewport es mayor igual a 1400px */
   @media (min-width: 1400px) {
