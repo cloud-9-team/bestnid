@@ -4,6 +4,7 @@ class BidsController < ApplicationController
 
   def index
     @bids = Bid.where(user_id: current_user.id)
+    @cant = @bids.count
   end
 
   def show
