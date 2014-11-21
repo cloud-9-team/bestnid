@@ -44,10 +44,30 @@
 					<% else %>
 						<tr>
 							<td style="text-align:right;" class="text-ellipsis">
-
 								<% if @temp == true %>
-									<button type="button" class="btn btn-success disabled" data-toggle="modal" data-target="#myModal">Oferta ya realizada</button>
-									<!-- ACÁ HABRÍA QUE DAR UNA OPCIÓN PARA EDITAR OFERTAS -->
+									<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Modificar oferta</button>
+									<!-- Modal -->
+									<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+									  <div class="modal-dialog">
+									    <div class="modal-content">
+									      <div class="modal-header">
+									        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button>
+									        <center><h4 class="modal-title" id="myModalLabel">Modificar oferta</h4></center>
+									      </div>
+									      <div class="modal-body">
+									      	<%= form_tag edit_bid_path(product_id_param: @product.id) do %>
+												<div class="form-group" style="width: 90%"><%= text_field_tag "need", "", :placeholder => current_user.bids.where(product_id: @product.id).last.need, :required => "required", class:"form-control", maxlength:"255" %>
+												</div>
+												<div class="form-group" style="width: 50%"><%= number_field_tag "value", "", :placeholder => current_user.bids.where(product_id: @product.id).last.value, :required => "required", class:"form-control", maxlength:"7" %>
+												</div>
+												<div class="form-group"><button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button><%= submit_tag "Modificar", class:"btn btn-success" %>
+												</div>
+									      	<% end %>
+									      </div>
+									    </div>
+									  </div>
+									</div>
+									<!-- End Modal -->
 								<% else %>
 									<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Ofertar</button>
 									<!-- Modal -->
@@ -60,17 +80,12 @@
 									      </div>
 									      <div class="modal-body">
 									      	<%= form_tag new_bid_path(product_id_param: @product.id, user_id_param: current_user.id) do %>
-												
 												<div class="form-group" style="width: 90%"><%= text_field_tag "need", "", :placeholder => "Necesidad", :required => "required", class:"form-control", maxlength:"255" %>
 												</div>
-
 												<div class="form-group" style="width: 50%"><%= number_field_tag "value", "", :placeholder => "Oferta ($)", :required => "required", class:"form-control", maxlength:"7" %>
 												</div>
-
 												<div class="form-group"><button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button><%= submit_tag "Publicar", class:"btn btn-success" %></div>
-
 									      	<% end %>
-
 									      </div>
 									    </div>
 									  </div>
