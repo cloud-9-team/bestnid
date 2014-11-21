@@ -44,7 +44,7 @@
 					<% else %>
 						<tr>
 							<td style="text-align:right;" class="text-ellipsis">
-								<% if @temp == true %>
+								<% if ((@temp == true) and (Time.now < @product.ends_at)) %>
 									<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Modificar oferta</button>
 									<!-- Modal -->
 									<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
