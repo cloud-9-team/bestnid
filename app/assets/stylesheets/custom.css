@@ -66,6 +66,31 @@ body > footer{
 }
 
 
+/* ============== CONTENEDOR ALERTAS ==============
+   ================================================ */
+
+.container-flash{
+	position: relative;
+	margin-top: 2em;
+	padding: 15px;
+}
+
+.container-flash .close{
+	position: absolute;
+	right: 5px;
+	top: 5px;
+}
+
+.container-flash a{
+	text-decoration: none;
+	color: inherit;
+	border-bottom: 1px dotted;
+}
+
+/* ================================================
+   ============ FIN CONTENEDOR ALERTAS ============ */
+
+
 /* =================== PANELES ====================
    ================================================ */
 

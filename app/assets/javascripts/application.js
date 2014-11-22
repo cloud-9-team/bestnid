@@ -25,3 +25,9 @@ function isNumberKey(evt)
              return false;
           return true;
        }
+
+function focusById(id)
+		{
+			document.getElementById(id).focus();
+			return false;
+		}
