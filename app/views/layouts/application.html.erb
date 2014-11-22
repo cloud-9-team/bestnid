@@ -11,23 +11,7 @@
 <%= render 'layouts/header' %> 
 
 <div id="cuerpo">
-	<% if notice %>
-		<div class="alert alert-success container" style="margin-top: 2em;"><%= notice %>
-		  	<button type="button" class="close" data-dismiss="alert">
-			  <span aria-hidden="true">&times;</span>
-			  <span class="sr-only">Cerrar</span>
-			</button>
-		</div>
-	<% end %>
-	<% if alert %>
-	  	<div class="alert alert-danger container" style="margin-top: 2em;"><%= alert %>
-		  	<button type="button" class="close" data-dismiss="alert">
-			  <span aria-hidden="true">&times;</span>
-			  <span class="sr-only">Cerrar</span>
-			</button>
-		</div>
-	<% end %>
-
+	<%= render partial: "layouts/flash_messages", locals: {flash: flash} %>
 	<%= yield %>
 </div>
 

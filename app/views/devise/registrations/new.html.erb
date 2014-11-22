@@ -1,10 +1,20 @@
+<% devise_error_messages! %>
+
 <h2 class="subtitulos">Registrarse en Bestnid</h2>
-  <div class="container-fluid">
+  <div class="container">
+
+  	<div class="row" style="padding-top: 1em">
+		<div class="col-xs-3 col-md-3"></div>
+		<div class="col-xs-6 col-md-6">
+			<p>Por favor, complete los siguientes campos para poder así crearse una cuenta personal en Bestnid.</p>
+			<p>Los campos marcados con <span class="campo-obligatorio">*</span> son obligatorios.</p>
+		</div>
+	</div>
+
   	<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  	<%= devise_error_messages! %>
 	<div class="row" style="padding-top:1em">
 		<div class="col-xs-3 col-md-3"></div>
-		<div class="col-xs-6 col-md-6"><%= f.label "Nombre" %><span class="campo-obligatorio">*</span></div>
+		<div class="col-xs-6 col-md-6"><%= f.label :first_name %><span class="campo-obligatorio">*</span></div>
 	</div>
 	<div class="row">
 		<div class="col-xs-3 col-md-3"></div>
@@ -12,7 +22,7 @@
 	</div>
 	<div class="row">
 		<div class="col-xs-3 col-md-3"></div>
-		<div class="col-xs-6 col-md-6"><%= f.label "Apellido" %><span class="campo-obligatorio">*</span></div>
+		<div class="col-xs-6 col-md-6"><%= f.label :last_name %><span class="campo-obligatorio">*</span></div>
 	</div>
 	<div class="row">
 		<div class="col-xs-3 col-md-3"></div>
@@ -30,12 +40,7 @@
 
 	<div class="row">
 		<div class="col-xs-3 col-md-3"></div>
-		<div class="col-xs-6 col-md-6"><%= f.label "Contraseña" %><span class="campo-obligatorio">*</span></div>
-	</div>
-
-	<div class="row">
-		<div class="col-xs-3 col-md-3"></div>
-		<div class="col-xs-6 col-md-6">
+		<div class="col-xs-6 col-md-6"><%= f.label :password %><span class="campo-obligatorio">*</span>
 			<% if @validatable %>
 				<span class="italica">(<%= @minimum_password_length %> caracteres como mínimo)</span>
 			<% end %>
@@ -53,7 +58,7 @@
 
 	<div class="row">
 		<div class="col-xs-3 col-md-3"></div>
-		<div class="col-xs-6 col-md-6"><%= f.label "Confirmación de contraseña" %><span class="campo-obligatorio">*</span></div>
+		<div class="col-xs-6 col-md-6"><%= f.label :password_confirmation %><span class="campo-obligatorio">*</span></div>
 	</div>
 
 	<div class="row">
@@ -65,17 +70,17 @@
 	 
 	<div class="row">
 		<div class="col-xs-3 col-md-3"></div>
-		<div class="col-xs-6 col-md-6"><%= f.label "País" %><span class="campo-obligatorio">*</span></div>
+		<div class="col-xs-6 col-md-6"><%= f.label :country %><span class="campo-obligatorio">*</span></div>
 	</div>
 
 	<div class="row">
 		<div class="col-xs-3 col-md-3"></div>
-		<div class="col-xs-6 col-md-6"><%= f.text_field :country , :required => "required", class:"form-control" %></div>
+		<div class="col-xs-6 col-md-6"><%= country_select(:user, :country, {selected: "AR"}, { class: 'form-control', required: "required"}) %></div>
 	</div>
 
 	<div class="row">
 		<div class="col-xs-3 col-md-3"></div>
-		<div class="col-xs-6 col-md-6"><%= f.label "Provincia" %><span class="campo-obligatorio">*</span></div>
+		<div class="col-xs-6 col-md-6"><%= f.label :province %><span class="campo-obligatorio">*</span></div>
 	</div>
 
 	<div class="row">
@@ -85,7 +90,7 @@
 
 	<div class="row">
 		<div class="col-xs-3 col-md-3"></div>
-		<div class="col-xs-6 col-md-6"><%= f.label "Ciudad" %><span class="campo-obligatorio">*</span></div>
+		<div class="col-xs-6 col-md-6"><%= f.label :city %><span class="campo-obligatorio">*</span></div>
 	</div>
 
 	<div class="row">
@@ -95,7 +100,7 @@
 
 	<div class="row">
 		<div class="col-xs-3 col-md-3"></div>
-		<div class="col-xs-6 col-md-6"><%= f.label "Domicilio" %><span class="campo-obligatorio">*</span></div>
+		<div class="col-xs-6 col-md-6"><%= f.label :domicile %><span class="campo-obligatorio">*</span></div>
 	</div>
 
 	<div class="row">
@@ -118,11 +123,6 @@
 				<div class="col-xs-3 col-md-3" onkeypress="return isNumberKey(event)"><%= f.text_field :card_4 , :required => "required",  class:"form-control", maxlength:"4" %></div>
 			</div>
 		</div>
-	</div>
-
-	<div class="row" style="padding-top: 1em">
-		<div class="col-xs-3 col-md-3"></div>
-		<div class="col-xs-6 col-md-6"><span class="campo-obligatorio">*</span> <span class="error">Campos obligatorios</span></div>
 	</div>
 
 	<div class="row" style="padding-top:1em">

@@ -48,3 +48,6 @@ gem 'hirb'
 group :development, :test do
 	gem 'rspec-rails', '~> 3.0.0'
 end
+
+# Gema para seleccionar país al registrarse
+gem 'country_select', github: 'stefanpenner/country_select'

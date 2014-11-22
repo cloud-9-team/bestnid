@@ -193,3 +193,33 @@ es:
       long_wo_year: ! '%d de %B, %H:%M' # 20 de noviembre, 15:50
       db: ! '%d/%m/%Y %H:%M:%S' # 20/11/2014 15:50:23
     pm: pm
+  activerecord:
+    models:
+      user: "usuario"
+    attributes:
+      user:
+        password: "Contraseña"
+        password_confirmation: "Confirmación de contraseña"
+        current_password: "Contraseña actual"
+        first_name: "Nombre"
+        last_name: "Apellido"
+        country: "País"
+        province: "Provincia"
+        city: "Ciudad"
+        domicile: "Domicilio"
+        card_1: "Tarjeta de crédito 1"
+        card_2: "Tarjeta de crédito 2"
+        card_3: "Tarjeta de crédito 3"
+        card_4: "Tarjeta de crédito 4"
+    errors:
+      models:
+        user:
+          attributes:
+            password:
+              too_short: es demasiado corta (%{count} caracteres mínimo)
+            password_confirmation:
+              confirmation: "no coincide con la contraseña dada"
+              too_short: es demasiado corta (%{count} caracteres mínimo)
+            current_password:
+              invalid: "es incorrecta"
+              too_short: es demasiado corta (%{count} caracteres mínimo)
