@@ -1,0 +1,17 @@
+<% if flash[:notice] %>
+	<div class="alert alert-success container container-flash"><%= flash[:notice] %>
+	  	<button type="button" class="close" data-dismiss="alert">
+		  <span aria-hidden="true">&times;</span>
+		  <span class="sr-only">Cerrar</span>
+		</button>
+	</div>
+<% end %>
+
+<% if flash[:alert] %>
+  	<div class="alert alert-danger container container-flash"><%= flash[:alert] %>
+	  	<button type="button" class="close" data-dismiss="alert">
+		  <span aria-hidden="true">&times;</span>
+		  <span class="sr-only">Cerrar</span>
+		</button>
+	</div>
+<% end %>
