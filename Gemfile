@@ -51,3 +51,5 @@ end
 
 # Gema para seleccionar país al registrarse
 gem 'country_select', github: 'stefanpenner/country_select'
+
+gem 'formtastic', '~> 3.0'

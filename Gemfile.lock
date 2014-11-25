@@ -61,6 +61,8 @@ GEM
     diff-lcs (1.2.5)
     erubis (2.7.0)
     execjs (2.2.1)
+    formtastic (3.1.2)
+      actionpack (>= 3.2.13)
     hike (1.2.3)
     hirb (0.7.2)
     i18n (0.6.11)
@@ -173,6 +175,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   country_select!
   devise
+  formtastic (~> 3.0)
   hirb
   jbuilder (~> 2.0)
   jquery-rails
