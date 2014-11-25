@@ -126,7 +126,7 @@
 
 	 													<span class="negrita">Número de seguridad:</span>
 														<div class="row" style="width: 90%;padding-top:0.5em;padding-bottom:0.5em">
-	    													<div class="col-xs-6 col-md-6"><%= f.text_field :security_code, autofocus: true , :required => "required", class:"form-control" %></div>
+	    													<div class="col-xs-6 col-md-6" onkeypress="return isNumberKey(event)"><%= f.text_field :security_code, autofocus: true , :required => "required", class:"form-control", maxlength:"3" %></div>
 	 													</div>
 
 	 													<span class="negrita">Fecha de vencimiento:</span>
