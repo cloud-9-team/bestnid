@@ -98,39 +98,39 @@
 												    <div class="panel-heading" role="tab" id="headingOne">
 												      <h4 class="panel-title">
 												        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-												          Actualizar datos de la tarjeta de crédito
+												          <span class="btn btn-primary">Actualizar datos de la tarjeta de crédito</span>
 												        </a>
 												      </h4>
 												    </div>
-												    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+												    <div id="collapseOne" class="panel-collapse collapse" style="text-align: left" role="tabpanel" aria-labelledby="headingOne">
 												      <div class="panel-body">
 												       	<%= form_for(current_user, as: :user) do |f| %>
 
-											      		<span>Número de la tarjeta:</span>
-											      		<div class="row" style="width: 90%; padding-bottom: 1em; padding-top: 1em" >
+											      		<span class="negrita">Número de la tarjeta:</span>
+											      		<div class="row" style="width: 90%; padding-bottom: 0.5em; padding-top: 0.5em" >
 														    <div class="col-xs-3 col-md-3" onkeypress="return isNumberKey(event)"><%= f.text_field :card_1 , class:"form-control", maxlength:"4" %></div>
 														    <div class="col-xs-3 col-md-3" onkeypress="return isNumberKey(event)"><%= f.text_field :card_2 , class:"form-control", maxlength:"4" %></div>
 														    <div class="col-xs-3 col-md-3" onkeypress="return isNumberKey(event)"><%= f.text_field :card_3 , class:"form-control", maxlength:"4" %></div>
 														    <div class="col-xs-3 col-md-3" onkeypress="return isNumberKey(event)"><%= f.text_field :card_4 , class:"form-control", maxlength:"4" %></div>
 														</div>
 
-														<span>Nombre del titular:</span>
-														<div class="row" style="width: 90%">
+														<span class="negrita">Nombre del titular:</span>
+														<div class="row" style="width: 90%; padding-top:0.5em;padding-bottom:0.5em">
 	    													<div class="col-xs-6 col-md-6"><%= f.text_field :card_owner_first_name, autofocus: true , :required => "required", class:"form-control" %></div>
 	 													</div>
 
-	 													<span>Apellido del titular:</span>
-														<div class="row" style="width: 90%">
+	 													<span class="negrita">Apellido del titular:</span>
+														<div class="row" style="width: 90%;padding-top:0.5em;padding-bottom:0.5em">
 	    													<div class="col-xs-6 col-md-6"><%= f.text_field :card_owner_last_name, autofocus: true , :required => "required", class:"form-control" %></div>
 	 													</div>
 
-	 													<span>Número de seguridad:</span>
-														<div class="row" style="width: 90%">
+	 													<span class="negrita">Número de seguridad:</span>
+														<div class="row" style="width: 90%;padding-top:0.5em;padding-bottom:0.5em">
 	    													<div class="col-xs-6 col-md-6"><%= f.text_field :security_code, autofocus: true , :required => "required", class:"form-control" %></div>
 	 													</div>
 
-	 													<span>Fecha de vencimiento:</span>
-														<div class="row" style="width: 90%; padding-bottom: 1em">
+	 													<span class="negrita">Fecha de vencimiento:</span>
+														<div class="row" style="width: 90%; padding-top:0.5em;padding-bottom:0.5em">
 	    													<div class="col-xs-6 col-md-6"><%= f.text_field :expires_on, autofocus: true , :required => "required", class:"form-control" %></div>
 	 													</div>
 
