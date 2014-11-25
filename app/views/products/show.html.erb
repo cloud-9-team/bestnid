@@ -131,7 +131,7 @@
 
 	 													<span class="negrita">Fecha de vencimiento:</span>
 														<div class="row" style="width: 90%; padding-top:0.5em;padding-bottom:0.5em">
-	    													<div class="col-xs-6 col-md-6"><%= f.text_field :expires_on, autofocus: true , :required => "required", class:"form-control" %></div>
+	    													<div class="col-xs-6 col-md-6"><%= f.date_select :expires_on, autofocus: true , :required => "required", :discard_day => true, :end_year => Date.today.year + 20, class:"form-control" %></div>
 	 													</div>
 
 														<%= hidden_field_tag :product_id, @product.id %>
