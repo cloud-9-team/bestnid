@@ -1,3 +1,4 @@
+<% if @bids.count > 0 %>
 <h1 class="subtitulos">Ofertas a productos activos</h1>
 <div class="container-fluid">
 	
@@ -51,3 +52,7 @@
 			<% end %>
 	<% end %>
 </div>
+
+<% else %>
+	<h1 class="subtitulos">No has hecho ofertas.</h1>
+<% end %>
