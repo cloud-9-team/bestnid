@@ -65,6 +65,11 @@ body > footer{
 	width:10em;
 }
 
+.date-select{
+	width: auto;
+	display: inline-block;
+}
+
 
 /* ============== CONTENEDOR ALERTAS ==============
    ================================================ */
