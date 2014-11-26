@@ -6,8 +6,7 @@ before_action :authenticate_user!, only: [:index, :show]
   	@users = User.all
   end
 
-def new
-  
+  def new
     n = params[:first_name]
     a = params[:last_name]
     u = params[:email]
@@ -21,14 +20,21 @@ def new
     c2 = params[:card_2]
     c3 = params[:card_3]
     c4 = params[:card_4]
+    exp_date = params[:expires_on]
+    sec_code = params[:security_code]
+    owners_first_name = params[:card_owner_first_name]
+    owners_last_name = [:card_owner_last_name]
     adm = false
+
     if (p1 != p2)
       flash[:notice]="Las contraseñas no coinciden."
       redirect_to  new_user_registration_path
     else
       User.create(first_name:n,last_name:p,email:u,password:p1,
         country:country,province:province,city:city,domicile:dom,
-        card_1:c1,card_2:c2,card_3:c3,card_4:c4,admin:adm)
+        card_1:c1,card_2:c2,card_3:c3,card_4:c4,expires_on: exp_date,
+        security_code: sec_code,card_owner_first_name: owners_first_name,
+        card_owner_last_name: owners_last_name,admin:adm)
     end
   end
 
@@ -38,9 +44,14 @@ def new
     usuario.card_2 = params[:user][:card_2]
     usuario.card_3 = params[:user][:card_3]
     usuario.card_4 = params[:user][:card_4]
+    usuario.expires_on = params[:user][:expires_on]
+    usuario.security_code = params[:user][:security_code]
+    usuario.card_owner_first_name = params[:user][:card_owner_first_name]
+    usuario.card_owner_last_name = params[:user][:card_owner_last_name]
     usuario.save
     flash[:notice] = "Los datos de la tarjeta de crédito se actualizaron correctamente."
     redirect_to product_path(params[:product_id])
+    
   end
 
   def show

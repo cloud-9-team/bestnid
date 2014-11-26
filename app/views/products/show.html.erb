@@ -80,28 +80,6 @@
 										        <center><h4 class="modal-title" id="myModalLabel">Nueva oferta</h4></center>
 										      </div>
 										      <div class="modal-body">
-										      	<div style="text-align: left; padding-bottom: 2em;">
-										      	<h4 class="modal-title">Actualizar datos de la tarjeta de crédito</h4>
-										      	<%= form_for(current_user, as: :user) do |f| %>
-
-										      		<span>Número:</span>
-
-
-										      		<div class="row" style="width: 90%; padding-bottom: 1em; padding-top: 1em" >
-													    <div class="col-xs-3 col-md-3" onkeypress="return isNumberKey(event)"><%= f.text_field :card_1 , class:"form-control", maxlength:"4" %></div>
-													    <div class="col-xs-3 col-md-3" onkeypress="return isNumberKey(event)"><%= f.text_field :card_2 , class:"form-control", maxlength:"4" %></div>
-													    <div class="col-xs-3 col-md-3" onkeypress="return isNumberKey(event)"><%= f.text_field :card_3 , class:"form-control", maxlength:"4" %></div>
-													    <div class="col-xs-3 col-md-3" onkeypress="return isNumberKey(event)"><%= f.text_field :card_4 , class:"form-control", maxlength:"4" %></div>
-													</div>
-
-													<%= hidden_field_tag :product_id, @product.id %>
-
-													<%= f.submit "Actualizar" , class:"btn btn-primary" %>
-
-												<% end %>
-										      	</div>
-										      	
-
 										      	<h4 style="text-align: left">Oferta</h4>
 										      	<%= form_tag new_bid_path(product_id_param: @product.id, user_id_param: current_user.id) do %>
 													
@@ -114,6 +92,56 @@
 													<div class="form-group"><button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button><%= submit_tag "Publicar", class:"btn btn-success" %></div>
 
 										      	<% end %>
+
+										      	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+												  <div class="panel panel-default">
+												    <div class="panel-heading" role="tab" id="headingOne">
+												      <h4 class="panel-title">
+												        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+												          <span class="btn btn-primary">Actualizar datos de la tarjeta de crédito</span>
+												        </a>
+												      </h4>
+												    </div>
+												    <div id="collapseOne" class="panel-collapse collapse" style="text-align: left" role="tabpanel" aria-labelledby="headingOne">
+												      <div class="panel-body">
+												       	<%= form_for(current_user, as: :user) do |f| %>
+
+											      		<span class="negrita">Número de la tarjeta:</span>
+											      		<div class="row" style="width: 90%; padding-bottom: 0.5em; padding-top: 0.5em" >
+														    <div class="col-xs-3 col-md-3" onkeypress="return isNumberKey(event)"><%= f.text_field :card_1 , class:"form-control", maxlength:"4" %></div>
+														    <div class="col-xs-3 col-md-3" onkeypress="return isNumberKey(event)"><%= f.text_field :card_2 , class:"form-control", maxlength:"4" %></div>
+														    <div class="col-xs-3 col-md-3" onkeypress="return isNumberKey(event)"><%= f.text_field :card_3 , class:"form-control", maxlength:"4" %></div>
+														    <div class="col-xs-3 col-md-3" onkeypress="return isNumberKey(event)"><%= f.text_field :card_4 , class:"form-control", maxlength:"4" %></div>
+														</div>
+
+														<span class="negrita">Nombre del titular:</span>
+														<div class="row" style="width: 90%; padding-top:0.5em;padding-bottom:0.5em">
+	    													<div class="col-xs-6 col-md-6"><%= f.text_field :card_owner_first_name, autofocus: true , class:"form-control" %></div>
+	 													</div>
+
+	 													<span class="negrita">Apellido del titular:</span>
+														<div class="row" style="width: 90%;padding-top:0.5em;padding-bottom:0.5em">
+	    													<div class="col-xs-6 col-md-6"><%= f.text_field :card_owner_last_name, autofocus: true , class:"form-control" %></div>
+	 													</div>
+
+	 													<span class="negrita">Número de seguridad:</span>
+														<div class="row" style="width: 90%;padding-top:0.5em;padding-bottom:0.5em">
+	    													<div class="col-xs-6 col-md-6" onkeypress="return isNumberKey(event)"><%= f.text_field :security_code, autofocus: true , class:"form-control", maxlength:"3" %></div>
+	 													</div>
+
+	 													<span class="negrita">Fecha de vencimiento:</span>
+														<div class="row" style="width: 90%; padding-top:0.5em;padding-bottom:0.5em">
+	    													<div class="col-xs-6 col-md-6"><%= f.date_select :expires_on, autofocus: true , :discard_day => true, :end_year => Date.today.year + 20, class:"form-control" %></div>
+	 													</div>
+
+														<%= hidden_field_tag :product_id, @product.id %>
+														<%= f.submit "Actualizar" , class:"btn btn-primary" %>
+
+														<% end %>
+												      </div>
+												    </div>
+												  </div>
+										      	</div>
 
 										      </div>
 										    </div>
@@ -160,13 +188,15 @@
 				<% @product.questions.each do |question| %>
 					<li class="list-group-item">
 						<div><%= question.body %></div>
-						<div class="small text-right italica negrita">Pregunta realizada hace <%= time_ago_in_words(question.created_at)%></div>
+							<div class="small text-right italica negrita">Pregunta realizada hace <%= time_ago_in_words(question.created_at)%>
+						</div>
 						<div class="product-answer">
 							<% if question.answer == nil %>
 								<span class="negrita">Esta pregunta aún no fue respondida.</span>
 							<% else %>
 								<div><span class="negrita">Respuesta:</span> <%= question.answer.body %></div>
-								<div class="small text-right italica negrita">Respuesta de hace <%= time_ago_in_words(question.created_at)%></div>
+									<div class="small text-right italica negrita">Respuesta de hace <%= time_ago_in_words(question.created_at)%>
+								</div>
 							<% end %>
 						</div>
 					</li>
