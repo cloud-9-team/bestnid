@@ -177,9 +177,14 @@ body > footer{
 	color: blue;
 }
 
-.text-ellipsis{
+.text-ellipsis{ /* Cuando hay overflow, en vez de saltar de línea, se trunca el texto y se agregan ... */
 	white-space: nowrap;
 	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+.text-nowrap{ /* Cuando hay overflow, el texto no salta de línea */
+	white-space: nowrap;
 	overflow: hidden;
 }
 

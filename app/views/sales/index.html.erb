@@ -1,45 +1,69 @@
 <h1 class="subtitulos">Historial de ventas y subastas</h1>
-<div class="container-fluid">
+<div class="container">
 
-		<div class="row">
-		<div class="col-xs-4 col-md-4"></div>
-		<div class="col-xs-4 col-md-4">
-			<div class = "panel panel-personal">
-				<div class = "panel-heading">
-					<center><h3 class = "panel-title negrita"><span style="vertical-align: super;color:red">¿?</span> Ayuda contextual</h3></center>
+	<% @products.each do |p| %>
+	<div class="row row-venta panel">
+		<div class="col-xs-2 col-img">
+			<div class="center-helper"></div>
+			<%= link_to image_tag_with_alt(p.imageURL, alt: p.title, class: "img-thumbnail imagenes img-sales"), p %>
+		</div>
+
+		<div class="col-xs-5 col-principal">
+			<div class="row row-description">
+				<div class="col-xs-12">
+					<h3><%= link_to p.title, p %></h3>
+					<p><%= p.description.truncate(150) %>
+						<% if p.description.length > 150 %>
+							<%= link_to "(ver más)", p %>
+						<% end %>
+					</p>
 				</div>
-				<div class = "panel-body">
-					<center><h5>Presione en la foto de cada producto si desea ver más información y/o eliminar subastas.</h4></center>
+			</div>
+			<div class="row row-description-btn">
+				<div class="col-xs-12">
+					<%= link_to "Ver todos los detalles", p, class: "btn btn-primary" %>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-xs-5 col-principal">
+			<div class="row">
+				<div class="col-xs-12"> <!-- Se utiliza la clase col-xs-12 debido a los paddings laterales -->
+					<h4 class="text-ellipsis">Estado: <%= p.timeout? ? (p.finished? ? "Finalizada" : "Debe seleccionar una oferta") : "Activa" %></h4>
+				</div>
+			</div>
+			<div class="row row-info">
+				<div class="col-xs-12">
+					<div class="text-ellipsis"><b>Fecha de publicación: </b><%= localize p.created_at, format: :long %></div>
+				</div>
+			</div>
+			<div class="row row-info">
+				<div class="col-xs-12">
+					<div class="text-ellipsis"><b>Categoría: </b><%= p.category.name %></div>
+				</div>
+			</div>
+			<div class="row row-info">
+				<div class="col-xs-12">
+					<div><b>Ofertas: </b><%= p.bids.count %></div>
+				</div>
+			</div>
+			<div class="row row-info">
+				<div class="col-xs-4 text-ellipsis">
+					<b>Preguntas: </b><%= p.questions.count %>
+				</div>
+				<div class="col-xs-8 text-ellipsis">
+					<% sinResponder = p.not_answered_questions.count %>
+					<% if sinResponder != 0 %>
+					<b>Tienes <%= sinResponder %> pregunta<%= sinResponder > 1 ? "s" : "" %> sin responder</b>
+					<% end %>
+				</div>
+			</div>
+			<div class="row row-info-btn">
+				<div class="col-xs-12">
+					<%= link_to "Eliminar", p, data: { confirm: "¿Estás seguro?" }, :method => :delete , class: "btn btn-danger" %>
 				</div>
 			</div>
 		</div>
 	</div>
-
-	<% @products.each do |p| %>
-		<div class="col-xs-6 col-md-4">
-			<div class = "panel panel-personal">
-				<div class = "panel-heading">
-					<h3 class = "panel-title"><%= link_to p.title, p %></h3>
-				</div>
-				<div class = "panel-body panel-producto">
-					<a class="estructura" href="/products/<%=p.id%>"><img src = <%= p.imageURL %> alt = <%= p.title %> class="img-thumbnail imagenes" width = "150"  ></a>
-					<div class="estructura">
-						<p><%= p.description.truncate(100) %>
-							<% if p.description.length > 100 %>
-								<span> <%= link_to "(ver más...)", p %></span>
-							<% end %>
-						</p>
-					</div>
-				</div>
-				<div class = "panel-footer text-ellipsis">
-					<% if Time.now > (p.ends_at) %>
-						<span class="error">¡Subasta finalizada!</span>
-					<% else %>
-						<span class="negrita">Finalización:</span>
-						<%= timeleft(p.ends_at) %>
-					<% end %>
-				</div>
-			</div>
-		</div>
 	<% end %>
 </div>

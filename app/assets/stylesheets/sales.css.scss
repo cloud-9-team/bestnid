@@ -1,3 +1,62 @@
 // Place all the styles related to the sales controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.row-venta{
+	margin-top: 15px;
+	margin-bottom: 15px;
+	background-color: ghostwhite;
+	box-shadow: 1px 1px 1px rgba(150, 150, 150, 1);
+}
+
+.row-venta h3 a{
+	text-decoration: none;
+	color: inherit;
+}
+
+.row-venta h3,
+.row-venta h4{
+	margin-top: 10px;
+}
+
+.row-venta > .col-principal{ /* Cada una de las columnas principales con información */
+	height: 200px;
+	padding-bottom: 10px;
+	padding-top: 10px;
+}
+
+.row-venta .row-description{
+	overflow: auto;  /* Scrollbar cuando hay overflow */
+	max-height: 80%; /* Del alto total de la columna, ocupa COMO MUCHO el 80% */
+}
+
+.row-venta .row-description-btn{
+	height: 20%; /* Del alto total de la columna, ocupa un 20% siempre */
+}
+
+.row-venta .row-info-btn{
+	height: 20%;
+	text-align: right;
+}
+
+.row-venta .row-info{
+	padding-bottom: 6px;
+}
+
+.col-img{
+	height: 200px;
+	white-space: nowrap; /* Evita el salto de línea provocado por el espacio entre la imagen y el helper */
+	text-align: center; /* Centra la imagen horizontalmente, NO sirve para otros elementos distintos a imagen y texto */
+}
+
+.center-helper{
+	height: 100%;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.img-sales{
+	vertical-align: middle;
+	max-height: 170px;
+	width: auto;
+}
