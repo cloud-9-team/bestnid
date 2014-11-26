@@ -179,7 +179,7 @@ body > footer{
 
 .destacado{
 	font-weight: bold;
-	color: blue;
+	color: dodgerblue;
 }
 
 .text-ellipsis{ /* Cuando hay overflow, en vez de saltar de línea, se trunca el texto y se agregan ... */
