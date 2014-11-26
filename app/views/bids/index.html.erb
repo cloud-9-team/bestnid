@@ -24,7 +24,7 @@
 						<h3 class = "panel-title"><%= link_to p.title, p %></h3>
 					</div>
 					<div class = "panel-body panel-producto">
-						<a class="estructura" style="width: 30%" href="/products/<%=p.id%>"><img src = <%= p.imageURL %> alt = <%= p.title %> class="img-thumbnail imagenes" width = "150"  ></a>
+						<%= link_to image_tag_with_alt(p.imageURL, alt: p.title, class: "img-thumbnail imagenes", width: 150), p, class: "estructura", style: "width: 30%" %>
 						<div class="estructura" style="width: 69%">
 							<p><span class="negrita">Descripcion: </span>
 								<%= p.description.truncate(100) %>

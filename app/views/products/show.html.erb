@@ -5,7 +5,7 @@
 			<h3 class = "panel-title">Detalles del producto</h3>
 		</div>
 		<div class = "panel-body">
-			<div><img src = <%= @product.imageURL %> alt = <%= @product.title %> class="img-thumbnail centrar imagenes-completas" ></div>
+			<div><%= image_tag_with_alt(@product.imageURL, alt: @product.title, class: "img-thumbnail centrar imagenes-completas") %></div>
 			<div class="espaciar">
 				<%= simple_format(@product.description, {}, sanitize: true) %>
 			</div>
