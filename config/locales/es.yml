@@ -196,6 +196,7 @@ es:
   activerecord:
     models:
       user: "usuario"
+      product: "producto"
     attributes:
       user:
         password: "Contraseña"
@@ -211,6 +212,9 @@ es:
         card_2: "Tarjeta de crédito 2"
         card_3: "Tarjeta de crédito 3"
         card_4: "Tarjeta de crédito 4"
+      product:
+        title: "Título"
+        description: "Descripción"
     errors:
       models:
         user:

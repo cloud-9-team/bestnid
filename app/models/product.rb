@@ -12,6 +12,7 @@ class Product < ActiveRecord::Base
 
 	scope :active_only, -> { where("products.ends_at > ?", Time.now) }
 
+	validates :title, :description, presence: true
 	
 	def self.search(query)
 		consulta1 = where('products.title ilike ? or products.description ilike ?', "%#{query}%", "%#{query}%")

@@ -22,20 +22,35 @@ class ProductsController < ApplicationController
 
   def new
     @categories = Category.all
+
+    # Crea un nuevo producto en blanco al entrar a la vista para publicar un nuevo producto
+    # Éste servirá para caracterizar el formulario en la vista
+    @product = Product.new
   end
 
-  def form
-    t = params[:title]
-    i = params[:imageURL]
-    d = params[:description]
+  def create
+    title = params[:product][:title]
+    imgURL = params[:product][:imageURL]
+    description = params[:product][:description]
+    cat = params[:product][:category_id]
+
     c = params[:totalDays].to_i
-    cat = Category.where(id: params[:category]).first
     fecha_creado = Time.now
     fecha_fin = fecha_creado + c.days
-    Product.create(title:t,description:d,imageURL:i,category:cat,visitCount: 0,user:current_user,
-      created_at: fecha_creado, ends_at: fecha_fin)
-    flash[:notice] = "Producto publicado."
-    redirect_to sales_index_path
+
+    # A la variable anteriormente creada le asigno el nuevo producto
+    @product = Product.create(title: title, description: description, imageURL: imgURL, category_id: cat,
+                              visitCount: 0, user: current_user, created_at: fecha_creado, ends_at: fecha_fin)
+
+    if @product.errors.any?
+      @categories = Category.all
+      flash.now[:alert] = view_context.generate_html_error(@product)
+      render :new # Vuelvo a mostrar el formulario, esta vez cargado con los datos previamente completados
+    else
+      flash[:notice] = "Producto publicado."
+      redirect_to sales_index_path
+    end
+    
   end
 
   def destroy

@@ -5,24 +5,24 @@
 			<h3 class = "panel-title">Nueva subasta - <%=current_user.first_name%> <%=current_user.last_name%></h3>
 		</div>
 		<div class = "panel-body">
-			<%= form_tag :action => 'form' do %>
+			<%= form_for @product do |f| %>
 				<div class="form-group negrita">Título de producto: <span class="campo-obligatorio">*</span></div>
-				<div class="form-group"><%= text_field_tag "title", "", :placeholder => "Título", :required => "required", class:"form-control", maxlength:"255" %>
+				<div class="form-group"><%= f.text_field :title, placeholder: "Título", required: "required", class: "form-control", maxlength: 255 %>
 				</div>
 				<div class="form-group negrita">Descripción de producto: <span class="campo-obligatorio">*</span></div>
-		     	<div class="form-group"><%= text_area_tag "description", "", rows:"6", cols:"100%", :placeholder => "Descripción", :required => "required", class:"form-control", maxlength:"8192" %>
+		     	<div class="form-group"><%= f.text_area :description, rows:"6", cols:"100%", :placeholder => "Descripción", :required => "required", class:"form-control", maxlength:"8192" %>
 		     	</div>
 		     	<div class="form-group negrita">Imagen de producto: </div>
-		     	<div class="form-group"><%= text_field_tag "imageURL", "", rows:"15", cols:"100%", :placeholder => "URL de imagen", class:"form-control", maxlength:"255" %>
+		     	<div class="form-group"><%= f.text_field :imageURL, rows:"15", cols:"100%", :placeholder => "URL de imagen", class:"form-control", maxlength:"255" %>
 		     	</div>
 		     	<div class="form-group"><span class="negrita">Duración de subasta: </span><span class="italica">(rango válido entre 15 y 30 días)</span></div>
-		     	<div class="form-group number-area"><%= number_field_tag "totalDays", 15, in: 15...31, :required => "required", class:"form-control", maxlength:"2" %>
+		     	<div class="form-group number-area"><%= number_field_tag :totalDays, 15, in: 15...31, :required => "required", class:"form-control", maxlength:"2" %>
 		     	</div>
 		     	<div class="form-group negrita">Categoría de producto: </span></div>
 		     	<div class="form-group">
-					<%= select_tag "category", options_from_collection_for_select(@categories, "id", "name") %>
+					<%= f.select :category_id, options_from_collection_for_select(@categories, "id", "name", selected: (@product.category_id.present? ? @product.category_id : nil)), {}, {class: "form-control", style: "width: auto"} %>
 				</div>
-		     	<div class="form-group"><%= submit_tag "Publicar", class:"btn btn-primary" %></div>
+		     	<div class="form-group"><%= f.submit "Publicar", class:"btn btn-primary" %></div>
 	  		<% end %>
 		</div>
 		<div class = "panel-footer text-ellipsis">
