@@ -1,0 +1,24 @@
+Hola <%= @buyer.first_name %>!
+En esta ocasión nos comunicamos con usted para notificarle que su necesidad fue la ganadora de la subasta del producto
+---->Título: <%= @product.title %>
+---->Descripción: <%= @product.description.truncate(100) %>
+---->Fecha de publicación: <%= localize @product.created_at, format: :long %>
+
+Su necesidad fue "<%= @bid.need %>" la cual valuó en <%= @bid.value %> pesos argentinos.
+
+A continuación le facilitamos los datos del vendedor para que pueda contactarse con él para acordar los detalles de la entrega y otras consultas adicionales.
+Gracias por usar Bestnid, visitenos pronto!
+
+---->Nombre: <%= @seller.first_name %>
+---->Apellido: <%= @seller.last_name %>
+---->Email: <%= @seller.email %>
+---->País: <%= @seller.country_name %>
+---->Provincia: <%= @seller.province %>
+---->Ciudad: <%= @seller.city %>
+---->Domicilio: <%= @seller.domicile %>
+
+
+Nota: este email no debe responderse. En caso de querer informar problemas, sugerencias y demás, recurrir a nuestro sitio web.
+
+Bestnid, "Decidí con el corazón"
+<%= root_url %>

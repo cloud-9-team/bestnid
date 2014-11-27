@@ -34,4 +34,8 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  # Host por defecto utilizado para formar las URL que pueden ser especificadas en
+  # los emails enviados. Es importante porque se deben enviar URL absolutas.
+  config.action_mailer.default_url_options = { host: "localhost", port: 3000 } # Al usar url_for utilizar la opción 'only_path: false' para que agregue este host
 end
