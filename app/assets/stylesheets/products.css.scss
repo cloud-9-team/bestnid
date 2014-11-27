@@ -7,3 +7,31 @@
 	border-color: #E6E6E6;
 	border-width: 1px;
 }
+
+
+.radio-group input[type="radio"]{
+	display: none;
+}
+
+.radio-group input[type="radio"]:checked + label{
+	z-index: 2;
+	color: #fff;
+	background-color: #428bca;
+	border-color: #428bca;
+}
+
+.radio-group .radio-label{
+	height: 80px;
+	overflow: auto;
+	position: relative;
+	display: block;
+	padding: 10px 15px;
+	margin-bottom: -1px;
+	background-color: #fff;
+	border: 1px solid #ddd;
+}
+
+.radio-group {
+	padding-left: 0;
+	margin-bottom: 20px;
+}

@@ -1,0 +1,31 @@
+<div class="container">
+	<h1 class="subtitulos">Subasta finalizada</h1>
+	<div class="row">
+		<div class="col-xs-2"></div>
+		<div class="col-xs-8">
+	<p>¡Felicidades! Has vendido tu producto</p>
+	<ul>
+		<li>Título: <%= @product.title %></li>
+		<li>Descripción: <%= @product.description.truncate(100) %></li>
+		<li>Fecha de publicación: <%= localize @product.created_at, format: :long %></li>
+		<li><%= link_to "Ir al producto", @product %></li>
+	</ul>
+
+	<p> Ha escogido la necesidad <b>"<%= @product.chosen_bid.need %>"</b> valuada en <b><%= @product.chosen_bid.value %> pesos argentinos</b>.
+
+	<p>A continuación le facilitamos los datos del comprador para que pueda contactarse con él para acordar los detalles de la entrega y otras consultas adicionales.</p>
+	<ul><% buyer = @product.chosen_bid.user %>
+		<li>Nombre: <%= buyer.first_name %></li>
+		<li>Apellido: <%= buyer.last_name %></li>
+		<li>Email: <%= buyer.email %></li>
+		<li>País: <%= buyer.country_name %></li>
+		<li>Provincia: <%= buyer.province %></li>
+		<li>Ciudad: <%= buyer.city %></li>
+		<li>Domicilio: <%= buyer.domicile %></li>
+	</ul>
+
+	<p>De todas formas, se le ha enviado a usted un email con todos los datos necesarios para ponerse en contacto con el comprador, y de igual manera se le ha enviado también un email a este último.</p>
+		</div>
+		<div class="col-xs-2"></div>
+	</div>
+</div>
