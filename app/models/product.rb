@@ -1,4 +1,5 @@
 class Product < ActiveRecord::Base
+  include ActiveModel::Validations
 	belongs_to :category
 	belongs_to :user
 	belongs_to :chosen_bid, class_name: "Bid", foreign_key: "chosen_bid_id"
@@ -12,8 +13,9 @@ class Product < ActiveRecord::Base
 
 	scope :active_only, -> { where("products.ends_at > ?", Time.now) }
 
-	validates :title, :description, presence: true
-	
+	validates :title, :description, :allow_blank => false, :allow_nil => false, :on => :create, presence: true
+	validates :imageURL, :allow_blank => false, :allow_nil => false, :on => :create, presence: true
+
 	def self.search(query)
 		consulta1 = where('products.title ilike ? or products.description ilike ?', "%#{query}%", "%#{query}%")
 		consulta2 = joins(:category).where("categories.name ilike ?", "%#{query}%")

@@ -27,8 +27,14 @@ class BidsController < ApplicationController
     bid.value = params[:value]
     bid.user_id = current_user.id
     bid.save
-    flash[:notice]="Su oferta fue cargada correctamente."
-    redirect_to(bids_path)
+    if bid.errors.any?
+      @bids = Bid.where(user_id: current_user.id)
+      flash.now[:alert] = view_context.generate_html_error(bid)
+      render :index
+    else
+      flash[:notice] = "Su oferta fue cargada correctamente."
+      redirect_to bids_path
+    end
   end
 
   def create

@@ -197,6 +197,7 @@ es:
     models:
       user: "usuario"
       product: "producto"
+      bid: "oferta"
     attributes:
       user:
         password: "Contraseña"
@@ -212,9 +213,16 @@ es:
         card_2: "Tarjeta de crédito 2"
         card_3: "Tarjeta de crédito 3"
         card_4: "Tarjeta de crédito 4"
+        card_owner_first_name: "Nombre del titular de la tarjeta de crédito"
+        card_owner_last_name: "Apellido del titular de la tarjeta de crédito"
+        security_code: "Código de seguridad"
       product:
         title: "Título"
         description: "Descripción"
+        imageURL: "URL de imagen"
+      bid:
+        need: "Necesidad"
+        value: "Valor"
     errors:
       models:
         user:
@@ -226,4 +234,14 @@ es:
               too_short: es demasiado corta (%{count} caracteres mínimo)
             current_password:
               invalid: "es incorrecta"
+              too_short: es demasiado corta (%{count} caracteres mínimo)
+            security_code:
+              too_short: es demasiado corto (%{count} caracteres mínimo)
+            card_1:
+              too_short: es demasiado corta (%{count} caracteres mínimo)
+            card_2:
+              too_short: es demasiado corta (%{count} caracteres mínimo)
+            card_3:
+              too_short: es demasiado corta (%{count} caracteres mínimo)
+            card_4:
               too_short: es demasiado corta (%{count} caracteres mínimo)
