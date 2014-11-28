@@ -1,7 +1,8 @@
+<% devise_error_messages! %>
+
 <h2 class="subtitulos">¿Olvidaste tu contraseña?</h2>
 <div class="container-fluid">
 	<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  	<%= devise_error_messages! %>
 
 	<div class="row" style="padding-top:1em">
 		<div class="col-xs-3 col-md-3"></div>
