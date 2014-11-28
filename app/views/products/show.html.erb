@@ -20,7 +20,7 @@
 				</tr>	
 				<tr>
 					<td colspan="2">
-						<span class="negrita">Fecha de publicación:</span>	<%= localize @product.created_at, format: :long %>
+						<span class="negrita">Fecha de publicación:</span>	<%= localize @product.created_at.in_time_zone('Buenos Aires'), format: :long %>
 					</td>
 				</tr>	
 				<tr>
@@ -33,7 +33,7 @@
 							<% end %>
 						<% else %>
 							<span class="negrita">Fecha de finalización:</span>
-							<%= localize @product.ends_at, format: :long %>
+							<%= localize @product.ends_at.in_time_zone('Buenos Aires'), format: :long %>
 						<% end %>
 					</td>
 				</tr>

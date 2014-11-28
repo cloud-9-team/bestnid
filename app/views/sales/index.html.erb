@@ -35,7 +35,7 @@
 			</div>
 			<div class="row row-info">
 				<div class="col-xs-12">
-					<div class="text-ellipsis"><b>Fecha de publicación: </b><%= localize p.created_at, format: :long %></div>
+					<div class="text-ellipsis"><b>Fecha de publicación: </b><%= localize p.created_at.in_time_zone('Buenos Aires'), format: :long %></div>
 				</div>
 			</div>
 			<div class="row row-info">

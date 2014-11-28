@@ -1,5 +1,6 @@
 module ApplicationHelper
 	def timeleft(t)
+		t = t.in_time_zone('Buenos Aires')
 		content_tag :span, localize(t, format: :long_wo_year), title: localize(t, format: :db)
 	end
 

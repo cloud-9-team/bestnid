@@ -2,7 +2,7 @@ Hola <%= @seller.first_name %>!
 En esta ocasión nos comunicamos con usted para notificarle de la venta de su producto
 ---->Título: <%= @product.title %>
 ---->Descripción: <%= @product.description.truncate(100) %>
----->Fecha de publicación: <%= localize @product.created_at, format: :long %>
+---->Fecha de publicación: <%= localize @product.created_at.in_time_zone('Buenos Aires'), format: :long %>
 ---->URL: <%= product_url(@product, only_path: false) %>
 bajo su elección de la necesidad "<%= @bid.need %>" valuada en <%= @bid.value %> pesos argentinos.
 
