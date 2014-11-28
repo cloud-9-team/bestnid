@@ -11,12 +11,11 @@ class BidsController < ApplicationController
   end
 
   def edit
-    @product = Product.find(params[:product_id_param])
-    bid = @product.bids.where(user: current_user).first
-    bid.value = params[:value]
-    bid.need = params[:need]
+    bid = Bid.find(params[:bid][:id])
+    bid.value = params[:bid][:value]
+    bid.need = params[:bid][:need]
     bid.save
-    flash[:notice]="Su oferta fue modificada correctamente."
+    flash[:notice]= "Su oferta fue modificada correctamente."
     redirect_to(bids_path)
   end
 

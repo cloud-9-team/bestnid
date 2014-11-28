@@ -103,18 +103,20 @@
 										        <center><h4 class="modal-title" id="myModalLabel">Modificar oferta</h4></center>
 										      </div>
 										      <div class="modal-body" style="text-align: left;">
-										      	<%= form_tag edit_bid_path(product_id_param: @product.id) do %>
+										      	<% @bid = current_user.bids.where(product_id: @product.id).last %>
+										      	<%= form_for @bid , :as => :bid, method: :edit do |f| %>
+										      		<%= f.hidden_field :id %>
 													<div class="form-group" style="width: 90%">
 														<%= label_tag "need", "Necesidad:" %>
-														<%= text_field_tag "need", "", :placeholder => current_user.bids.where(product_id: @product.id).last.need, :required => "required", class:"form-control", maxlength:"255" %>
+														<%= f.text_area :need, :required => "required", class:"form-control", maxlength:"1000" %>
 													</div>
 													<div class="form-group" style="width: 50%">
 														<%= label_tag "value", "Valor de la oferta (en pesos argentinos):" %>
-														<%= number_field_tag "value", "", :min => 1, :placeholder => current_user.bids.where(product_id: @product.id).last.value, :required => "required", class:"form-control", maxlength:"7" %>
+														<%= f.number_field :value , :min => 1, :required => "required", class:"form-control", maxlength:"7" %>
 													</div>
 													<div class="form-group modal-footer" style="margin-bottom: 0px;">
 														<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-														<%= submit_tag "Modificar", class:"btn btn-success" %>
+														<%= f.submit "Modificar", class:"btn btn-success" %>
 													</div>
 										      	<% end %>
 										      </div>
@@ -138,7 +140,7 @@
 													
 													<div class="form-group" style="width: 90%">
 														<%= label_tag "need", "Necesidad:" %>
-														<%= text_field_tag "need", "", :placeholder => "Necesidad", :required => "required", class:"form-control", maxlength:"255" %>
+														<%= text_area_tag "need", "", :placeholder => "Necesidad", :required => "required", class:"form-control", maxlength:"1000" %>
 													</div>
 
 													<div class="form-group" style="width: 30%">
@@ -186,7 +188,7 @@
 
 	 													<span class="negrita">Número de seguridad:</span>
 														<div class="row" style="width: 90%;padding-top:0.5em;padding-bottom:0.5em">
-	    													<div class="col-xs-6 col-md-6" onkeypress="return isNumberKey(event)"><%= f.text_field :security_code, autofocus: true , class:"form-control", maxlength:"3" %></div>
+	    													<div class="col-xs-6 col-md-6" onkeypress="return isNumberKey(event)"><%= f.password_field :security_code, autofocus: true , class:"form-control", maxlength:"3", required: true %></div>
 	 													</div>
 
 	 													<span class="negrita">Fecha de vencimiento:</span>

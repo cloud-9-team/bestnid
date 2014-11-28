@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   
   post 'bids/new'
 
-  post 'bids/:id/edit' => 'bids#edit' 
+  post 'bids/:id' => 'bids#edit' 
   
   get 'contacto/index'
 
