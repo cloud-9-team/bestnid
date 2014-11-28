@@ -6,4 +6,7 @@ class PaginasEstaticasController < ApplicationController
   def como_funciona
   end
 
+  def estadisticas  	
+  end
+
 end

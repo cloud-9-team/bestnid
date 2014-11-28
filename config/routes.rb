@@ -23,6 +23,8 @@ Rails.application.routes.draw do
 
   get 'paginas_estaticas/tutorial_subir_fotos'
 
+  get 'paginas_estaticas/estadisticas'
+
   get 'welcome/index'
 
   get 'users/index'
