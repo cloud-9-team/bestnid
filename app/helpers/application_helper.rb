@@ -26,8 +26,7 @@ module ApplicationHelper
     	resource.errors.each do |attribute, error|
   			messages << content_tag(:li, 
   				link_to(resource.class.human_attribute_name(attribute), 
-  					"#%s_%s" % [model_str, attribute.to_s], 
-  					{onclick: "focusById('%s_%s');" % [model_str, attribute.to_s]}) +
+  					"#%s_%s" % [model_str, attribute.to_s]) +
 				" " + error)
 		end
 		messages = messages.join

@@ -26,8 +26,26 @@ function isNumberKey(evt)
           return true;
        }
 
-function focusById(id)
-		{
-			document.getElementById(id).focus();
-			return false;
-		}
+var ready;
+ready = function() {
+
+  $('a[href^="#"]').on('click', function(event) {
+    var target;
+    if(this.href.indexOf('/') > -1){
+      target = $(this.hash);
+    } else{
+      target = $(this.href);
+    }
+    if( target.length ) {
+        event.preventDefault();
+        $('html, body').animate({
+            scrollTop: target.offset().top - 105 //Corresponde a 70px del nav fixed más 30px para un poco de margen
+        }, 1000);
+        target.focus();
+    }
+  });
+
+};
+
+$(document).ready(ready);
+$(document).on('page:load', ready);
