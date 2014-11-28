@@ -8,6 +8,13 @@ class ProductsController < ApplicationController
   end
 
   def show
+
+    if (current_user != @owner) and (@product.finished? or @product.timeout?)
+      flash[:alert] = "No tienes autorización para ver este producto."
+      redirect_to welcome_index_path
+      return;
+    end
+
     if (@product.bids.where(user: current_user).count == 1)
       @temp = true
     else

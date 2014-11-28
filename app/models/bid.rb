@@ -5,4 +5,5 @@ class Bid < ActiveRecord::Base
 
 	validates :need, :allow_blank => false, :allow_nil => false, :on => :create, presence: true
 	validates :value, presence: true
+	validates :value, numericality: { greater_than_or_equal_to: 1 }
 end

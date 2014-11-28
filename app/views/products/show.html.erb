@@ -102,13 +102,19 @@
 										        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button>
 										        <center><h4 class="modal-title" id="myModalLabel">Modificar oferta</h4></center>
 										      </div>
-										      <div class="modal-body">
+										      <div class="modal-body" style="text-align: left;">
 										      	<%= form_tag edit_bid_path(product_id_param: @product.id) do %>
-													<div class="form-group" style="width: 90%"><%= text_field_tag "need", "", :placeholder => current_user.bids.where(product_id: @product.id).last.need, :required => "required", class:"form-control", maxlength:"255" %>
+													<div class="form-group" style="width: 90%">
+														<%= label_tag "need", "Necesidad:" %>
+														<%= text_field_tag "need", "", :placeholder => current_user.bids.where(product_id: @product.id).last.need, :required => "required", class:"form-control", maxlength:"255" %>
 													</div>
-													<div class="form-group" style="width: 50%"><%= number_field_tag "value", "", :placeholder => current_user.bids.where(product_id: @product.id).last.value, :required => "required", class:"form-control", maxlength:"7" %>
+													<div class="form-group" style="width: 50%">
+														<%= label_tag "value", "Valor de la oferta (en pesos argentinos):" %>
+														<%= number_field_tag "value", "", :min => 1, :placeholder => current_user.bids.where(product_id: @product.id).last.value, :required => "required", class:"form-control", maxlength:"7" %>
 													</div>
-													<div class="form-group"><button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button><%= submit_tag "Modificar", class:"btn btn-success" %>
+													<div class="form-group modal-footer" style="margin-bottom: 0px;">
+														<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+														<%= submit_tag "Modificar", class:"btn btn-success" %>
 													</div>
 										      	<% end %>
 										      </div>
@@ -126,17 +132,24 @@
 										        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button>
 										        <center><h4 class="modal-title" id="myModalLabel">Nueva oferta</h4></center>
 										      </div>
-										      <div class="modal-body">
-										      	<h4 style="text-align: left">Oferta</h4>
+										      <div class="modal-body" style="text-align: left">
+										      	<h4>Oferta</h4>
 										      	<%= form_tag new_bid_path(product_id_param: @product.id, user_id_param: current_user.id) do %>
 													
-													<div class="form-group" style="width: 90%"><%= text_field_tag "need", "", :placeholder => "Necesidad", :required => "required", class:"form-control", maxlength:"255" %>
+													<div class="form-group" style="width: 90%">
+														<%= label_tag "need", "Necesidad:" %>
+														<%= text_field_tag "need", "", :placeholder => "Necesidad", :required => "required", class:"form-control", maxlength:"255" %>
 													</div>
 
-													<div class="form-group" style="width: 50%"><%= number_field_tag "value", "", :placeholder => "Oferta ($)", :required => "required", class:"form-control", maxlength:"7" %>
+													<div class="form-group" style="width: 30%">
+														<%= label_tag "value", "Valor de la oferta (en pesos argentinos):" %>
+														<%= number_field_tag "value", "", :min => 1, :placeholder => "Oferta ($)", :required => "required", class:"form-control", maxlength:"7" %>
 													</div>
 													
-													<div class="form-group"><button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button><%= submit_tag "Publicar", class:"btn btn-success" %></div>
+													<div class="form-group modal-footer" style="margin-bottom: 0px;">
+														<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+														<%= submit_tag "Publicar", class:"btn btn-success" %>
+													</div>
 
 										      	<% end %>
 
