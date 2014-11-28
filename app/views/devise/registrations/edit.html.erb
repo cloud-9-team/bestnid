@@ -198,24 +198,24 @@
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button>
-              <center><h4 class="modal-title" id="myModalLabel">Eliminar cuenta</h4></center>
+              <center><h4 class="modal-title negrita" id="myModalLabel">Eliminar cuenta</h4></center>
             </div>
             <div class="modal-body" style="text-align: left;">
               <%= form_for(resource, as: resource_name, url: registration_path(resource_name), method: :delete ) do |f| %>
               
                 <div class="row" style="padding-top: 1.5em;">
                   <div class="col-xs-3 col-md-3"></div>
-                  <div class="col-xs-6 col-md-6"><%= f.label :current_password %> <span class="italica">Necesitamos tu contraseña para eliminar la cuenta.</span></div>
+                  <div class="col-xs-6 col-md-6"><%= f.label :current_password %> <span class="italica">(necesitamos tu contraseña para eliminar la cuenta)</span></div>
                 </div>
 
                 <div class="row">
                   <div class="col-xs-3 col-md-3"></div>
-                  <div class="col-xs-6 col-md-6"><%= f.password_field :current_password, autocomplete: "off" , :required => "required", class:"form-control" %></div>
+                  <div class="col-xs-6 col-md-6" style="padding-top:1em;padding-bottom:1em"><%= f.password_field :current_password, autocomplete: "off" , :required => "required", class:"form-control" %></div>
                 </div>
 
                 <div class="row" style="padding-top:1em;padding-bottom:1em">
                   <div class="col-xs-3 col-md-3"></div>
-                  <div class="col-xs-6 col-md-6"><%= f.submit "Eliminar cuenta" , class:"btn btn-danger" %></div>
+                  <div class="col-xs-6 col-md-6"><center><%= f.submit "Eliminar cuenta" , class:"btn btn-danger" %></center></div>
                 </div>
 
               <% end %>
