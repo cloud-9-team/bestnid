@@ -213,9 +213,10 @@ es:
         card_2: "Tarjeta de crédito 2"
         card_3: "Tarjeta de crédito 3"
         card_4: "Tarjeta de crédito 4"
-        card_owner_first_name: "Nombre del titular de la tarjeta de crédito"
-        card_owner_last_name: "Apellido del titular de la tarjeta de crédito"
+        card_owner_first_name: "Nombre del titular"
+        card_owner_last_name: "Apellido del titular"
         security_code: "Código de seguridad"
+        expires_on: "Fecha de vencimiento"
       product:
         title: "Título"
         description: "Descripción"
@@ -245,3 +246,5 @@ es:
               too_short: es demasiado corta (%{count} caracteres mínimo)
             card_4:
               too_short: es demasiado corta (%{count} caracteres mínimo)
+            expires_on:
+              too_old: "debe ser posterior a la fecha actual"

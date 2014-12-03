@@ -25,6 +25,7 @@ vendedor1 = User.find_or_create_by(email: "vendedor1_bestnid@gmail.com") do |use
 	user.card_owner_first_name = "Nombre"
 	user.card_owner_last_name = "Apellido"
 	user.security_code = "000"
+	user.expires_on = "2015-12-01"
 end
 
 vendedor2 = User.find_or_create_by(email: "vendedor2_bestnid@gmail.com") do |user|
@@ -43,6 +44,7 @@ vendedor2 = User.find_or_create_by(email: "vendedor2_bestnid@gmail.com") do |use
 	user.card_owner_first_name = "Nombre"
 	user.card_owner_last_name = "Apellido"
 	user.security_code = "000"
+	user.expires_on = "2015-12-01"
 end
 
 vendedor3 = User.find_or_create_by(email: "vendedor3_bestnid@gmail.com") do |user|
@@ -61,6 +63,7 @@ vendedor3 = User.find_or_create_by(email: "vendedor3_bestnid@gmail.com") do |use
 	user.card_owner_first_name = "Nombre"
 	user.card_owner_last_name = "Apellido"
 	user.security_code = "000"
+	user.expires_on = "2015-12-01"
 end
 
 comprador1 = User.find_or_create_by(email: "comprador1_bestnid@gmail.com") do |user|
@@ -79,6 +82,7 @@ comprador1 = User.find_or_create_by(email: "comprador1_bestnid@gmail.com") do |u
 	user.card_owner_first_name = "Nombre"
 	user.card_owner_last_name = "Apellido"
 	user.security_code = "000"
+	user.expires_on = "2015-12-01"
 end
 
 comprador2 = User.find_or_create_by(email: "comprador2_bestnid@gmail.com") do |user|
@@ -97,6 +101,7 @@ comprador2 = User.find_or_create_by(email: "comprador2_bestnid@gmail.com") do |u
 	user.card_owner_first_name = "Nombre"
 	user.card_owner_last_name = "Apellido"
 	user.security_code = "000"
+	user.expires_on = "2015-12-01"
 end
 
 comprador3 = User.find_or_create_by(email: "comprador3_bestnid@gmail.com") do |user|
@@ -115,6 +120,7 @@ comprador3 = User.find_or_create_by(email: "comprador3_bestnid@gmail.com") do |u
 	user.card_owner_first_name = "Nombre"
 	user.card_owner_last_name = "Apellido"
 	user.security_code = "000"
+	user.expires_on = "2015-12-01"
 end
 
 comprador4 = User.find_or_create_by(email: "comprador4_bestnid@gmail.com") do |user|
@@ -133,6 +139,7 @@ comprador4 = User.find_or_create_by(email: "comprador4_bestnid@gmail.com") do |u
 	user.card_owner_first_name = "Nombre"
 	user.card_owner_last_name = "Apellido"
 	user.security_code = "000"
+	user.expires_on = "2015-12-01"
 end
 
 admin = User.find_or_create_by(email: "admin1_bestnid@gmail.com") do |user|
@@ -151,6 +158,7 @@ admin = User.find_or_create_by(email: "admin1_bestnid@gmail.com") do |user|
 	user.card_owner_first_name = "Nombre"
 	user.card_owner_last_name = "Apellido"
 	user.security_code = "000"
+	user.expires_on = "2015-12-01"
 end
 
 c1 = Category.find_or_create_by(name: "Hogar");
