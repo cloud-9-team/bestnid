@@ -48,6 +48,12 @@
           </li>
 
         <li><a href="/contacto/index"><b>Contacto</b></a></li>
+
+        <% if user_signed_in? %>
+          <% if (@admin.email == current_user.email) %>
+            <li><a href="/paginas_estaticas/estadisticas"><b><span class="destacado">Estadísticas</span></b></a></li>
+          <% end %>
+        <% end %>
         
       </ul>
 

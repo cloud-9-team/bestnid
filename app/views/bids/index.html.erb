@@ -34,7 +34,7 @@
 								<% end %>
 							</p>
 							<p><span class="negrita">Necesidad: </span>
-							<span><%=b.need%></span></p>
+							<span><%=b.need.truncate(200)%><%= link_to "(ver más...)", p %></span></p>
 							<p><span class="negrita">Oferta: </span>
 							<span>$ <%=b.value%></span></p>
 						</div>

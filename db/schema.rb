@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141125222023) do
+ActiveRecord::Schema.define(version: 20141128170900) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20141125222023) do
 
   create_table "bids", force: true do |t|
     t.float    "value"
-    t.string   "need"
+    t.text     "need"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "product_id"

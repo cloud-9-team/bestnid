@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   
   post 'bids/new'
 
-  post 'bids/:id/edit' => 'bids#edit' 
+  post 'bids/:id' => 'bids#edit' 
   
   get 'contacto/index'
 
@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   get 'paginas_estaticas/como_funciona'
 
   get 'paginas_estaticas/tutorial_subir_fotos'
+
+  get 'paginas_estaticas/estadisticas'
 
   get 'welcome/index'
 

@@ -1,5 +1,15 @@
+#encoding: UTF-8
 class RegistrationsController < Devise::RegistrationsController
  
+  def destroy
+    if current_user.valid_password?(params[:user][:current_password])
+      super
+    else
+      flash[:alert] = "Contraseña incorrecta."
+      redirect_to edit_user_registration_path
+    end
+  end
+
   private
  
   def sign_up_params
