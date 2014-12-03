@@ -12,18 +12,23 @@ before_action :authenticate_user!, only: [:index, :show, :update, :destroy]
 
   def update
     usuario = current_user
-    usuario.card_1 = params[:user][:card_1]
-    usuario.card_2 = params[:user][:card_2]
-    usuario.card_3 = params[:user][:card_3]
-    usuario.card_4 = params[:user][:card_4]
-    usuario.expires_on = params[:user][:expires_on]
-    usuario.security_code = params[:user][:security_code]
-    usuario.card_owner_first_name = params[:user][:card_owner_first_name]
-    usuario.card_owner_last_name = params[:user][:card_owner_last_name]
-    usuario.save
-    flash[:notice] = "Los datos de la tarjeta de crédito se actualizaron correctamente."
-    redirect_to product_path(params[:product_id])
-    
+    usuario.update_attributes(credit_card_params)
+
+    respond_to do |format|
+      if usuario.errors.any?
+        format.html { 
+          flash[:alert] = view_context.generate_html_error(usuario)
+          redirect_to product_path(params[:product_id])
+        }
+        format.js { flash.now[:alert] = view_context.generate_html_error(usuario) }
+      else
+        format.html { 
+          flash[:notice] = "Los datos de la tarjeta de crédito se actualizaron correctamente."
+          redirect_to product_path(params[:product_id])
+        }
+        format.js { flash.now[:notice] = "Los datos de la tarjeta de crédito se actualizaron correctamente." }
+      end
+    end
   end
 
   def show
@@ -41,5 +46,10 @@ before_action :authenticate_user!, only: [:index, :show, :update, :destroy]
          redirect_to welcome_index_path
     end
   end
+
+  private
+    def credit_card_params
+      params.require(:user).permit(:card_1, :card_2, :card_3, :card_4, :security_code, :expires_on, :card_owner_first_name, :card_owner_last_name)
+    end
 
 end

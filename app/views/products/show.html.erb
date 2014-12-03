@@ -136,10 +136,6 @@
 										      </div>
 										      <div class="modal-body" style="text-align: left">
 
-										      	<p class="negrita"><span style="vertical-align: super;color:red">¿? </span>Nota</p>
-										      	<p>Si deasea actualizar los datos de su tarjeta, seleccione "Actualizar datos de tarjeta".</p>
-									      		<p>Luego de actualizar, vuelva a seleccionar la opción para ofertar por el producto.</p>
-
 												<div role="tabpanel">
 
 												  <!-- Nav tabs -->
@@ -163,63 +159,68 @@
 														
 														<div style="padding-top:0.5em">
 															<div style="padding-top:0.5em"><%= label_tag "need", "Necesidad:" %></div>
-															<div style="padding-top:0.5em"><%= text_area_tag "need", "", :placeholder => "Necesidad", :required => "required", class:"form-control", maxlength:"1000" %></div>
+															<div style="padding-top:0.5em"><%= text_area_tag "need", "", :placeholder => "Necesidad", :required => "required", class: "form-control", maxlength: "1000" %></div>
 														</div>
 
 														<div class="form-group" style="width: 30%">
 															<div style="padding-top:0.5em"><%= label_tag "value", "Valor de la oferta (en pesos argentinos):" %></div>
-															<div style="padding-top:0.5em"><%= number_field_tag "value", "", :min => 1, :placeholder => "Oferta ($)", :required => "required", class:"form-control", maxlength:"7" %></div>
+															<div style="padding-top:0.5em"><%= number_field_tag "value", "", :min => 1, :placeholder => "Oferta ($)", :required => "required", class: "form-control", maxlength:"7" %></div>
 														</div>
 														
 														<div class="form-group modal-footer" style="margin-bottom: 0px;">
 															<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-															<%= submit_tag "Publicar", class:"btn btn-success" %>
+															<%= submit_tag "Publicar", class: "btn btn-success" %>
 														</div>
 
 											      	<% end %>											        
 
 											      </div>
 											      <div role="tabpanel" class="tab-pane fade" id="actualizarTarjeta" aria-labelledBy="profile-tab">
-											        
-											        <%= form_for @current_user do |f| %>
+											        <%= form_for @current_user, remote: true do |f| %>
 
-											        <div style="padding-top:0.5em"></div>
+												        <div class="row">
+												        	<div id="actualizarTarjeta_msgs" class="col-xs-12"></div>
+												        </div>
 
-										      		<span class="negrita">Número de la tarjeta:</span>
-										      		<div class="row" style="width: 90%; padding-bottom: 0.5em; padding-top: 0.5em" >
-													    <div class="col-xs-3 col-md-3" onkeypress="return isNumberKey(event)"><%= f.text_field :card_1 , class:"form-control", maxlength:"4" %></div>
-													    <div class="col-xs-3 col-md-3" onkeypress="return isNumberKey(event)"><%= f.text_field :card_2 , class:"form-control", maxlength:"4" %></div>
-													    <div class="col-xs-3 col-md-3" onkeypress="return isNumberKey(event)"><%= f.text_field :card_3 , class:"form-control", maxlength:"4" %></div>
-													    <div class="col-xs-3 col-md-3" onkeypress="return isNumberKey(event)"><%= f.text_field :card_4 , class:"form-control", maxlength:"4" %></div>
-													</div>
+												        <div style="padding-top:0.5em"></div>
 
-													<span class="negrita">Nombre del titular:</span>
-													<div class="row" style="width: 90%; padding-top:0.5em;padding-bottom:0.5em">
-    													<div class="col-xs-6 col-md-6"><%= f.text_field :card_owner_first_name, autofocus: true , class:"form-control" %></div>
- 													</div>
+											      		<span class="negrita">Número de la tarjeta:</span>
+											      		<div class="row" style="width: 90%; padding-bottom: 0.5em; padding-top: 0.5em" >
+														    <div class="col-xs-3 col-md-3" onkeypress="return isNumberKey(event)"><%= f.text_field :card_1 , class:"form-control", maxlength:"4" %></div>
+														    <div class="col-xs-3 col-md-3" onkeypress="return isNumberKey(event)"><%= f.text_field :card_2 , class:"form-control", maxlength:"4" %></div>
+														    <div class="col-xs-3 col-md-3" onkeypress="return isNumberKey(event)"><%= f.text_field :card_3 , class:"form-control", maxlength:"4" %></div>
+														    <div class="col-xs-3 col-md-3" onkeypress="return isNumberKey(event)"><%= f.text_field :card_4 , class:"form-control", maxlength:"4" %></div>
+														</div>
 
- 													<span class="negrita">Apellido del titular:</span>
-													<div class="row" style="width: 90%;padding-top:0.5em;padding-bottom:0.5em">
-    													<div class="col-xs-6 col-md-6"><%= f.text_field :card_owner_last_name, autofocus: true , class:"form-control" %></div>
- 													</div>
+														<%= f.label :card_owner_first_name %>
+														<div class="row" style="width: 90%; padding-top:0.5em;padding-bottom:0.5em">
+	    													<div class="col-xs-6 col-md-6"><%= f.text_field :card_owner_first_name, autofocus: true , class:"form-control" %></div>
+	 													</div>
 
- 													<span class="negrita">Número de seguridad:</span>
-													<div class="row" style="width: 90%;padding-top:0.5em;padding-bottom:0.5em">
-    													<div class="col-xs-6 col-md-6" onkeypress="return isNumberKey(event)"><%= f.password_field :security_code, autofocus: true , class:"form-control", maxlength:"3", required: true %></div>
- 													</div>
+	 													<%= f.label :card_owner_last_name %>
+														<div class="row" style="width: 90%;padding-top:0.5em;padding-bottom:0.5em">
+	    													<div class="col-xs-6 col-md-6"><%= f.text_field :card_owner_last_name, autofocus: true , class:"form-control" %></div>
+	 													</div>
 
- 													<span class="negrita">Fecha de vencimiento:</span>
-													<div class="row" style="width: 90%; padding-top:0.5em;padding-bottom:0.5em">
+	 													<%= f.label :security_code %>
+														<div class="row" style="width: 90%;padding-top:0.5em;padding-bottom:0.5em">
+	    													<div class="col-xs-6 col-md-6" onkeypress="return isNumberKey(event)"><%= f.password_field :security_code, autofocus: true , class:"form-control", maxlength:"3", required: true %></div>
+	 													</div>
 
-														<div class="col-xs-6 col-md-6"><%= f.date_select :expires_on, {:use_month_names => translated_month_names(false), :discard_day => true, :start_year => Date.today.year, :end_year => Date.today.year + 20}, {maxlength: "8", class: "form-control date-select", :required => "required"} %></div>
- 														</div>
+	 													<%= f.label :expires_on %>
+														<div class="row" style="width: 90%; padding-top:0.5em;padding-bottom:0.5em">
 
-													<%= hidden_field_tag :product_id, @product.id %>
-													
-													<div class="form-group modal-footer" style="margin-bottom: 0px;">
-														<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-														<%= f.submit "Actualizar" , class:"btn btn-primary" %>
-													</div>
+															<div class="col-xs-6 col-md-6"><%= f.date_select :expires_on, {:use_month_names => translated_month_names(false), :discard_day => true, :start_year => Date.today.year, :end_year => Date.today.year + 20}, {maxlength: "8", class: "form-control date-select", :required => "required"} %></div>
+	 													</div>
+
+														<div class="row negrita small"><div class="col-xs-12" style="text-align: right;">Nota: Todos los campos son obligatorios.</div></div>
+														
+														<%= hidden_field_tag :product_id, @product.id %>
+
+														<div class="form-group modal-footer" style="margin-bottom: 0px;">
+															<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+															<%= f.submit "Actualizar" , class:"btn btn-primary" %>
+														</div>
 
 													<% end %>
 
