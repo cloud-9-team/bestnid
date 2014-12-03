@@ -1,1 +1,9 @@
-<h2 class="subtitulos">Estadísticas</h2>
+<% if (@admin.email == current_user.email) %>
+	
+	<h2 class="subtitulos">Estadísticas</h2>
+
+<% else %>
+
+	<center><h3 class="error" style="padding-top: 7em; padding-bottom: 7em">¡Acceso denegado!</h3></center>
+
+<% end %>
