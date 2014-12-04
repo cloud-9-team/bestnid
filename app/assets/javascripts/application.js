@@ -26,8 +26,7 @@ function isNumberKey(evt)
           return true;
        }
 
-var ready;
-ready = function() {
+var set_anchor_scroll = function() {
 
   $('a[href^="#"]').on('click', function(event) {
     var target;
@@ -47,5 +46,5 @@ ready = function() {
 
 };
 
-$(document).ready(ready);
-$(document).on('page:load', ready);
+$(document).ready(set_anchor_scroll);
+$(document).on('page:load', set_anchor_scroll);
