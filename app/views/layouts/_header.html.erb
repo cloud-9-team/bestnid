@@ -51,7 +51,13 @@
 
         <% if user_signed_in? %>
           <% if current_user.admin %>
-            <li><a href="/paginas_estaticas/estadisticas"><b><span class="destacado">Estadísticas</span></b></a></li>
+            <li role="presentation" class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false"><span class="destacado">Estadísticas<span class="caret"></span></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="/stats/usuarios_registrados"><b>Usuarios registrados</b></a></li>
+                <li><a href="/stats/ganancias"><b>Ganancias</b></a></li>
+              </ul>
+            </li>
           <% end %>
         <% end %>
         

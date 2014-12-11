@@ -24,11 +24,10 @@ Rails.application.routes.draw do
   get 'paginas_estaticas/tutorial_subir_fotos'
 
   get 'stats/usuarios_registrados'
-
   post 'stats/usuarios_registrados'
 
   get 'stats/ganancias'
-  post 'stats/ganancias', to: "stats#calc_ganancias"
+  post 'stats/ganancias'
 
   get 'welcome/index'
 

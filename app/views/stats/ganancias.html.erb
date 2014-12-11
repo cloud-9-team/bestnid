@@ -30,13 +30,13 @@
 				</div>
 			<% end %>
 			
-			<% if params[:dates].present? %>
+			<% if params[:dates].present? and @resultados != nil %>
 				<% total = 0 %>
 				<% @resultados.map { |p| total=total+p.chosen_bid.value } %>
 				<div><h4>En el período de tiempo especificado que consta de <strong><%= distance_of_time_in_words(@start, @end) %></strong> se ha vendido <strong><%= @resultados.any? ? @resultados.count > 1 ? @resultados.count.to_s + " productos" : "1 producto" : "0 productos" %></strong>, generando una ganancia total de <strong><%= number_to_currency(total * BESTNID_PERCENT, unit: "$", format: "%u%n") %></strong>.</h4></div>
 			<% end %>
 
-			<% if @resultados.any? %>
+			<% if @resultados != nil and @resultados.any? %>
 			
 			<div class="panel panel-personal">
 				<div class="panel-heading">
@@ -44,7 +44,7 @@
 						<a href="#full-info" data-toggle="collapse" data-target="#full-info" aria-expanded="false" aria-controls="full-info" style="display:block">Información detallada del período</a>
 					</h4>
 				</div>
-				<div id="full-info" class="panel-collapse collapse">
+				<div id="full-info" class="panel-collapse collapse in">
 					<table class="table">
 						<tr class="row">
 							<th>Producto</th>
@@ -56,7 +56,7 @@
 						<% @resultados.each do |product| %>
 						<tr class="row">
 							<td><%= link_to product.title, product %></td>
-							<td><%= localize product.updated_at.in_time_zone('Buenos Aires'), format: :long %></td>
+							<td><%= localize product.finished_at.in_time_zone('Buenos Aires'), format: :long %></td>
 							<td><%= number_to_currency(product.chosen_bid.value, unit: "$", format: "%u%n") %></td>
 							<td><%= number_to_currency(product.chosen_bid.value * BESTNID_PERCENT, unit: "$", format: "%u%n") %></td>
 						</tr>
