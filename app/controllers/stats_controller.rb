@@ -46,7 +46,7 @@ class StatsController < ApplicationController
   private
 
   def check_admin
-    if current_user.admin == false
+    if not user_signed_in? or not current_user.admin
       flash[:alert] = "Acceso no autorizado"
       redirect_to root_path
     end

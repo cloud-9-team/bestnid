@@ -9,7 +9,7 @@ class ProductsController < ApplicationController
 
   def show
 
-    if (current_user != @owner and not current_user.admin) and (@product.finished? or @product.timeout?)
+    if (user_signed_in? and current_user != @owner and not current_user.admin) and (@product.finished? or @product.timeout?)
       flash[:alert] = "No tienes autorización para ver este producto."
       redirect_to welcome_index_path
       return;
