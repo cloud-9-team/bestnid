@@ -23,9 +23,9 @@ Rails.application.routes.draw do
 
   get 'paginas_estaticas/tutorial_subir_fotos'
 
-  get 'paginas_estaticas/estadisticas'
+  get 'stats/usuarios_registrados'
 
-  post 'paginas_estaticas/estadisticas'
+  post 'stats/usuarios_registrados'
 
   get 'welcome/index'
 
