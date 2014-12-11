@@ -27,6 +27,9 @@ Rails.application.routes.draw do
 
   post 'stats/usuarios_registrados'
 
+  get 'stats/ganancias'
+  post 'stats/ganancias', to: "stats#calc_ganancias"
+
   get 'welcome/index'
 
   devise_for :users, :controllers => { registrations: 'registrations' }
