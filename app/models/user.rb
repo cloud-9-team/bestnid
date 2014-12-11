@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
     has_many :questions
     has_many :bids, dependent: :destroy
 
+    default_scope -> { order("created_at asc") }
+
 
   	# A partir del código de país se intentará obtener el nombre completo
   	# traducido, en caso de que no se pueda, se obtendrá su nombre en inglés.

@@ -49,24 +49,29 @@
 					<% if @users.count == 0%>
 						<li class="list-group-item italica negrita"><center>No se han registrado usuarios en el intervalo de tiempo indicado.</center></li>
 					<% else %>
-						<% @users.each do |p| %>
-							<li class="list-group-item">
-								<blockquote>
-									<div class="destacado" style="padding-bottom: 0.5em"><%=p.first_name%> <%=p.last_name%></div>
-									<div><span class="negrita">Email: </span><%=p.email%></div>
-									<div><span class="negrita">Fecha de registro: </span><%=timeleft(p.created_at)%></div>
-									<div><span class="negrita">Último ingreso: </span><%=timeleft(p.updated_at)%></div>
-									<div><span class="negrita">Productos publicados: </span><%=p.products.count%></div>
-									<div><span class="negrita">Ofertas realizadas: </span><%=p.bids.count%></div>
-									<div><span class="negrita">Categoría:</span>
-										<% if p.admin %>
-											<span class="error">Administrador</span>
-										<% else %>
-											<span>Usuario regular</span>
-										<% end %>
-									</div>
-								</blockquote>
-							</li>
+						<% if @users.count == 0%>
+							<li class="list-group-item italica negrita"><center>No se han registrado usuarios en el intervalo de tiempo indicado.</center></li>
+						<% else %>
+							<li class="list-group-item negrita"><center>Usuarios encontrados: <span class="destacado"><%= @users.count %></span></center></li>
+							<% @users.each do |p| %>
+								<li class="list-group-item">
+									<blockquote>
+										<div class="destacado" style="padding-bottom: 0.5em"><%=p.first_name%> <%=p.last_name%></div>
+										<div><span class="negrita">Email: </span><%=p.email%></div>
+										<div><span class="negrita">Fecha de registro: </span><%=timeleft(p.created_at)%></div>
+										<div><span class="negrita">Último ingreso: </span><%=timeleft(p.updated_at)%></div>
+										<div><span class="negrita">Productos publicados: </span><%=p.products.count%></div>
+										<div><span class="negrita">Ofertas realizadas: </span><%=p.bids.count%></div>
+										<div><span class="negrita">Categoría:</span>
+											<% if (@admin.email == p.email) %>
+												<span class="error">Administrador</span>
+											<% else %>
+												<span>Usuario regular</span>
+											<% end %>
+										</div>
+									</blockquote>
+								</li>
+							<% end %>
 						<% end %>
 					<% end %>
 				<% end %>
