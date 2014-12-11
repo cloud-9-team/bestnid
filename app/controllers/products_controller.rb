@@ -9,7 +9,7 @@ class ProductsController < ApplicationController
 
   def show
 
-    if (current_user != @owner) and (@product.finished? or @product.timeout?)
+    if (current_user != @owner and not current_user.admin) and (@product.finished? or @product.timeout?)
       flash[:alert] = "No tienes autorización para ver este producto."
       redirect_to welcome_index_path
       return;
@@ -40,12 +40,18 @@ class ProductsController < ApplicationController
     cat = params[:product][:category_id]
 
     c = params[:totalDays].to_i
+    if c < 15 or c > 30
+      @categories = Category.all
+      flash.now[:alert] = "La cantidad de días de la subasta está fuera de rango"
+      render :new # Vuelvo a mostrar el formulario, esta vez cargado con los datos previamente completados
+      return
+    end
+
     fecha_creado = Time.now
     fecha_fin = fecha_creado + c.days
 
     # A la variable anteriormente creada le asigno el nuevo producto
-    @product = Product.create(title: title, description: description, imageURL: imgURL, category_id: cat,
-                              visitCount: 0, user: current_user, created_at: fecha_creado, ends_at: fecha_fin)
+    @product = Product.create(title: title, description: description, imageURL: imgURL, category_id: cat, user: current_user, created_at: fecha_creado, ends_at: fecha_fin)
 
     if @product.errors.any?
       @categories = Category.all
@@ -71,6 +77,7 @@ class ProductsController < ApplicationController
     
     if @product.timeout? and not @product.finished? and current_user == @owner and chosen_bid.present? and chosen_bid.product == @product
       @product.chosen_bid = chosen_bid
+      @product.finished_at = Time.now
       @product.save
 
       if @product.errors.any?

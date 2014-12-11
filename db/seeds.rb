@@ -26,6 +26,7 @@ vendedor1 = User.find_or_create_by(email: "vendedor1_bestnid@gmail.com") do |use
 	user.card_owner_last_name = "Apellido"
 	user.security_code = "000"
 	user.expires_on = "2015-12-01"
+	user.created_at = "2014-11-16 15:00:00"
 end
 
 vendedor2 = User.find_or_create_by(email: "vendedor2_bestnid@gmail.com") do |user|
@@ -45,6 +46,7 @@ vendedor2 = User.find_or_create_by(email: "vendedor2_bestnid@gmail.com") do |use
 	user.card_owner_last_name = "Apellido"
 	user.security_code = "000"
 	user.expires_on = "2015-12-01"
+	user.created_at = "2014-01-01 08:00:00"
 end
 
 vendedor3 = User.find_or_create_by(email: "vendedor3_bestnid@gmail.com") do |user|
@@ -64,6 +66,7 @@ vendedor3 = User.find_or_create_by(email: "vendedor3_bestnid@gmail.com") do |use
 	user.card_owner_last_name = "Apellido"
 	user.security_code = "000"
 	user.expires_on = "2015-12-01"
+	user.created_at = "2014-12-10 21:00:00"
 end
 
 comprador1 = User.find_or_create_by(email: "comprador1_bestnid@gmail.com") do |user|
@@ -83,6 +86,7 @@ comprador1 = User.find_or_create_by(email: "comprador1_bestnid@gmail.com") do |u
 	user.card_owner_last_name = "Apellido"
 	user.security_code = "000"
 	user.expires_on = "2015-12-01"
+	user.created_at = "2012-06-25 08:00:00"
 end
 
 comprador2 = User.find_or_create_by(email: "comprador2_bestnid@gmail.com") do |user|
@@ -102,6 +106,7 @@ comprador2 = User.find_or_create_by(email: "comprador2_bestnid@gmail.com") do |u
 	user.card_owner_last_name = "Apellido"
 	user.security_code = "000"
 	user.expires_on = "2015-12-01"
+	user.created_at = "2009-11-16 08:00:00"
 end
 
 comprador3 = User.find_or_create_by(email: "comprador3_bestnid@gmail.com") do |user|
@@ -121,6 +126,7 @@ comprador3 = User.find_or_create_by(email: "comprador3_bestnid@gmail.com") do |u
 	user.card_owner_last_name = "Apellido"
 	user.security_code = "000"
 	user.expires_on = "2015-12-01"
+	user.created_at = "2014-11-16 05:00:00"
 end
 
 comprador4 = User.find_or_create_by(email: "comprador4_bestnid@gmail.com") do |user|
@@ -159,6 +165,8 @@ admin = User.find_or_create_by(email: "admin1_bestnid@gmail.com") do |user|
 	user.card_owner_last_name = "Lucero"
 	user.security_code = "000"
 	user.expires_on = "2015-12-01"
+	user.created_at = "2014-10-16 08:00:00"
+	user.admin = true
 end
 
 c1 = Category.find_or_create_by(name: "Hogar");
@@ -169,7 +177,6 @@ c4 = Category.find_or_create_by(name: "Otros");
 guante = vendedor1.products.find_or_create_by(title: "Guante de acero",
 	description: "Guante de malla de acero inox. tejido, anticorte, marca *manulatex* de industria francesa",
 	imageURL: "http://40.media.tumblr.com/6bc78e251e463fb68362d168fcf38bda/tumblr_nbqngpEAks1tlipbuo1_1280.jpg",
-	visitCount: 0,
 	category: c2,
 	created_at: "2014-11-16 08:00:00",
 	ends_at: "2014-12-01 08:00:00")
@@ -177,7 +184,6 @@ guante = vendedor1.products.find_or_create_by(title: "Guante de acero",
 llama = vendedor2.products.find_or_create_by(title: "Llama",
 	description: "Llama adulta oriunda de Tilcara. Es mansita",
 	imageURL: "http://41.media.tumblr.com/6750bde49985d14340294b65cbfac7a2/tumblr_nbsedz4pML1tlipbuo1_1280.jpg",
-	visitCount: 0,
 	category: c3,
 	created_at: "2014-11-16 08:00:00",
 	ends_at: "2014-12-06 08:00:00")
@@ -185,7 +191,6 @@ llama = vendedor2.products.find_or_create_by(title: "Llama",
 espejo = vendedor1.products.find_or_create_by(title: "Espejo",
 	description: "Espejo sin marco. Medidas: 0.8m x 1.2m",
 	imageURL: "http://40.media.tumblr.com/ad056adadfeeced7f24f918a843a0f60/tumblr_nbsf4rGZFE1tlipbuo1_1280.jpg",
-	visitCount: 0,
 	category: c1,
 	created_at: "2014-11-16 08:00:00",
 	ends_at: "2014-12-01 08:00:00")
@@ -193,7 +198,6 @@ espejo = vendedor1.products.find_or_create_by(title: "Espejo",
 kriptonita = vendedor2.products.find_or_create_by(title: "Kriptonita",
 	description: "200 gramos de Kriptonita",
 	imageURL: "http://41.media.tumblr.com/8e08757ed8fd1c3368e29dc127140ef1/tumblr_nbsewqvU231tlipbuo1_1280.jpg",
-	visitCount: 0,
 	category: c4,
 	created_at: "2014-11-16 08:00:00",
 	ends_at: "2014-12-14 08:00:00")
@@ -201,7 +205,6 @@ kriptonita = vendedor2.products.find_or_create_by(title: "Kriptonita",
 aceite = vendedor3.products.find_or_create_by(title: "Aceite y Vinagre",
 	description: "200ml de aceite y 300ml de vinagre. No incluye frascos",
 	imageURL: "http://40.media.tumblr.com/f92d39b2c62cf2bc5398797db35ce37d/tumblr_nbsejfmSt21tlipbuo1_400.jpg",
-	visitCount: 0,
 	category: c1,
 	created_at: "2014-11-07 08:00:00",
 	ends_at: "2014-11-22 08:00:00")
@@ -210,7 +213,6 @@ nutria = vendedor1.products.find_or_create_by(title: "Nutria",
 	description: "Las nutrias son adorables criaturas que viven tanto en la tierra como en el agua y a menudo se les confunde con los castores.\n
 				  Viven, principalmente, en tierras cerca de cuerpos de agua, y cazan su comida tanto en el agua, incluyendo a los peces, como en tierra, incluidas las aves.",
 	imageURL: "http://wikifaunia.com/images/3/3b/Nutria1.jpg",
-	visitCount: 0,
 	category: c3,
 	created_at: "2014-11-10 08:00:00",
 	ends_at: "2014-11-25 08:00:00")
@@ -240,7 +242,7 @@ comprador1.bids.find_or_create_by(product: nutria,
 	value: 3)
 
 comprador2.bids.find_or_create_by(product: nutria,
-	need: "Necesito una nutria para que juegue con mis hijos. La pidieron para navidad",
+	need: "Necesito una nutria para que juegue con mis hijos. La pidieron para navidad.\nMentira, no tengo hijos, pero igual me gustaría la nutria, tengo entendido que son inteligentes y necesito hablar con alguien.\nMentí de nuevo, no me gustan, vivas, la quiero para el tapado.",
 	value: 500)
 
 comprador3.bids.find_or_create_by(product: nutria,
@@ -263,3 +265,64 @@ p3 = comprador2.questions.find_or_create_by(product: llama,
 p1.create_answer(body: "100% pura, deja a Superman dado vuelta")
 
 p3.create_answer(body: "Sí, hace todo lo que le pidas")
+
+# Algunas subastas finalizadas para las estadísticas
+p_finalizado1 = vendedor3.products.find_or_create_by(title: "Matafuegos",
+	description: "Matafuegos que sirve para apagar el fuego. Está vencido.",
+	imageURL: "http://www.prensa.gba.gov.ar/Intranet/upload/albums/grande/5c3755f15ece41fe18134a9fe63e2e0a.JPG",
+	category: c1,
+	created_at: "2014-11-07 08:00:00",
+	ends_at: "2014-11-22 08:00:00",
+	finished_at: "2014-11-25 02:00:00")
+
+p_finalizado2 = vendedor3.products.find_or_create_by(title: "Silla",
+	description: "Muy cómoda. Ideal para siestas.",
+	imageURL: "http://www.artistasdelatierra.com/obras/foto96072.jpg",
+	category: c1,
+	created_at: "2012-09-10 08:00:00",
+	ends_at: "2012-09-26 08:00:00",
+	finished_at: "2012-10-01 02:00:00")
+
+p_finalizado3 = vendedor2.products.find_or_create_by(title: "Amoladora",
+	description: "Ni ganas de describirla, está linda.",
+	imageURL: "http://www.alquileresalejandre.com/wp-content/uploads/2010/04/amoladora.jpg",
+	category: c2,
+	created_at: "2014-11-07 08:00:00",
+	ends_at: "2014-11-22 08:00:00",
+	finished_at: "2014-11-25 02:00:00")
+
+p_finalizado4 = vendedor3.products.find_or_create_by(title: "Casa",
+	description: "Una adorable casa para tus hijos.",
+	imageURL: "http://trucoscaseros.org/blog/wp-content/uploads/2013/11/Un-hogar-bien-asegurado-es-una-casa-m%C3%A1s-feliz-1024x819.jpg",
+	category: c4,
+	created_at: "2014-02-27 08:00:00",
+	ends_at: "2014-03-18 08:00:00",
+	finished_at: "2014-03-20 05:00:00")
+
+comprador3.bids.find_or_create_by(product: p_finalizado1,
+	need: "Colecciono matafuegos",
+	value: 356)
+
+comprador2.bids.find_or_create_by(product: p_finalizado2,
+	need: "No tengo cama para dormir, es un reemplazo económico",
+	value: 2)
+
+comprador1.bids.find_or_create_by(product: p_finalizado3,
+	need: "La necesito para arreglar unos asuntos con un vecino",
+	value: 500)
+
+comprador4.bids.find_or_create_by(product: p_finalizado4,
+	need: "Me pareció muy tierna, la quiero",
+	value: 80000)
+
+p_finalizado1.chosen_bid = p_finalizado1.bids.first
+p_finalizado1.save
+
+p_finalizado2.chosen_bid = p_finalizado2.bids.first
+p_finalizado2.save
+
+p_finalizado3.chosen_bid = p_finalizado3.bids.first
+p_finalizado3.save
+
+p_finalizado4.chosen_bid = p_finalizado4.bids.first
+p_finalizado4.save

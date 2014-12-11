@@ -1,85 +1,77 @@
-<% if (@admin.email == current_user.email) %>
+<h2 class="subtitulos">Estadísticas</h2>
 
-	<h2 class="subtitulos">Estadísticas</h2>
+<div class="container">
+	<div class = "panel panel-personal">
+		<div class = "panel-heading">
+			<h3 class = "panel-title text-ellipsis">Usuarios registrados en el sistema en un intervalo de tiempo</h3>
+		</div>
+		<div class = "panel-body">
 
-	<div class="container">
-		<div class = "panel panel-personal">
-			<div class = "panel-heading">
-				<h3 class = "panel-title text-ellipsis">Usuarios registrados en el sistema en un intervalo de tiempo</h3>
-			</div>
-			<div class = "panel-body">
+			<%= form_tag do %>
 
-				<%= form_tag do %>
+			<center>
+				<div class="fluid-container">
 
-				<center>
-					<div class="fluid-container">
-
-						  <div class="row" >
-						    <div class="col-xs-3 col-md-3"></div>
-						    <div class="col-xs-6 col-md-6"><%= label_tag("Fecha de inicio: ") %></div>
-						  </div>
-
-						  <div class="row" style="padding-top: 1.5em">
-						    <div class="col-xs-3 col-md-3"></div>
-						    <div class="col-xs-6 col-md-6"><%= date_select('init_date', 'date', selected: Date.today - 1) %></div>
-						  </div>
-
-						  <div class="row" style="padding-top: 1.5em">
-						    <div class="col-xs-3 col-md-3"></div>
-						    <div class="col-xs-6 col-md-6"><%= label_tag("Fecha de finalización: ") %></div>
-						  </div>
-
-						  <div class="row" style="padding-top: 1.5em">
-						    <div class="col-xs-3 col-md-3"></div>
-						    <div class="col-xs-6 col-md-6"><%= date_select('end_date', 'date', selected: Date.today + 1) %></div>
-						  </div>
-
-						  <div class="row" style="padding-top: 1.5em">
-						    <div class="col-xs-3 col-md-3"></div>
-						    <div class="col-xs-6 col-md-6"><%= submit_tag('Filtrar', class:"btn btn-primary") %></div>
-						  </div>
-
+					  <div class="row" >
+					    <div class="col-xs-3 col-md-3"></div>
+					    <div class="col-xs-6 col-md-6"><%= label_tag("Fecha de inicio: ") %></div>
 					  </div>
-				</center>
 
-				<% end %>
+					  <div class="row" style="padding-top: 1.5em">
+					    <div class="col-xs-3 col-md-3"></div>
+					    <div class="col-xs-6 col-md-6"><%= date_select('init_date', 'date', selected: Date.today - 1) %></div>
+					  </div>
 
-				<ul class="list-group" style="padding-top: 1.5em">
-					<% if !(@temp)%>
-						<li class="list-group-item italica negrita"><center>No se ha filtrado la búsqueda. Seleccione una fecha de inicio y una de finalización para buscar a los usuarios registrados en dicho intervalo de tiempo.</center></li>
+					  <div class="row" style="padding-top: 1.5em">
+					    <div class="col-xs-3 col-md-3"></div>
+					    <div class="col-xs-6 col-md-6"><%= label_tag("Fecha de finalización: ") %></div>
+					  </div>
+
+					  <div class="row" style="padding-top: 1.5em">
+					    <div class="col-xs-3 col-md-3"></div>
+					    <div class="col-xs-6 col-md-6"><%= date_select('end_date', 'date', selected: Date.today + 1) %></div>
+					  </div>
+
+					  <div class="row" style="padding-top: 1.5em">
+					    <div class="col-xs-3 col-md-3"></div>
+					    <div class="col-xs-6 col-md-6"><%= submit_tag('Filtrar', class:"btn btn-primary") %></div>
+					  </div>
+
+				  </div>
+			</center>
+
+			<% end %>
+
+			<ul class="list-group" style="padding-top: 1.5em">
+				<% if !(@temp)%>
+					<li class="list-group-item italica negrita"><center>No se ha filtrado la búsqueda. Seleccione una fecha de inicio y una de finalización para buscar a los usuarios registrados en dicho intervalo de tiempo.</center></li>
+				<% else %>
+					<% if @users.count == 0%>
+						<li class="list-group-item italica negrita"><center>No se han registrado usuarios en el intervalo de tiempo indicado.</center></li>
 					<% else %>
-						<% if @users.count == 0%>
-							<li class="list-group-item italica negrita"><center>No se han registrado usuarios en el intervalo de tiempo indicado.</center></li>
-						<% else %>
-							<% @users.each do |p| %>
-								<li class="list-group-item">
-									<blockquote>
-										<div class="destacado" style="padding-bottom: 0.5em"><%=p.first_name%> <%=p.last_name%></div>
-										<div><span class="negrita">Email: </span><%=p.email%></div>
-										<div><span class="negrita">Fecha de registro: </span><%=timeleft(p.created_at)%></div>
-										<div><span class="negrita">Último ingreso: </span><%=timeleft(p.updated_at)%></div>
-										<div><span class="negrita">Productos publicados: </span><%=p.products.count%></div>
-										<div><span class="negrita">Ofertas realizadas: </span><%=p.bids.count%></div>
-										<div><span class="negrita">Categoría:</span>
-											<% if (@admin.email == p.email) %>
-												<span class="error">Administrador</span>
-											<% else %>
-												<span>Usuario regular</span>
-											<% end %>
-										</div>
-									</blockquote>
-								</li>
-							<% end %>
+						<% @users.each do |p| %>
+							<li class="list-group-item">
+								<blockquote>
+									<div class="destacado" style="padding-bottom: 0.5em"><%=p.first_name%> <%=p.last_name%></div>
+									<div><span class="negrita">Email: </span><%=p.email%></div>
+									<div><span class="negrita">Fecha de registro: </span><%=timeleft(p.created_at)%></div>
+									<div><span class="negrita">Último ingreso: </span><%=timeleft(p.updated_at)%></div>
+									<div><span class="negrita">Productos publicados: </span><%=p.products.count%></div>
+									<div><span class="negrita">Ofertas realizadas: </span><%=p.bids.count%></div>
+									<div><span class="negrita">Categoría:</span>
+										<% if p.admin %>
+											<span class="error">Administrador</span>
+										<% else %>
+											<span>Usuario regular</span>
+										<% end %>
+									</div>
+								</blockquote>
+							</li>
 						<% end %>
 					<% end %>
-				</ul>
+				<% end %>
+			</ul>
 
-			</div>
 		</div>
 	</div>
-
-<% else %>
-
-	<div style="padding-top: 7em; padding-bottom: 7em"><center><h3 class="error">¡Acceso denegado!</h3></center></div>
-
-<% end %>
+</div>
