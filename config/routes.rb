@@ -25,6 +25,8 @@ Rails.application.routes.draw do
 
   get 'paginas_estaticas/estadisticas'
 
+  post 'paginas_estaticas/estadisticas'
+
   get 'welcome/index'
 
   devise_for :users, :controllers => { registrations: 'registrations' }

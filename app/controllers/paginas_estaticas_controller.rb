@@ -8,7 +8,14 @@ class PaginasEstaticasController < ApplicationController
   def como_funciona
   end
 
-  def estadisticas  	
+  def estadisticas
+  	if (params[:init_date] && params[:end_date])
+  		initDate = Date.civil(*params[:init_date].sort.map(&:last).map(&:to_i))
+  		endDate = Date.civil(*params[:end_date].sort.map(&:last).map(&:to_i))
+		@temp = true
+  		@users = User.all.where(:created_at => initDate..endDate)
+  	else
+  		@temp = false
+  	end
   end
-
 end
