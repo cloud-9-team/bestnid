@@ -40,56 +40,57 @@
 				
 				<% if user_signed_in? %>
 					<% if @owner.email == current_user.email %>
-						<tr>
-							<td>
-								<% if @product.timeout? and not @product.finished? %>
-									<%= link_to "Elegir necesidad ganadora", "#", data: { toggle: "modal", target: "#modalBids" }, class: "btn btn-primary" %>
-									<!-- Modal -->
-									<div class="modal fade" id="modalBids" tabindex="-1" role="dialog" aria-labelledby="titleLabel" aria-hidden="true">
-									  <div class="modal-dialog">
-									    <div class="modal-content">
-									      <div class="modal-header">
-									        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-									        <h4 class="modal-title" id="titleLabel">Elige la oferta ganadora</h4>
-									      </div>
-									      <%= form_for @product do |f| %>
-									      <div class="modal-body">
-									      	<div class="radio-group">
-												<% if @product.bids.count == 0 %>
-													<div class="negrita">
-														<p>Este producto no tiene ofertas.</p>
-														<p>Si desea, puede eliminarlo y volverlo a publicar para encontrar nuevos interesados.</p>
-													</div>
-												<% else %>
-													<% @product.bids.each do |bid| %>
-													<div class="radio-item">
-														<%= f.radio_button(:chosen_bid_id, bid.id) %>
-														<%= f.label("chosen_bid_id_" + bid.id.to_s, simple_format(bid.need, {}, sanitize: true), class: "radio-label") %>
-													</div>
+						<% if not @product.finished? %>
+							<tr>
+								<td>
+									<% if @product.timeout? and not @product.finished? %>
+										<%= link_to "Elegir necesidad ganadora", "#", data: { toggle: "modal", target: "#modalBids" }, class: "btn btn-primary" %>
+										<!-- Modal -->
+										<div class="modal fade" id="modalBids" tabindex="-1" role="dialog" aria-labelledby="titleLabel" aria-hidden="true">
+										  <div class="modal-dialog">
+										    <div class="modal-content">
+										      <div class="modal-header">
+										        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+										        <h4 class="modal-title" id="titleLabel">Elige la oferta ganadora</h4>
+										      </div>
+										      <%= form_for @product do |f| %>
+										      <div class="modal-body">
+										      	<div class="radio-group">
+													<% if @product.bids.count == 0 %>
+														<div class="negrita">
+															<p>Este producto no tiene ofertas.</p>
+															<p>Si desea, puede eliminarlo y volverlo a publicar para encontrar nuevos interesados.</p>
+														</div>
+													<% else %>
+														<% @product.bids.each do |bid| %>
+														<div class="radio-item">
+															<%= f.radio_button(:chosen_bid_id, bid.id) %>
+															<%= f.label("chosen_bid_id_" + bid.id.to_s, simple_format(bid.need, {}, sanitize: true), class: "radio-label") %>
+														</div>
+														<% end %>
+														
 													<% end %>
-													
-												<% end %>
-											</div>
-									      </div>
-									      <div class="modal-footer">
-									        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-									        <% if @product.bids.count > 0 %>
-									        <%= f.submit("Elegir", class: "btn btn-primary", data: {confirm: "¿Estás seguro de tu elección?"}) %>
-									        <% end %>
-									      </div>
-									      <% end %>
-									    </div>
-									  </div>
-									</div>
-									<!-- End Modal -->
-								<% end %>
-							</td>
-							<td style="text-align:right;" class="text-ellipsis">
-								<% if not @product.finished? %>
-								<%= link_to "Eliminar subasta", @product, data: { confirm: "¿Estás seguro?" }, :method => :delete , class:"btn btn-danger" %>
-								<% end %>
-							</td>
-						</tr>
+												</div>
+										      </div>
+										      <div class="modal-footer">
+										        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+										        <% if @product.bids.count > 0 %>
+										        <%= f.submit("Elegir", class: "btn btn-primary", data: {confirm: "¿Estás seguro de tu elección?"}) %>
+										        <% end %>
+										      </div>
+										      <% end %>
+										    </div>
+										  </div>
+										</div>
+										<!-- End Modal -->
+									<% end %>
+								</td>
+								
+								<td style="text-align:right;" class="text-ellipsis">
+									<%= link_to "Eliminar subasta", @product, data: { confirm: "¿Estás seguro?" }, :method => :delete , class:"btn btn-danger" %>
+								</td>
+							</tr>
+						<% end %>
 					<% else %>
 						<tr>
 							<td style="text-align:right;" class="text-ellipsis">

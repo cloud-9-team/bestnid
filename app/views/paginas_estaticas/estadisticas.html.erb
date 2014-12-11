@@ -63,7 +63,7 @@
 										<div><span class="negrita">Productos publicados: </span><%=p.products.count%></div>
 										<div><span class="negrita">Ofertas realizadas: </span><%=p.bids.count%></div>
 										<div><span class="negrita">Categoría:</span>
-											<% if (@admin.email == p.email) %>
+											<% if (p.admin) %>
 												<span class="error">Administrador</span>
 											<% else %>
 												<span>Usuario regular</span>
