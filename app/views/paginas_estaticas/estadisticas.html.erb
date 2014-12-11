@@ -51,6 +51,7 @@
 						<% if @users.count == 0%>
 							<li class="list-group-item italica negrita"><center>No se han registrado usuarios en el intervalo de tiempo indicado.</center></li>
 						<% else %>
+							<li class="list-group-item negrita"><center>Usuarios encontrados: <span class="destacado"><%= @users.count %></span></center></li>
 							<% @users.each do |p| %>
 								<li class="list-group-item">
 									<blockquote>
