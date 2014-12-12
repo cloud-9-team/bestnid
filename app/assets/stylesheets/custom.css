@@ -261,7 +261,27 @@ body > footer{
     line-height: 52px;
 }
 
-@media (max-width: 1250px) {
+@media (max-width: 1290px) {
+	#bestnid-home{
+		display: none;
+	}
+}
+
+@media (max-width: 1210px) {
+	#bestnid-logo-text{
+		display: none;
+	}
+}
+
+@media (max-width: 1100px) {
+	#bestnid-home{
+		display: block;
+	}
+
+	#bestnid-logo-text{
+		display: inline-block;
+	}
+
    .navbar-header {
         float: none;
     }
