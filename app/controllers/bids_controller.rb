@@ -13,7 +13,6 @@ class BidsController < ApplicationController
   def edit
     bid = Bid.find(params[:bid][:id])
     bid.value = params[:bid][:value]
-    bid.need = params[:bid][:need]
     bid.save
     flash[:notice]= "Su oferta fue modificada correctamente."
     redirect_to(bids_path)
