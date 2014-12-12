@@ -7,9 +7,10 @@ class Product < ActiveRecord::Base
 	has_many :bids, dependent: :destroy
 
 
-	scope :by_title, -> sentido { order(title: (((sentido.present?) and (sentido.downcase == "asc")) ? :asc : :desc))}
-	scope :by_created_at, -> sentido { order(created_at: (((sentido.present?) and (sentido.downcase == "asc")) ? :asc : :desc))}
-	scope :by_ends_at, -> sentido { order(ends_at: (((sentido.present?) and (sentido.downcase == "asc")) ? :asc : :desc))}
+	scope :by_title, -> sentido { order(title: (((sentido.present?) and (sentido.to_s.downcase == "asc")) ? :asc : :desc))}
+	scope :by_created_at, -> sentido { order(created_at: (((sentido.present?) and (sentido.to_s.downcase == "asc")) ? :asc : :desc))}
+	scope :by_ends_at, -> sentido { order(ends_at: (((sentido.present?) and (sentido.to_s.downcase == "asc")) ? :asc : :desc))}
+	scope :by_finished_at, -> sentido { order(finished_at: (((sentido.present?) and (sentido.to_s.downcase == "asc")) ? :asc : :desc))}
 
 	scope :active_only, -> { where("products.ends_at > ?", Time.now) }
 	scope :finished_only, -> { where("products.ends_at < ? and products.chosen_bid_id is not NULL", Time.now) }

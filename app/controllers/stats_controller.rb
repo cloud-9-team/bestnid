@@ -2,14 +2,19 @@
 class StatsController < ApplicationController
   before_action :authenticate_user!
   before_action :check_admin
-  before_action :check_dates, only: [:ganancias]
+  before_action :check_dates, only: [:ganancias, :usuarios_registrados]
 
   def usuarios_registrados
-    if (params[:init_date] && params[:end_date])
-      initDate = Date.civil(*params[:init_date].sort.map(&:last).map(&:to_i))
-      endDate = Date.civil(*params[:end_date].sort.map(&:last).map(&:to_i))
-    @temp = true
-      @users = User.all.where(:created_at => initDate..endDate)
+    if (params[:dates])
+
+      fechas = procesar_fechas
+      comienzo = fechas[:start_date]
+      fin = fechas[:end_date]
+
+      @start = comienzo
+      @end = fin
+      @temp = true
+      @users = User.all.where(:created_at => comienzo..fin)
     else
       @temp = false
     end
@@ -21,16 +26,9 @@ class StatsController < ApplicationController
       return
     end
 
-    comienzo = DateTime.new(params[:dates]['start(1i)'].to_i, params[:dates]['start(2i)'].to_i, params[:dates]['start(3i)'].to_i)
-    fin = DateTime.new(params[:dates]['end(1i)'].to_i, params[:dates]['end(2i)'].to_i, params[:dates]['end(3i)'].to_i)
-    if comienzo > fin then
-      temp = comienzo
-      comienzo = fin
-      fin = temp
-    end
-
-    comienzo = comienzo.beginning_of_day
-    fin = fin.end_of_day
+    fechas = procesar_fechas
+    comienzo = fechas[:start_date]
+    fin = fechas[:end_date]
 
     @start = comienzo
     @end = fin
@@ -40,7 +38,7 @@ class StatsController < ApplicationController
     comienzo = comienzo + 3.hours
     fin = fin + 3.hours
 
-    @resultados = Product.finished_only.between(:finished_at, comienzo, fin)
+    @resultados = Product.finished_only.between(:finished_at, comienzo, fin).by_finished_at(:asc)
   end
 
   private
@@ -62,4 +60,18 @@ class StatsController < ApplicationController
     end
   end
 
+  def procesar_fechas
+    comienzo = DateTime.new(params[:dates]['start(1i)'].to_i, params[:dates]['start(2i)'].to_i, params[:dates]['start(3i)'].to_i)
+    fin = DateTime.new(params[:dates]['end(1i)'].to_i, params[:dates]['end(2i)'].to_i, params[:dates]['end(3i)'].to_i)
+    if comienzo > fin then
+      temp = comienzo
+      comienzo = fin
+      fin = temp
+    end
+
+    comienzo = comienzo.beginning_of_day
+    fin = fin.end_of_day
+
+    return {start_date: comienzo, end_date: fin}
+  end
 end

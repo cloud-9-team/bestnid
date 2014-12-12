@@ -48,6 +48,7 @@
 					<table class="table">
 						<tr class="row">
 							<th>Producto</th>
+							<th>Categoría</th>
 							<th>Fecha de finalización</th>
 							<th>Valor de oferta elegida</th>
 							<th>Ganancia</th>
@@ -56,6 +57,7 @@
 						<% @resultados.each do |product| %>
 						<tr class="row">
 							<td><%= link_to product.title, product %></td>
+							<td><%= product.category.name %></td>
 							<td><%= localize product.finished_at.in_time_zone('Buenos Aires'), format: :long %></td>
 							<td><%= number_to_currency(product.chosen_bid.value, unit: "$", format: "%u%n") %></td>
 							<td><%= number_to_currency(product.chosen_bid.value * BESTNID_PERCENT, unit: "$", format: "%u%n") %></td>
@@ -63,6 +65,7 @@
 						<% end %>
 
 						<tr class="row negrita" style="background-color: whitesmoke">
+							<td></td>
 							<td></td>
 							<td style="text-align: right;">Totales:</td>
 							<td><%= number_to_currency(total, unit: "$", format: "%u%n") %></td>

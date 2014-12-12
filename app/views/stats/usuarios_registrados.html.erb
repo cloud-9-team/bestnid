@@ -1,11 +1,11 @@
-<h2 class="subtitulos">Estadísticas</h2>
+<h2 class="subtitulos">Usuarios registrados</h2>
 
 <div class="container">
-	<div class = "panel panel-personal">
-		<div class = "panel-heading">
-			<h3 class = "panel-title text-ellipsis">Usuarios registrados en el sistema en un intervalo de tiempo</h3>
+	<div class="panel panel-personal">
+		<div class="panel-heading">
+			<h3 class="panel-title text-ellipsis">Usuarios registrados en el sistema en un intervalo de tiempo</h3>
 		</div>
-		<div class = "panel-body">
+		<div class="panel-body">
 
 			<%= form_tag do %>
 
@@ -19,7 +19,7 @@
 
 					  <div class="row" style="padding-top: 1.5em">
 					    <div class="col-xs-3 col-md-3"></div>
-					    <div class="col-xs-6 col-md-6"><%= date_select('init_date', 'date', selected: Date.today - 1) %></div>
+					    <div class="col-xs-6 col-md-6"><%= date_select :dates, :start, {:use_month_names => translated_month_names(false), :start_year => Date.today.year - 20, :end_year => Date.today.year, selected: @start.present? ? @start : Date.today.in_time_zone('Buenos Aires')}, {class: "form-control date-select", :required => "required"} %></div>
 					  </div>
 
 					  <div class="row" style="padding-top: 1.5em">
@@ -29,7 +29,7 @@
 
 					  <div class="row" style="padding-top: 1.5em">
 					    <div class="col-xs-3 col-md-3"></div>
-					    <div class="col-xs-6 col-md-6"><%= date_select('end_date', 'date', selected: Date.today + 1) %></div>
+					    <div class="col-xs-6 col-md-6"><%= date_select :dates, :end, {:use_month_names => translated_month_names(false), :start_year => Date.today.year - 20, :end_year => Date.today.year, selected: @end.present? ? @end : Date.today.in_time_zone('Buenos Aires')}, {class: "form-control date-select", :required => "required"} %></div>
 					  </div>
 
 					  <div class="row" style="padding-top: 1.5em">
@@ -58,8 +58,8 @@
 									<blockquote>
 										<div class="destacado" style="padding-bottom: 0.5em"><%=p.first_name%> <%=p.last_name%></div>
 										<div><span class="negrita">Email: </span><%=p.email%></div>
-										<div><span class="negrita">Fecha de registro: </span><%=timeleft(p.created_at)%></div>
-										<div><span class="negrita">Último ingreso: </span><%=timeleft(p.updated_at)%></div>
+										<div><span class="negrita">Fecha de registro: </span><%= localize p.created_at.in_time_zone('Buenos Aires'), format: :long %></div>
+										<div><span class="negrita">Último ingreso: </span><%= localize p.updated_at.in_time_zone('Buenos Aires'), format: :long %></div>
 										<div><span class="negrita">Productos publicados: </span><%=p.products.count%></div>
 										<div><span class="negrita">Ofertas realizadas: </span><%=p.bids.count%></div>
 										<div><span class="negrita">Categoría:</span>
