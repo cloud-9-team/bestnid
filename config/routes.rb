@@ -23,23 +23,16 @@ Rails.application.routes.draw do
 
   get 'paginas_estaticas/tutorial_subir_fotos'
 
-  get 'paginas_estaticas/estadisticas'
+  get 'stats/usuarios_registrados'
+  post 'stats/usuarios_registrados'
+
+  get 'stats/ganancias'
+  post 'stats/ganancias'
 
   get 'welcome/index'
 
-  get 'users/index'
-
-  get 'users/new'
-
-  get 'users/show'
-
-  get 'products/form'
-  
-  post 'products/form'
-
-
   devise_for :users, :controllers => { registrations: 'registrations' }
-  resources :users
+  resources :users, only: [:index, :show, :edit, :update]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

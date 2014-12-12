@@ -1,0 +1,80 @@
+<div class="container">
+	<h1 class="subtitulos">Ganancias</h1>
+	<div class="panel panel-personal">
+		<div class="panel-heading">
+			<div class="panel-title text-ellipsis">Cálculo de ganancias</div>
+		</div>
+		<div class="panel-body">
+			<p>Elija dos fechas entre las cuales desee calcular las ganancias de su empresa.</p>
+			<p>Los productos tenidos en cuenta son aquellos cuya subasta ha finalizado, es decir que se ha escogido una oferta ganadora, y la fecha en que ocurrió esto se la toma como referencia para la búsqueda.</p>
+			<p>El porcentaje de la venta que recibe Bestnid es <b><%= number_to_percentage(BESTNID_PERCENT * 100, precision: 2) %></b>.</p>
+
+			<%= form_tag do %>
+			
+				<div class="centrar" style="display:table; border-radio:1px">
+				<div class="form-group">
+					<%= label_tag :start, "Primera fecha" %>
+					<div>
+		 				<%= date_select :dates, :start, {:use_month_names => translated_month_names(false), :start_year => Date.today.year - 20, :end_year => Date.today.year, selected: @start.present? ? @start : Date.today.in_time_zone('Buenos Aires')}, {class: "form-control date-select", :required => "required"} %>
+		 			</div>
+				</div>
+
+				<div class="form-group">
+					<%= label_tag :end, "Segunda fecha" %>
+					<div>
+						<%= date_select :dates, :end, {:use_month_names => translated_month_names(false), :start_year => Date.today.year - 20, :end_year => Date.today.year, selected: @end.present? ? @end : Date.today.in_time_zone('Buenos Aires')}, {class: "form-control date-select", :required => "required"} %>
+					</div>
+				</div>
+
+				<div class="form-group" style="text-align:center;"><%= submit_tag "Calcular", class: "btn btn-primary" %></div>
+				</div>
+			<% end %>
+			
+			<% if params[:dates].present? and @resultados != nil %>
+				<% total = 0 %>
+				<% @resultados.map { |p| total=total+p.chosen_bid.value } %>
+				<div><h4>En el período de tiempo especificado que consta de <strong><%= distance_of_time_in_words(@start, @end) %></strong> se ha vendido <strong><%= @resultados.any? ? @resultados.count > 1 ? @resultados.count.to_s + " productos" : "1 producto" : "0 productos" %></strong>, generando una ganancia total de <strong><%= number_to_currency(total * BESTNID_PERCENT, unit: "$", format: "%u%n") %></strong>.</h4></div>
+			<% end %>
+
+			<% if @resultados != nil and @resultados.any? %>
+			
+			<div class="panel panel-personal">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a href="#full-info" data-toggle="collapse" data-target="#full-info" aria-expanded="false" aria-controls="full-info" style="display:block">Información detallada del período</a>
+					</h4>
+				</div>
+				<div id="full-info" class="panel-collapse collapse in">
+					<table class="table">
+						<tr class="row">
+							<th>Producto</th>
+							<th>Categoría</th>
+							<th>Fecha de finalización</th>
+							<th>Valor de oferta elegida</th>
+							<th>Ganancia</th>
+						</tr>
+
+						<% @resultados.each do |product| %>
+						<tr class="row">
+							<td><%= link_to product.title, product %></td>
+							<td><%= product.category.name %></td>
+							<td><%= localize product.finished_at.in_time_zone('Buenos Aires'), format: :long %></td>
+							<td><%= number_to_currency(product.chosen_bid.value, unit: "$", format: "%u%n") %></td>
+							<td><%= number_to_currency(product.chosen_bid.value * BESTNID_PERCENT, unit: "$", format: "%u%n") %></td>
+						</tr>
+						<% end %>
+
+						<tr class="row negrita" style="background-color: whitesmoke">
+							<td></td>
+							<td></td>
+							<td style="text-align: right;">Totales:</td>
+							<td><%= number_to_currency(total, unit: "$", format: "%u%n") %></td>
+							<td><%= number_to_currency(total * BESTNID_PERCENT, unit: "$", format: "%u%n") %></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<% end %>
+		</div>
+	</div>
+</div>

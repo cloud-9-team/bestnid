@@ -20,7 +20,7 @@
    
     <div class="collapse navbar-collapse nav-pills" id="to-collapse">
       <ul class="nav navbar-nav">
-        <li><a href="/" class="negrita">Inicio</a></li>
+        <li id="bestnid-home"><a href="/" class="negrita">Inicio</a></li>
 
         <% if user_signed_in? %>
          <li role="presentation" class="dropdown">
@@ -30,7 +30,7 @@
             <ul class="dropdown-menu" role="menu">
               <li><a href="/sales/index"><b>Ventas</b></a></li>
               <li><a href="/bids"><b>Ofertas</b></a></li>
-              <li><a href="/paginas_estaticas/como_funciona"><b>Compras</b></a></li>
+              <li><a href="/paginas_estaticas/como_funciona"><b>Compras <span class="error" style="vertical-align: super;font-size: 60%;">PRÓXIMAMENTE</span></b></a></li>
               <li><a href="/products/new" style="color: dodgerblue"><b>Publicar subasta</b></a></li>
             </ul>
           </li>
@@ -50,8 +50,14 @@
         <li><a href="/contacto/index"><b>Contacto</b></a></li>
 
         <% if user_signed_in? %>
-          <% if (@admin.email == current_user.email) %>
-            <li><a href="/paginas_estaticas/estadisticas"><b><span class="destacado">Estadísticas</span></b></a></li>
+          <% if current_user.admin %>
+            <li role="presentation" class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false"><span class="destacado">Estadísticas<span class="caret"></span></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="/stats/usuarios_registrados"><b>Usuarios registrados</b></a></li>
+                <li><a href="/stats/ganancias"><b>Ganancias</b></a></li>
+              </ul>
+            </li>
           <% end %>
         <% end %>
         

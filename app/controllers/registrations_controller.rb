@@ -1,3 +1,4 @@
+#encoding: UTF-8
 class RegistrationsController < Devise::RegistrationsController
  
   def destroy

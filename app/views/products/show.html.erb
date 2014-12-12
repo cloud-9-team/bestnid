@@ -40,179 +40,209 @@
 				
 				<% if user_signed_in? %>
 					<% if @owner.email == current_user.email %>
-						<tr>
-							<td>
-								<% if @product.timeout? and not @product.finished? %>
-									<%= link_to "Elegir necesidad ganadora", "#", data: { toggle: "modal", target: "#modalBids" }, class: "btn btn-primary" %>
-									<!-- Modal -->
-									<div class="modal fade" id="modalBids" tabindex="-1" role="dialog" aria-labelledby="titleLabel" aria-hidden="true">
-									  <div class="modal-dialog">
-									    <div class="modal-content">
-									      <div class="modal-header">
-									        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-									        <h4 class="modal-title" id="titleLabel">Elige la oferta ganadora</h4>
-									      </div>
-									      <%= form_for @product do |f| %>
-									      <div class="modal-body">
-									      	<div class="radio-group">
-												<% if @product.bids.count == 0 %>
-													<div class="negrita">
-														<p>Este producto no tiene ofertas.</p>
-														<p>Si desea, puede eliminarlo y volverlo a publicar para encontrar nuevos interesados.</p>
-													</div>
-												<% else %>
-													<% @product.bids.each do |bid| %>
-													<div class="radio-item">
-														<%= f.radio_button(:chosen_bid_id, bid.id) %>
-														<%= f.label("chosen_bid_id_" + bid.id.to_s, bid.need, class: "radio-label") %>
-													</div>
-													<% end %>
-													
-												<% end %>
-											</div>
-									      </div>
-									      <div class="modal-footer">
-									        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-									        <% if @product.bids.count > 0 %>
-									        <%= f.submit("Elegir", class: "btn btn-primary", data: {confirm: "¿Estás seguro de tu elección?"}) %>
-									        <% end %>
-									      </div>
-									      <% end %>
-									    </div>
-									  </div>
-									</div>
-									<!-- End Modal -->
-								<% end %>
-							</td>
-							<td style="text-align:right;" class="text-ellipsis">
-								<%= link_to "Eliminar subasta", @product, data: { confirm: "¿Estás seguro?" }, :method => :delete , class:"btn btn-danger" %>
-							</td>
-						</tr>
-					<% else %>
-						<tr>
-							<td style="text-align:right;" class="text-ellipsis">
-								<% if not @product.timeout? %>
-									<% if (@temp == true) %>
-										<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Modificar oferta</button>
+						<% if not @product.finished? %>
+							<tr>
+								<td>
+									<% if @product.timeout? and not @product.finished? %>
+										<%= link_to "Elegir necesidad ganadora", "#", data: { toggle: "modal", target: "#modalBids" }, class: "btn btn-primary" %>
 										<!-- Modal -->
-										<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+										<div class="modal fade" id="modalBids" tabindex="-1" role="dialog" aria-labelledby="titleLabel" aria-hidden="true">
 										  <div class="modal-dialog">
 										    <div class="modal-content">
 										      <div class="modal-header">
-										        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button>
-										        <center><h4 class="modal-title" id="myModalLabel">Modificar oferta</h4></center>
+										        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+										        <h4 class="modal-title" id="titleLabel">Elige la oferta ganadora</h4>
 										      </div>
-										      <div class="modal-body" style="text-align: left;">
-										      	<% @bid = current_user.bids.where(product_id: @product.id).last %>
-										      	<%= form_for @bid , :as => :bid, method: :edit do |f| %>
-										      		<%= f.hidden_field :id %>
-													<div class="form-group" style="width: 90%">
-														<%= label_tag "need", "Necesidad:" %>
-														<%= f.text_area :need, :required => "required", class:"form-control", maxlength:"1000" %>
-													</div>
-													<div class="form-group" style="width: 50%">
-														<%= label_tag "value", "Valor de la oferta (en pesos argentinos):" %>
-														<%= f.number_field :value , :min => 1, :required => "required", class:"form-control", maxlength:"7" %>
-													</div>
-													<div class="form-group modal-footer" style="margin-bottom: 0px;">
-														<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-														<%= f.submit "Modificar", class:"btn btn-success" %>
-													</div>
-										      	<% end %>
-										      </div>
-										    </div>
-										  </div>
-										</div>
-										<!-- End Modal -->
-									<% else %>
-										<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Ofertar</button>
-										<!-- Modal -->
-										<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-										  <div class="modal-dialog">
-										    <div class="modal-content">
-										      <div class="modal-header">
-										        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button>
-										        <center><h4 class="modal-title" id="myModalLabel">Nueva oferta</h4></center>
-										      </div>
-										      <div class="modal-body" style="text-align: left">
-										      	<h4>Oferta</h4>
-										      	<%= form_tag new_bid_path(product_id_param: @product.id, user_id_param: current_user.id) do %>
-													
-													<div class="form-group" style="width: 90%">
-														<%= label_tag "need", "Necesidad:" %>
-														<%= text_area_tag "need", "", :placeholder => "Necesidad", :required => "required", class:"form-control", maxlength:"1000" %>
-													</div>
-
-													<div class="form-group" style="width: 30%">
-														<%= label_tag "value", "Valor de la oferta (en pesos argentinos):" %>
-														<%= number_field_tag "value", "", :min => 1, :placeholder => "Oferta ($)", :required => "required", class:"form-control", maxlength:"7" %>
-													</div>
-													
-													<div class="form-group modal-footer" style="margin-bottom: 0px;">
-														<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-														<%= submit_tag "Publicar", class:"btn btn-success" %>
-													</div>
-
-										      	<% end %>
-
-										      	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-												  <div class="panel panel-default">
-												    <div class="panel-heading" role="tab" id="headingOne">
-												      <h4 class="panel-title">
-												        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-												          <span class="btn btn-primary">Actualizar datos de la tarjeta de crédito</span>
-												        </a>
-												      </h4>
-												    </div>
-												    <div id="collapseOne" class="panel-collapse collapse" style="text-align: left" role="tabpanel" aria-labelledby="headingOne">
-												      <div class="panel-body">
-												       	<%= form_for(current_user, as: :user) do |f| %>
-
-											      		<span class="negrita">Número de la tarjeta:</span>
-											      		<div class="row" style="width: 90%; padding-bottom: 0.5em; padding-top: 0.5em" >
-														    <div class="col-xs-3 col-md-3" onkeypress="return isNumberKey(event)"><%= f.text_field :card_1 , class:"form-control", maxlength:"4" %></div>
-														    <div class="col-xs-3 col-md-3" onkeypress="return isNumberKey(event)"><%= f.text_field :card_2 , class:"form-control", maxlength:"4" %></div>
-														    <div class="col-xs-3 col-md-3" onkeypress="return isNumberKey(event)"><%= f.text_field :card_3 , class:"form-control", maxlength:"4" %></div>
-														    <div class="col-xs-3 col-md-3" onkeypress="return isNumberKey(event)"><%= f.text_field :card_4 , class:"form-control", maxlength:"4" %></div>
+										      <%= form_for @product do |f| %>
+										      <div class="modal-body">
+										      	<div class="radio-group">
+													<% if @product.bids.count == 0 %>
+														<div class="negrita">
+															<p>Este producto no tiene ofertas.</p>
+															<p>Si desea, puede eliminarlo y volverlo a publicar para encontrar nuevos interesados.</p>
 														</div>
-
-														<span class="negrita">Nombre del titular:</span>
-														<div class="row" style="width: 90%; padding-top:0.5em;padding-bottom:0.5em">
-	    													<div class="col-xs-6 col-md-6"><%= f.text_field :card_owner_first_name, autofocus: true , class:"form-control" %></div>
-	 													</div>
-
-	 													<span class="negrita">Apellido del titular:</span>
-														<div class="row" style="width: 90%;padding-top:0.5em;padding-bottom:0.5em">
-	    													<div class="col-xs-6 col-md-6"><%= f.text_field :card_owner_last_name, autofocus: true , class:"form-control" %></div>
-	 													</div>
-
-	 													<span class="negrita">Número de seguridad:</span>
-														<div class="row" style="width: 90%;padding-top:0.5em;padding-bottom:0.5em">
-	    													<div class="col-xs-6 col-md-6" onkeypress="return isNumberKey(event)"><%= f.password_field :security_code, autofocus: true , class:"form-control", maxlength:"3", required: true %></div>
-	 													</div>
-
-	 													<span class="negrita">Fecha de vencimiento:</span>
-														<div class="row" style="width: 90%; padding-top:0.5em;padding-bottom:0.5em">
-
-															<div class="col-xs-6 col-md-6"><%= f.date_select :expires_on, {:use_month_names => translated_month_names(false), :discard_day => true, :start_year => Date.today.year, :end_year => Date.today.year + 20}, {maxlength: "8", class: "form-control date-select", :required => "required"} %></div>
-	 													</div>
-
-														<%= hidden_field_tag :product_id, @product.id %>
-														<%= f.submit "Actualizar" , class:"btn btn-primary" %>
-
+													<% else %>
+														<% @product.bids.each do |bid| %>
+														<div class="radio-item">
+															<%= f.radio_button(:chosen_bid_id, bid.id) %>
+															<%= f.label("chosen_bid_id_" + bid.id.to_s, simple_format(bid.need, {}, sanitize: true), class: "radio-label") %>
+														</div>
 														<% end %>
-												      </div>
-												    </div>
-												  </div>
-										      	</div>
-
+														
+													<% end %>
+												</div>
 										      </div>
+										      <div class="modal-footer">
+										        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+										        <% if @product.bids.count > 0 %>
+										        <%= f.submit("Elegir", class: "btn btn-primary", data: {confirm: "¿Estás seguro de tu elección?"}) %>
+										        <% end %>
+										      </div>
+										      <% end %>
 										    </div>
 										  </div>
 										</div>
 										<!-- End Modal -->
 									<% end %>
-								<% end %>
+								</td>
+								
+								<td style="text-align:right;" class="text-ellipsis">
+									<%= link_to "Eliminar subasta", @product, data: { confirm: "¿Estás seguro?" }, :method => :delete , class:"btn btn-danger" %>
+								</td>
+							</tr>
+						<% end %>
+					<% elsif not @product.timeout? %>
+						<tr>
+							<td style="text-align:right;" class="text-ellipsis">
+								<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal"><%= @temp ? "Modificar oferta" : "Ofertar" %></button>
+								<!-- Modal -->
+								<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+								  <div class="modal-dialog">
+								    <div class="modal-content">
+								      <div class="modal-header">
+								        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button>
+								        <center><h4 class="modal-title negrita" id="myModalLabel">Mi oferta</h4></center>
+								      </div>
+								      <div class="modal-body" style="text-align: left">
+
+										<div role="tabpanel">
+
+										  <!-- Nav tabs -->
+										  <ul class="nav nav-tabs" role="tablist">
+										    <li role="presentation" class="active"><a href="#oferta" aria-controls="home" role="tab" data-toggle="tab"><span class="negrita">Ofertar</span></a></li>
+										    <li role="presentation"><a href="#actualizarTarjeta" aria-controls="profile" role="tab" data-toggle="tab"><span class="negrita">Actualizar datos de tarjeta</span></a></li>
+										  </ul>
+
+										  <!-- Tab panes -->
+										  <div class="tab-content">
+										    <div role="tabpanel" class="tab-pane active" id="home"></div>
+										    <div role="tabpanel" class="tab-pane" id="profile"></div>
+										  </div>
+
+										</div>
+
+									    <div id="myTabContent" class="tab-content">
+									      <div role="tabpanel" class="tab-pane fade in active" id="oferta" aria-labelledBy="home-tab">
+									      		<% if @temp # Hay que modificar oferta %>
+											      	<% @bid = current_user.bids.where(product_id: @product.id).last %>
+											      	<%= form_for @bid , :as => :bid, method: :edit do |f| %>
+											      		<div class="modal-body">
+												      		<%= f.hidden_field :id %>
+															<div class="form-group">
+																<%= label_tag "need", "Necesidad" %>
+																<%= f.text_area :need, :required => "required", class:"form-control", maxlength:"2000" %>
+															</div>
+
+															<div class="form-group">
+																<%= label_tag "value", "Valor de la oferta (en pesos argentinos)" %>
+																<div class="row">
+																	<div class="col-xs-4 col-md-4">
+																		<div class="input-group">
+																			<span class="input-group-addon">$</span>
+																			<%= f.number_field :value , :min => 1, :required => "required", class:"form-control", maxlength:"7" %>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="form-group modal-footer" style="margin-bottom: 0px;">
+															<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+															<%= f.submit "Modificar", class: "btn btn-success" %>
+														</div>
+											      	<% end %>
+									      
+										      	<% else # Crear una nueva oferta %>
+												    <%= form_tag new_bid_path(product_id_param: @product.id, user_id_param: current_user.id) do %>
+														<div class="modal-body">
+															<div class="form-group">
+																<%= label_tag "need", "Necesidad" %>
+																<%= text_area_tag "need", "", :placeholder => "Necesidad", :required => "required", class: "form-control", maxlength: "2000" %>
+															</div>
+
+															<div class="form-group">
+																<%= label_tag "value", "Valor de la oferta (en pesos argentinos)" %>
+																<div class="row">
+																	<div class="col-xs-4 col-md-4">
+																		<div class="input-group">
+																			<span class="input-group-addon">$</span>
+																			<%= number_field_tag "value", "", :min => 1, :placeholder => "Valor", :required => "required", class: "form-control", maxlength:"7" %>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="form-group modal-footer" style="margin-bottom: 0px;">
+															<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+															<%= submit_tag "Publicar", class: "btn btn-success" %>
+														</div>
+
+											      	<% end %>
+										      	<% end %>	
+											
+									      </div>
+									      <div role="tabpanel" class="tab-pane fade" id="actualizarTarjeta" aria-labelledBy="profile-tab">
+									        <%= form_for @current_user, remote: true do |f| %>
+									        	<div class="modal-body">
+											        <div class="row">
+											        	<div id="actualizarTarjeta_msgs" class="col-xs-12" style="margin-top: -1.5em;"></div>
+											        </div>
+
+											        <div class="form-group">
+											      		<%= f.label "Número de la tarjeta" %>
+											      		<div class="row">
+														    <div class="col-xs-3 col-md-3" onkeypress="return isNumberKey(event)"><%= f.text_field :card_1 , class:"form-control", maxlength:"4" %></div>
+														    <div class="col-xs-3 col-md-3" onkeypress="return isNumberKey(event)"><%= f.text_field :card_2 , class:"form-control", maxlength:"4" %></div>
+														    <div class="col-xs-3 col-md-3" onkeypress="return isNumberKey(event)"><%= f.text_field :card_3 , class:"form-control", maxlength:"4" %></div>
+														    <div class="col-xs-3 col-md-3" onkeypress="return isNumberKey(event)"><%= f.text_field :card_4 , class:"form-control", maxlength:"4" %></div>
+														</div>
+													</div>
+
+													<div class="form-group">
+														<%= f.label :card_owner_first_name %>
+														<div class="row">
+	    													<div class="col-xs-6 col-md-6"><%= f.text_field :card_owner_first_name, autofocus: true , class:"form-control" %></div>
+	 													</div>
+ 													</div>
+
+ 													<div class="form-group">
+	 													<%= f.label :card_owner_last_name %>
+														<div class="row">
+	    													<div class="col-xs-6 col-md-6"><%= f.text_field :card_owner_last_name, autofocus: true , class:"form-control" %></div>
+	 													</div>
+ 													</div>
+
+ 													<div class="form-group">
+	 													<%= f.label :security_code %>
+														<div class="row">
+	    													<div class="col-xs-3 col-md-3" onkeypress="return isNumberKey(event)"><%= f.password_field :security_code, autofocus: true , class:"form-control", maxlength:"3", required: true %></div>
+	 													</div>
+ 													</div>
+
+ 													<div class="form-group">
+	 													<%= f.label :expires_on %>
+														<div class="row">
+															<div class="col-xs-6 col-md-6"><%= f.date_select :expires_on, {:use_month_names => translated_month_names(false), :discard_day => true, :start_year => Date.today.year, :end_year => Date.today.year + 20}, {maxlength: "8", class: "form-control date-select", :required => "required"} %></div>
+	 													</div>
+ 													</div>
+
+													<div class="row negrita small"><div class="col-xs-12" style="text-align: right;">Nota: Todos los campos son obligatorios.</div></div>
+													
+													<%= hidden_field_tag :product_id, @product.id %>
+												</div>
+												<div class="form-group modal-footer" style="margin-bottom: 0px;">
+													<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+													<%= f.submit "Actualizar" , class:"btn btn-primary" %>
+												</div>
+
+											<% end %>
+
+									      </div>
+									    </div>
+								      </div>
+								    </div>
+								  </div>
+								</div>
+								<!-- End Modal -->
 							</td>
 						</tr>
 					<% end %>
@@ -221,10 +251,10 @@
 		</div>
 	</div>
 	
-	<% if user_signed_in? and @owner.email == current_user.email %>
-		<div class = "panel panel-personal">
-			<div class = "panel-heading">
-				<h3 class = "panel-title">Ofertas</h3>
+	<% if user_signed_in? and (@owner.email == current_user.email or current_user.admin) %>
+		<div class="panel panel-personal">
+			<div class="panel-heading">
+				<h3 class="panel-title">Ofertas</h3>
 			</div>
 			<ul class="list-group">
 				<% if @product.bids.count == 0 %>
@@ -232,7 +262,7 @@
 				<% else %>
 					<% @product.bids.each do |bid| %>
 						<li class="<%= (@product.chosen_bid.present? and @product.chosen_bid == bid) ? "list-group-item active" : "list-group-item" %>">
-							<blockquote><%= bid.need %></blockquote>
+							<blockquote><%= simple_format(bid.need, {}, sanitize: true) %></blockquote>
 						</li>
 					<% end %>
 				<% end %>

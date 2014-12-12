@@ -38,11 +38,12 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+# Gema para Heroku, impide que se escriba logs/development.log, pero otorga más detalles para debug
+gem 'rails_12factor'
+
 gem 'devise'
 gem 'tzinfo'
 gem 'tzinfo-data'
-gem 'rails_12factor'
-gem 'paperclip', '~> 4.2.0'
 gem 'hirb'
 
 group :development, :test do
@@ -51,5 +52,3 @@ end
 
 # Gema para seleccionar país al registrarse
 gem 'country_select', github: 'stefanpenner/country_select'
-
-gem 'formtastic', '~> 3.0'

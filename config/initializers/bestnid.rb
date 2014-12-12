@@ -1,0 +1,1 @@
+BESTNID_PERCENT = 0.30 # Porcentaje de la venta que se queda Bestnid

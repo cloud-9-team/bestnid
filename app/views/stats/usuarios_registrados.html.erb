@@ -1,0 +1,82 @@
+<h2 class="subtitulos">Usuarios registrados</h2>
+
+<div class="container">
+	<div class="panel panel-personal">
+		<div class="panel-heading">
+			<h3 class="panel-title text-ellipsis">Usuarios registrados en el sistema en un intervalo de tiempo</h3>
+		</div>
+		<div class="panel-body">
+
+			<%= form_tag do %>
+
+			<center>
+				<div class="fluid-container">
+
+					  <div class="row" >
+					    <div class="col-xs-3 col-md-3"></div>
+					    <div class="col-xs-6 col-md-6"><%= label_tag("Fecha de inicio: ") %></div>
+					  </div>
+
+					  <div class="row" style="padding-top: 1.5em">
+					    <div class="col-xs-3 col-md-3"></div>
+					    <div class="col-xs-6 col-md-6"><%= date_select :dates, :start, {:use_month_names => translated_month_names(false), :start_year => Date.today.year - 20, :end_year => Date.today.year, selected: @start.present? ? @start : Date.today.in_time_zone('Buenos Aires')}, {class: "form-control date-select", :required => "required"} %></div>
+					  </div>
+
+					  <div class="row" style="padding-top: 1.5em">
+					    <div class="col-xs-3 col-md-3"></div>
+					    <div class="col-xs-6 col-md-6"><%= label_tag("Fecha de finalización: ") %></div>
+					  </div>
+
+					  <div class="row" style="padding-top: 1.5em">
+					    <div class="col-xs-3 col-md-3"></div>
+					    <div class="col-xs-6 col-md-6"><%= date_select :dates, :end, {:use_month_names => translated_month_names(false), :start_year => Date.today.year - 20, :end_year => Date.today.year, selected: @end.present? ? @end : Date.today.in_time_zone('Buenos Aires')}, {class: "form-control date-select", :required => "required"} %></div>
+					  </div>
+
+					  <div class="row" style="padding-top: 1.5em">
+					    <div class="col-xs-3 col-md-3"></div>
+					    <div class="col-xs-6 col-md-6"><%= submit_tag('Filtrar', class:"btn btn-primary") %></div>
+					  </div>
+
+				  </div>
+			</center>
+
+			<% end %>
+
+			<ul class="list-group" style="padding-top: 1.5em">
+				<% if !(@temp)%>
+					<li class="list-group-item italica negrita"><center>No se ha filtrado la búsqueda. Seleccione una fecha de inicio y una de finalización para buscar a los usuarios registrados en dicho intervalo de tiempo.</center></li>
+				<% else %>
+					<% if @users.count == 0%>
+						<li class="list-group-item italica negrita"><center>No se han registrado usuarios en el intervalo de tiempo indicado.</center></li>
+					<% else %>
+						<% if @users.count == 0%>
+							<li class="list-group-item italica negrita"><center>No se han registrado usuarios en el intervalo de tiempo indicado.</center></li>
+						<% else %>
+							<li class="list-group-item negrita"><center>Usuarios encontrados: <span class="destacado"><%= @users.count %></span></center></li>
+							<% @users.each do |p| %>
+								<li class="list-group-item">
+									<blockquote>
+										<div class="destacado" style="padding-bottom: 0.5em"><%=p.first_name%> <%=p.last_name%></div>
+										<div><span class="negrita">Email: </span><%=p.email%></div>
+										<div><span class="negrita">Fecha de registro: </span><%= localize p.created_at.in_time_zone('Buenos Aires'), format: :long %></div>
+										<div><span class="negrita">Último ingreso: </span><%= localize p.updated_at.in_time_zone('Buenos Aires'), format: :long %></div>
+										<div><span class="negrita">Productos publicados: </span><%=p.products.count%></div>
+										<div><span class="negrita">Ofertas realizadas: </span><%=p.bids.count%></div>
+										<div><span class="negrita">Categoría:</span>
+											<% if (p.admin) %>
+												<span class="error">Administrador</span>
+											<% else %>
+												<span>Usuario regular</span>
+											<% end %>
+										</div>
+									</blockquote>
+								</li>
+							<% end %>
+						<% end %>
+					<% end %>
+				<% end %>
+			</ul>
+
+		</div>
+	</div>
+</div>
