@@ -13,7 +13,7 @@
 			<div class="row row-description">
 				<div class="col-xs-12">
 					<h3><%= link_to p.title, p %></h3>
-					<p><%= p.description.truncate(150) %>
+					<p><%= simple_format(p.description.truncate(150), {}, sanitize: true) %>
 						<% if p.description.length > 150 %>
 							<%= link_to "(ver más)", p %>
 						<% end %>
